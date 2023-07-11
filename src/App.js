@@ -5,6 +5,7 @@ import Blog from "./pages/blog";
 import Post from "./pages/post";
 import About from "./pages/about";
 import Contact from "./pages/contact";
+import "./styles/general.css";
 
 const theme = createTheme({
   palette: {

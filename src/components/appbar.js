@@ -61,7 +61,7 @@ function ResponsiveAppBar() {
       elevation={0}
       position="static"
     >
-      <Container maxWidth="1160px" className={classes.container}>
+      <Container maxWidth="lg" className={classes.container}>
         <Toolbar disableGutters>
           {/* this is the bug icon with LOGO in full width screen*/}
           <Link to="/">

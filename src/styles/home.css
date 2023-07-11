@@ -8,11 +8,24 @@
   overflow: hidden;
 }
 
-/* .home {
-  overflow: hidden;
-} */
+.latest-research,
+.subscribe-cta,
+.testemonials {
+  background-color: #e4edea;
+  padding: 6.5rem 0;
+}
 
 .latest-research {
-  background-color: #e4edea;
-  padding: 140px 0;
+  padding-top: 12rem;
+}
+
+.image {
+  object-fit: cover;
+  border-radius: 0.5em;
+  top: 3rem;
+  height: 11.25rem;
+  width: 11.1875rem;
+  background-size: "cover";
+  object-position: center 10%;
+  margin-bottom: 0.3rem;
 }

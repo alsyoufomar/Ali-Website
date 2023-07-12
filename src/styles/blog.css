@@ -1,0 +1,22 @@
+.blog {
+  min-height: 100vh;
+  background-color: #e4edea;
+}
+
+.image {
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+  height: 11.9375rem;
+  width: 100%;
+  object-position: center 50%;
+  margin-bottom: 0;
+}
+
+.author_image {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 1.875rem;
+  width: 1.875rem;
+  object-position: center 50%;
+  margin-bottom: 0;
+}

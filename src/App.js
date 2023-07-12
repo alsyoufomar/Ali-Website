@@ -5,7 +5,6 @@ import Blog from "./pages/blog";
 import Post from "./pages/post";
 import About from "./pages/about";
 import Contact from "./pages/contact";
-import "./styles/general.css";
 
 const theme = createTheme({
   palette: {
@@ -18,6 +17,10 @@ const theme = createTheme({
       main: "#9AC9BC",
       light: "rgba(140, 166, 158, 0.73)",
     },
+  },
+
+  myCustomColor: {
+    main: "rgba(140, 166, 158, 0.73)",
   },
 
   typography: {
@@ -40,6 +43,18 @@ const theme = createTheme({
       textTransform: "capitalize",
     },
 
+    h5: {
+      lineHeight: "123%",
+      fontSize: "1.3125rem",
+      fontWeight: 600,
+      textTransform: "capitalize",
+    },
+
+    body2: {
+      fontSize: "0.93rem",
+      lineHeight: "148.5%",
+    },
+
     subtitle1: {
       fontFamily: "lato",
       fontSize: "1.3125rem",
@@ -47,7 +62,10 @@ const theme = createTheme({
       lineHeight: "151%",
       textTransform: "capitalize",
     },
-
+    caption: {
+      fontSize: "14px",
+      color: "gray",
+    },
     button: {
       textTransform: "none",
     },

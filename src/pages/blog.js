@@ -2,10 +2,12 @@ import React from "react";
 import "../styles/blog.css";
 import Appbar from "../components/appbarDark";
 import Footer from "../components/footer";
-import { Typography, Container } from "@mui/material";
+import { Typography, Container, Button, Box } from "@mui/material";
 import Blogcard from "../components/Blog/blogCard";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { grey } from "@mui/material/colors";
 
-export default function blog() {
+export default function Blog() {
   return (
     <div className="blog">
       <Appbar />
@@ -32,6 +34,36 @@ export default function blog() {
           the presses.
         </Typography>
         <Blogcard />
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            marginBottom: "12.62rem",
+          }}
+        >
+          <Button
+            endIcon={<ExpandMoreIcon />}
+            disableElevation
+            variant="contained"
+            sx={{
+              backgroundColor: grey[400],
+              color: "primary.dark",
+              "&:hover": {
+                backgroundColor: "primary.main",
+                color: "white",
+              },
+              px: "22px",
+              py: "10px",
+              lineHeight: "20px",
+              fontWeight: "600",
+              fontFamily: "poppins",
+              // backgroundColor: "grey",
+              // color: "primary.dark",
+            }}
+          >
+            Expand
+          </Button>
+        </Box>
       </Container>
       <Footer />
     </div>

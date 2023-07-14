@@ -1,0 +1,12 @@
+.contact {
+  min-height: 100vh;
+  background-color: #e4edea;
+}
+
+.cover_image {
+  background: url(../assets/contact.jpg) no-repeat center center;
+  background-size: cover;
+  height: 30rem;
+  width: 30rem;
+  margin-right: -9.8125rem;
+}

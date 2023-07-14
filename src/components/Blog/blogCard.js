@@ -68,22 +68,35 @@ const list = [
 export default function BlogCard() {
   return (
     <div className="blog-card">
-      <Box sx={{ marginBottom: "4.12rem", flexGrow: 1 }}>
-        <Grid container spacing={2}>
+      <Box sx={{ marginBottom: "4.12rem", marginTop: "6.62rem", flexGrow: 1 }}>
+        <Grid container rowSpacing={6} columnSpacing={3}>
           {list.map((item, i) => (
-            <Grid key={i} xs={12} sm={6} md={4} component="div">
+            <Grid item key={i} xs={6} md={4} component="div">
               <Link to="/blog/:id" style={{ textDecoration: "none" }}>
                 <Paper
-                  sx={{ paddingBottom: "1px", height: "100%" }}
-                  elevation={8}
+                  sx={{
+                    padding: "0",
+                    height: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                  elevation={12}
                 >
                   <Box
                     component="img"
                     alt="thumbnail image"
                     src={person}
-                    className="image"
+                    className="card-image"
                   />
-                  <Box sx={{ m: 3 }}>
+                  <Box
+                    sx={{
+                      m: 3,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
+                      flexGrow: "1",
+                    }}
+                  >
                     <Box>
                       <Typography sx={{ my: 0 }} variant="h5" component="h4">
                         {item.title}

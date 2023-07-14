@@ -68,9 +68,9 @@ export default function SubscribeCTA() {
                 py: "0.6rem",
                 fontSize: "1.125rem",
                 fontWeight: 700,
-                "&:hover": {
-                  backgroundColor: "#146b7880",
-                },
+                // "&:hover": {
+                //   backgroundColor: "#146b7880",
+                // },
               }}
               disableElevation
               type="submit"

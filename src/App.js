@@ -64,7 +64,7 @@ const theme = createTheme({
     },
     caption: {
       fontSize: "14px",
-      color: "gray",
+      color: "grey",
     },
     button: {
       textTransform: "none",

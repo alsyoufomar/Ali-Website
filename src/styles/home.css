@@ -1,22 +1,35 @@
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   background-image: radial-gradient(
     farthest-side at 90% 40px,
     rgba(3, 28, 33, 0.9),
     #031c21
   );
   overflow: hidden;
+  padding: 0 60px;
+  padding-bottom: 20rem;
 }
 
 .latest-research,
 .subscribe-cta,
 .testemonials {
   background-color: #e4edea;
-  padding: 6.5rem 0;
+  padding: 6.5rem 60px;
+  overflow: hidden;
 }
 
 .latest-research {
   padding-top: 12rem;
+}
+
+.research-card-image {
+  object-fit: cover;
+  border-radius: 4px;
+  height: 12.4375rem;
+  width: 100%;
+  object-position: center 50%;
+
+  margin-top: -3rem;
 }
 
 .testemonials {
@@ -41,4 +54,17 @@
   width: 100%;
   background-color: #031c21;
   padding: 4.8rem;
+}
+
+@media only screen and (max-width: 991px) {
+  .hero {
+    min-height: auto;
+    padding-bottom: 10rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .hero {
+    padding: 0 30px;
+    padding-bottom: 10rem;
+  }
 }

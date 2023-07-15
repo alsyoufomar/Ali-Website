@@ -1,22 +1,18 @@
 import React from "react";
-import "../styles/contact.css";
+import "../styles/about.css";
 import Appbar from "../components/appbarDark";
 import Footer from "../components/footer";
-import { grey } from "@mui/material/colors";
-import {
-  Typography,
-  Box,
-  Container,
-  TextField,
-  Button,
-  Link,
-} from "@mui/material";
+import { Typography, Box, Container } from "@mui/material";
+import aliPic from "../assets/ali-pic.jpg";
 
 export default function about() {
   return (
     <div className="about">
       <Appbar />
-      <Container maxWidth="lg">
+      <Container
+        maxWidth="lg"
+        sx={{ height: "100%", marginBottom: "12.12rem" }}
+      >
         <Typography
           sx={{
             color: "primary.dark",
@@ -44,38 +40,18 @@ export default function about() {
                 lineHeight: "160%",
                 fontWeight: "500",
                 maxWidth: "30.9375rem",
-                marginBottom: "3rem",
+                marginBottom: "10rem",
               }}
             >
               Ali is a highly-acclaimed chemist from Amman, whose lifelong
               obsession with molecules and chemical reactions has propelled him
               to the forefront of the scientific world.
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                textAlign: "justify",
-                fontSize: "1.1875rem",
-                lineHeight: "160%",
-                fontWeight: "500",
-                maxWidth: "30.9375rem",
-                marginBottom: "3rem",
-              }}
-            >
+              <br />
+              <br />
               This modern-day alchemist continues to defy the limits of academic
               conventions in his pursuit of ground-breaking advancements - a
               relentless approach that's revolutionized the field of chemistry.
-            </Typography>
-            <Typography
-              variant="body1"
-              sx={{
-                textAlign: "justify",
-                fontSize: "1.1875rem",
-                lineHeight: "160%",
-                fontWeight: "500",
-                maxWidth: "30.9375rem",
-              }}
-            >
+              <br />
               with an uncanny knack for deciphering the secrets hidden withen
               the atomic world, ali's impressive background testifies to an
               unwavering commitment to scientific discovery
@@ -86,8 +62,17 @@ export default function about() {
               width: "32.875rem",
               height: "47.875rem",
               backgroundColor: "primary.dark",
+
+              py: "2.2rem",
             }}
-          ></Box>
+          >
+            <Box
+              component="img"
+              alt="author image"
+              src={aliPic}
+              className="ali-pic"
+            />
+          </Box>
         </Box>
       </Container>
       <Footer />

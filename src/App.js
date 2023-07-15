@@ -1,12 +1,12 @@
 import { Route, Routes } from "react-router-dom";
-import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
 import Home from "./pages/home";
 import Blog from "./pages/blog";
 import Post from "./pages/post";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 
-const theme = createTheme({
+let theme = createTheme({
   palette: {
     primary: {
       main: "#146B78",
@@ -16,6 +16,18 @@ const theme = createTheme({
     secondary: {
       main: "#9AC9BC",
       light: "rgba(140, 166, 158, 0.73)",
+    },
+  },
+
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 480,
+      md: 768,
+      container: 1200,
+      lg: 991,
+      xl: 1920,
+      customBreakpoint: 2000,
     },
   },
 
@@ -68,6 +80,27 @@ const theme = createTheme({
     },
     button: {
       textTransform: "none",
+    },
+  },
+});
+
+theme = createTheme(theme, {
+  typography: {
+    h2: {
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "2.8rem",
+      },
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "2.5rem",
+      },
+    },
+    subtitle1: {
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "20px",
+      },
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "18px",
+      },
     },
   },
 });

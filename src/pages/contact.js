@@ -87,12 +87,29 @@ export default function Contact() {
               >
                 Get in touch
               </Typography>
-              <TextField fullWidth label="Name" variant="standard" />
+              <TextField
+                autoComplete="no"
+                fullWidth
+                label="Name"
+                variant="standard"
+                inputProps={{
+                  sx: {
+                    color: "primary.Dark",
+                    paddingBottom: "0.5rem",
+                  },
+                }}
+              />
               <TextField
                 autoComplete="no"
                 fullWidth
                 label="Email"
                 variant="standard"
+                inputProps={{
+                  sx: {
+                    color: "primary.Dark",
+                    paddingBottom: "0.5rem",
+                  },
+                }}
               />
               <TextField
                 multiline
@@ -100,6 +117,12 @@ export default function Contact() {
                 fullWidth
                 label="Message"
                 variant="standard"
+                inputProps={{
+                  sx: {
+                    color: "primary.Dark",
+                    paddingBottom: "0.5rem",
+                  },
+                }}
               />
               <Button
                 type="submit"

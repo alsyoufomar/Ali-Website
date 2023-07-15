@@ -41,7 +41,7 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar sx={{ bgcolor: "#00000000" }} elevation={0} position="static">
-      <Container maxWidth="lg">
+      <Container maxWidth="container">
         <Toolbar disableGutters>
           {/* this is the bug icon with LOGO in full width screen*/}
           <Link to="/">

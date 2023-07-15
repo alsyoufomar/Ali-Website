@@ -3,7 +3,7 @@ import Appbar from "./appbar";
 import { Typography, Box, Button, Container } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
-import celld from "../../assets/celld2.svg";
+import cellc from "../../assets/cellc.svg";
 
 const useStyles = makeStyles({
   innerContainer: {
@@ -21,16 +21,22 @@ export default function Hero() {
     <div className="hero">
       <Appbar />
       <Container
-        maxWidth="lg"
-        sx={{ mx: "auto", display: "flex", height: "30rem" }}
-        // className={classes.innerContainer}
+        maxWidth="container"
+        sx={{
+          mx: "auto",
+          display: "flex",
+          flexDirection: { xs: "column", sm: "row" },
+          height: "30rem",
+          justifyContent: "space-between",
+          pt: { xs: "5rem", md: "10rem" },
+        }}
       >
-        <Box sx={{ maxWidth: "33.25rem" }}>
+        <Box sx={{ minWidth: { sm: "20rem", lg: "30rem" } }}>
           <Typography
             sx={{
               color: "secondary.main",
-              marginBottom: "35px",
-              marginTop: "13rem",
+              mb: { xs: "15px", sm: "35px" },
+              // marginTop: "13rem",
             }}
             variant="h2"
             component="h1"
@@ -42,11 +48,11 @@ export default function Hero() {
             sx={{
               color: "secondary.light",
               maxWidth: "30rem",
-              marginBottom: "3.5rem",
+              mb: { xs: "3rem", sm: "35px" },
             }}
           >
             Exploring the Fascinating World of Chemistry Welcome to My Journey
-            Through <br /> Molecules and Reactions
+            Through Molecules and Reactions
           </Typography>
           <Link
             style={{
@@ -61,9 +67,8 @@ export default function Hero() {
               disableElevation
               style={{ borderRadius: 50 }}
               sx={{
-                // my: 4,
-                px: "2.3rem",
-                py: "1rem",
+                px: { xs: "60px", sm: "30px", lg: "2.3rem" },
+                py: { xs: "12px", lg: "1rem" },
                 color: "primary.light",
                 display: "block",
                 fontSize: "1.125rem",
@@ -80,13 +85,13 @@ export default function Hero() {
         <Box
           component="img"
           sx={{
-            height: "40rem",
-            marginLeft: "3rem",
-            marginTop: "20rem",
-            marginRight: "-100rem",
+            height: { xs: "15rem", sm: "30rem", lg: "40rem" },
+            marginLeft: "-10rem",
+            marginTop: { xs: "2rem", sm: "8rem", md: "4rem", lg: "0" },
+            marginRight: "-15rem",
           }}
           alt="Logo"
-          src={celld}
+          src={cellc}
         />
       </Container>
     </div>

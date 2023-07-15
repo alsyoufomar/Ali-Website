@@ -1,0 +1,14 @@
+.about {
+  min-height: 100vh;
+  background-color: #e4edea;
+}
+
+.ali-pic {
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+  object-position: center 50%;
+
+  margin-left: 6.12rem;
+}

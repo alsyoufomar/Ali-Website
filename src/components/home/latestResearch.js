@@ -9,17 +9,17 @@ import arrow from "../../assets/arrow.svg";
 const serviceList = [
   {
     title: "Latest Virus research",
-    body: "Core reagents for virus vaccines, diagnostic and drug R&D, Antigens/Antibodies/ELISA kits.",
+    body: "Core reagents for virus vaccines, diagnostic ",
     img: img1,
   },
   {
     title: "Vaccine research",
-    body: "Core reagents for virus vaccines, diagnostic and drug R&D, Antigens/Antibodies/ELISA kits.",
+    body: "Core reagents for virus vaccines, diagnostic and drug R&D, Antigens/ Antibodies/ ELISA kits.",
     img: img2,
   },
   {
     title: "Development of medicine",
-    body: "Core reagents for virus vaccines, diagnostic and drug R&D, Antigens/Antibodies/ELISA kits.",
+    body: "Core reagents for virus vaccines, diagnostic and drug R&D, Antigens/ Antibodies/ ELISA kits. gjkhk hjg fewf wqef iuuujhjj",
     img: img3,
   },
 ];
@@ -56,43 +56,62 @@ export default function LatestResearch() {
         <Box
           sx={{
             display: "flex",
-            flexDirection: "row",
+            flexDirection: { xs: "column", md: "row" },
             justifyContent: "space-between",
-            gap: 4,
+            gap: 3,
             position: "relative",
+            flexWrap: "wrap",
             zIndex: "10",
           }}
         >
-          {serviceList.map((card) => (
-            <Paper elevation={8}>
-              <Box sx={{ m: 3 }}>
-                <Box
-                  sx={{ width: "100%", marginTop: "-3rem" }}
-                  component="img"
-                  alt="Logo"
-                  src={card.img}
-                />
-                <Typography
-                  sx={{ marginTop: "1rem" }}
-                  align="center"
-                  variant="h5"
-                >
-                  {card.title}
-                </Typography>
-                <Typography
-                  sx={{ my: "0.5rem" }}
-                  color="gray"
-                  align="center"
-                  variant="body2"
-                >
-                  {card.body}
-                </Typography>
+          {serviceList.map((card, i) => (
+            <Paper
+              sx={{
+                padding: "0",
+                width: { xs: 1, md: "31%" },
+              }}
+              key={i}
+              elevation={8}
+            >
+              <Box
+                sx={{
+                  m: 3,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  height: "87%",
+                  flexGrow: "1",
+                }}
+              >
+                <Box>
+                  <Box
+                    component="img"
+                    src={card.img}
+                    alt="thumbnail image"
+                    className="research-card-image"
+                  />
+                  <Typography
+                    sx={{ marginTop: "1rem" }}
+                    align="center"
+                    variant="h5"
+                  >
+                    {card.title}
+                  </Typography>
+                  <Typography
+                    sx={{ my: "0.5rem" }}
+                    color="gray"
+                    align="center"
+                    variant="body2"
+                  >
+                    {card.body}
+                  </Typography>
+                </Box>
                 <Link
                   align="center"
                   style={{
                     display: "block",
-                    marginTop: "2rem",
-                    marginBottom: "2rem",
+                    marginTop: "1rem",
+                    // marginBottom: "2rem",
                     textDecoration: "none",
                     color: "#146B78",
                     fontWeight: "500",

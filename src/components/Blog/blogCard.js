@@ -3,6 +3,8 @@ import { Grid, Box, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import person from "../../assets/person.jpg";
 import "../../styles/blog.css";
+import { makeStyles } from "@mui/styles";
+import { ClassNames } from "@emotion/react";
 
 const list = [
   {
@@ -63,15 +65,40 @@ const list = [
     date: "Dec 7, 2018",
     author: person,
   },
+  {
+    image: person,
+    title: "The Emotional Toll of Being in UX",
+    body: "There are times when our work impacts us deeply — sometimes in ways we neither acknowledge nor understand.",
+    name: "Floyd Miles",
+    date: "Dec 7, 2018",
+    author: person,
+  },
 ];
 
+const useStyles = makeStyles({
+  gridContainer: {
+    "& .MuiGrid-root": {
+      maxWidth: "auto",
+    },
+  },
+});
+
 export default function BlogCard() {
+  const classes = useStyles();
+
   return (
     <div className="blog-card">
-      <Box sx={{ marginBottom: "4.12rem", marginTop: "6.62rem", flexGrow: 1 }}>
-        <Grid container rowSpacing={6} columnSpacing={3}>
+      <Box sx={{ mb: "4.12rem", mt: { xs: "70px", md: "6rem" }, flexGrow: 1 }}>
+        <Grid
+          container
+          rowSpacing={6}
+          columnSpacing={3}
+          justifyContent="center"
+          maxWidth="auto"
+          className="MuiGrid-root"
+        >
           {list.map((item, i) => (
-            <Grid item key={i} xs={6} md={4} component="div">
+            <Grid item key={i} xs={12} sm={10} md={6} lg={4} component="div">
               <Link to="/blog/:id" style={{ textDecoration: "none" }}>
                 <Paper
                   sx={{

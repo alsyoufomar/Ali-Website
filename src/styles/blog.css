@@ -2,6 +2,8 @@
 .post {
   min-height: 100vh;
   background-color: #e4edea;
+  padding: 0 60px;
+  padding-bottom: 6rem;
 }
 
 .post {
@@ -47,4 +49,22 @@
   height: 3.75rem;
   width: 3.75rem;
   margin-right: 1.75rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .blog,
+  .post {
+    padding: 0 30px;
+    padding-bottom: 6rem;
+    padding-top: 15px;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .blog,
+  .post {
+    padding: 0 15px;
+    padding-bottom: 6rem;
+    padding-top: 15px;
+  }
 }

@@ -6,74 +6,101 @@ import "../../../styles/home.css";
 
 export default function Testimonial(props) {
   return (
-    <Paper
-      sx={{
-        height: "27rem",
-        maxWidth: "47.3rem",
-        position: "relative",
-        display: "flex",
-        flexDirection: "row",
-        alignItems: "center",
-        mx: "auto",
-        my: "2rem",
-        p: "4.3rem",
-      }}
-      elevation={8}
-    >
-      <Box>
-        <Box
-          component="img"
-          sx={{
-            position: "absolute",
-            height: "7rem",
-            top: "-3rem",
-            left: "3rem",
-            zIndex: "10",
-          }}
-          alt="Logo"
-          src={quote}
-        />
-        <Box
-          sx={{
-            display: "flex",
-          }}
-        >
-          <Typography
+    <Box sx={{ pr: { xs: "2px", md: "3.5rem" }, pl: "2px" }}>
+      <Paper
+        sx={{
+          minHeight: "20rem",
+          maxWidth: "40.3rem",
+          position: "relative",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          mx: "auto",
+          my: "2rem",
+
+          p: { xs: "1.5rem", sm: "3rem", lg: "4rem" },
+        }}
+      >
+        <Box>
+          <Box
+            component="img"
             sx={{
-              lineHeight: "180%",
-              color: "gray",
-              fontWeight: "500",
-              fontSize: "1.18rem",
-              display: "flex",
-              alignSelf: "center",
+              position: "absolute",
+              height: { xs: "4rem", sm: "5.5rem", lg: "7rem" },
+              top: { xs: "-1.7rem", sm: "-2.3rem", lg: "-3rem" },
+              left: "3rem",
+              zIndex: "10",
             }}
-            maxWidth="31rem"
-            variant="body1"
+            alt="Logo"
+            src={quote}
+          />
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              justifyContent: "space-between",
+              alignItems: "start",
+              minHeight: "17rem",
+            }}
           >
-            "{props.item.description}"
-          </Typography>
-          <Box sx={{ marginRight: "-7rem", marginLeft: "5rem" }}>
-            <img className="image" src={person} alt="avatar" />
             <Typography
               sx={{
-                my: "0.1rem",
-                color: "primary.dark",
-                textAlign: "center",
+                lineHeight: "150%",
+                color: "gray",
+                fontWeight: "500",
+                fontSize: { xs: "17px", sm: "1.18rem" },
+                display: "flex",
+                alignSelf: "start",
+                mt: { xs: "0", md: "2rem" },
               }}
-              variant="h5"
+              maxWidth="31rem"
+              variant="body1"
             >
-              {props.item.name}
+              "{props.item.description}"
             </Typography>
-            <Typography
-              sx={{ fontWeight: "500", textAlign: "center" }}
-              color="gray"
-              variant="subtitle2"
+            <Box
+              sx={{
+                mr: { xs: "auto", md: "-7rem" },
+                ml: { xs: "0", md: "5rem" },
+                mt: { xs: "2rem", md: "0" },
+                display: "flex",
+                flexDirection: { xs: "row", md: "column" },
+                alignItems: "center",
+                gap: "1rem",
+              }}
             >
-              {props.item.title}
-            </Typography>
+              <Box
+                component="img"
+                alt="author image"
+                src={person}
+                className="image"
+              />
+              <Box>
+                <Typography
+                  sx={{
+                    my: "0.1rem",
+                    color: "primary.dark",
+                    textAlign: { xs: "start", md: "center" },
+                  }}
+                  variant="h5"
+                >
+                  {props.item.name}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontWeight: "500",
+                    textAlign: { xs: "start", md: "center" },
+                  }}
+                  color="gray"
+                  variant="subtitle2"
+                >
+                  {props.item.title}
+                </Typography>
+              </Box>
+            </Box>
           </Box>
         </Box>
-      </Box>
-    </Paper>
+      </Paper>
+    </Box>
   );
 }

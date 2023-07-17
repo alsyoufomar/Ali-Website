@@ -5,6 +5,7 @@ import img1 from "../../assets/research1.jpg";
 import img2 from "../../assets/research2.jpg";
 import img3 from "../../assets/research3.jpg";
 import arrow from "../../assets/arrow.svg";
+import cella from "../../assets/cella.svg";
 
 const serviceList = [
   {
@@ -27,12 +28,12 @@ const serviceList = [
 export default function LatestResearch() {
   return (
     <div className="latest-research">
-      <Container maxWidth="lg">
+      <Container maxWidth="container">
         <Typography
           sx={{
             color: "primary.dark",
-            marginBottom: "22px",
-            marginTop: "0",
+            mb: "22px",
+            mt: "0",
             textAlign: "center",
           }}
           variant="h3"
@@ -44,7 +45,7 @@ export default function LatestResearch() {
           sx={{
             maxWidth: "690px",
             mx: "auto",
-            marginBottom: "93px",
+            mb: { xs: "10px", sm: "30px", md: "60px" },
             textAlign: "center",
           }}
           variant="subtitle1"
@@ -67,15 +68,19 @@ export default function LatestResearch() {
           {serviceList.map((card, i) => (
             <Paper
               sx={{
-                padding: "0",
+                p: "0",
                 width: { xs: 1, md: "31%" },
+                maxWidth: "450px",
+                mx: "auto",
+                flex: "1 1 20rem",
+                mt: "3rem",
               }}
               key={i}
               elevation={8}
             >
               <Box
                 sx={{
-                  m: 3,
+                  m: 2.5,
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
@@ -99,7 +104,7 @@ export default function LatestResearch() {
                   </Typography>
                   <Typography
                     sx={{ my: "0.5rem" }}
-                    color="gray"
+                    color="grey"
                     align="center"
                     variant="body2"
                   >
@@ -124,6 +129,17 @@ export default function LatestResearch() {
           ))}
         </Box>
       </Container>
+      <Box
+        component="img"
+        sx={{
+          height: { xs: "15rem", sm: "20rem", md: "25rem", lg: "30rem" },
+          position: "absolute",
+          bottom: "-1rem",
+          left: "-5rem",
+        }}
+        alt="cell c"
+        src={cella}
+      />
     </div>
   );
 }

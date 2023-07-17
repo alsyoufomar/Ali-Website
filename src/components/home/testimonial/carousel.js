@@ -2,6 +2,7 @@ import Carousel from "react-material-ui-carousel";
 import Testimonial from "./testimonialCard";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useMediaQuery } from "@mui/material";
 import React from "react";
 
 var items = [
@@ -26,15 +27,20 @@ var items = [
 ];
 
 export default function CarouselCard(props) {
+  const isMediumScreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
+  const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const navBtnsAlwaysVisible = isMediumScreen && isLargeScreen;
+
   return (
     <Carousel
       NextIcon={<ArrowForwardIosIcon fontSize="large" color="primary" />}
       PrevIcon={<ArrowBackIosIcon fontSize="large" color="primary" />}
-      fullHeightHover={false}
+      fullHeightHover={true}
       navButtonsProps={{
         style: {
           backgroundColor: "#00000000",
           borderRadius: 4,
+          // marginTop: "10rem",
         },
       }}
       indicatorContainerProps={{
@@ -44,17 +50,17 @@ export default function CarouselCard(props) {
       }}
       stopAutoPlayOnHover={true}
       swipe={true}
-      navButtonsAlwaysVisible={true}
+      navButtonsAlwaysInvisible={!navBtnsAlwaysVisible}
+      navButtonsAlwaysVisible={navBtnsAlwaysVisible}
       navButtonsWrapperProps={{
         style: {
-          position: "absolute",
+          // position: "absolute",
           next: {
             right: "15rem",
           },
         },
       }}
       animation="fade"
-      className="test"
       sx={{
         mx: "auto",
         maxWidth: "1075px",

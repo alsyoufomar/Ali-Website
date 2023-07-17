@@ -5,18 +5,7 @@ import { Typography, TextField, Box, Container, Button } from "@mui/material";
 export default function SubscribeCTA() {
   return (
     <div className="subscribe-cta">
-      <Container maxWidth="lg">
-        <Box
-          component="img"
-          sx={{
-            height: "40rem",
-            marginLeft: "-20rem",
-            marginTop: "-24rem",
-            marginBottom: "-15rem",
-          }}
-          alt="Logo"
-          src={cellc}
-        />
+      <Container maxWidth="container">
         <Typography
           sx={{
             color: "primary.dark",
@@ -33,6 +22,7 @@ export default function SubscribeCTA() {
           sx={{
             maxWidth: "690px",
             mx: "auto",
+            mb: { xs: "40px", sm: "50px", md: "60px" },
             marginBottom: "93px",
             textAlign: "center",
           }}
@@ -44,13 +34,15 @@ export default function SubscribeCTA() {
         </Typography>
         <Box align="center">
           <form
+            className="cta-form"
             style={{
               display: "flex",
               justifyContent: "center",
-              alignItems: "end",
+              // flexDirection: { xs: "column", sm: "row" },
+              // alignItems: "end",
             }}
             noValidate
-            autoComplete="false"
+            autoComplete="no"
           >
             <TextField
               required="true"
@@ -58,12 +50,14 @@ export default function SubscribeCTA() {
               variant="standard"
               label="Email"
               sx={{
-                width: "20rem",
+                width: { xs: "100%", sm: "20rem" },
               }}
             />
             <Button
               sx={{
-                marginLeft: "1rem",
+                ml: { xs: "0", sm: "1rem" },
+                mt: { xs: "1rem", sm: "0" },
+                width: { xs: "100%", sm: "auto" },
                 px: "2.7rem",
                 py: "0.6rem",
                 fontSize: "1.125rem",

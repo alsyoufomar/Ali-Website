@@ -1,22 +1,10 @@
 import React from "react";
 import Appbar from "./appbar";
 import { Typography, Box, Button, Container } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { Link } from "react-router-dom";
 import cellc from "../../assets/cellc.svg";
 
-const useStyles = makeStyles({
-  innerContainer: {
-    maxWidth: "1160px",
-    marginLeft: "auto",
-    marginRight: "auto",
-    height: "20rem",
-  },
-});
-
 export default function Hero() {
-  const classes = useStyles();
-
   return (
     <div className="hero">
       <Appbar />
@@ -36,7 +24,6 @@ export default function Hero() {
             sx={{
               color: "secondary.main",
               mb: { xs: "15px", sm: "35px" },
-              // marginTop: "13rem",
             }}
             variant="h2"
             component="h1"
@@ -48,7 +35,7 @@ export default function Hero() {
             sx={{
               color: "secondary.light",
               maxWidth: "30rem",
-              mb: { xs: "3rem", sm: "35px" },
+              mb: { xs: "3rem", sm: "4rem" },
             }}
           >
             Exploring the Fascinating World of Chemistry Welcome to My Journey

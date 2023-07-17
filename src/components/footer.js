@@ -8,12 +8,12 @@ import instagram from "../assets/instagram.svg";
 import twitter from "../assets/twitter.svg";
 import { makeStyles } from "@mui/styles";
 import EastIcon from "@mui/icons-material/East";
+import cellc from "../assets/cellc.svg";
 
 import {
   Typography,
   Box,
   TextField,
-  Button,
   Container,
   Link,
   IconButton,
@@ -52,7 +52,7 @@ export default function Footer() {
   return (
     <div className="footer">
       <Container
-        maxWidth="lg"
+        maxWidth="container"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -61,13 +61,22 @@ export default function Footer() {
         }}
       >
         <Container
+          maxWidth="container"
           disableGutters={true}
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: { xs: "start", lg: "space-between" },
+            flexWrap: "wrap",
+            gap: "3.35rem",
           }}
         >
-          <Box sx={{ display: "flex", flexDirection: "column" }}>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              mr: { xs: "4rem", lg: "0" },
+            }}
+          >
             <RouterLink to="/">
               <Box
                 component="img"
@@ -79,7 +88,7 @@ export default function Footer() {
             <Typography
               sx={{
                 my: "1.6rem",
-                maxWidth: "16.75rem",
+                maxWidth: "14rem",
                 color: "secondary.light",
               }}
             >
@@ -102,7 +111,7 @@ export default function Footer() {
               +962 7 8545 8750
             </Link>
           </Box>
-          <Box>
+          <Box sx={{ mr: { xs: "4rem", lg: "0" } }}>
             <Typography
               variant="h6"
               sx={{ marginBottom: "1.7rem" }}
@@ -125,7 +134,7 @@ export default function Footer() {
               </RouterLink>
             ))}
           </Box>
-          <Box>
+          <Box sx={{ mr: { xs: "auto", lg: "0" } }}>
             <Typography
               variant="h6"
               sx={{ marginBottom: "1.7rem" }}
@@ -160,7 +169,10 @@ export default function Footer() {
               </Link>
             ))}
           </Box>
-          <Box>
+          <Box
+            className="footer-cta"
+            sx={{ width: { xs: "100%", sm: "16rem" }, maxWidth: "16rem" }}
+          >
             <Typography
               variant="h6"
               sx={{ marginBottom: "1.6rem" }}
@@ -180,6 +192,7 @@ export default function Footer() {
                 justifyContent: "center",
                 alignItems: "end",
                 position: "relative",
+                marginBottom: "3rem",
               }}
               noValidate
               autoComplete="false"
@@ -194,7 +207,7 @@ export default function Footer() {
                   "& .MuiInputLabel-root": {
                     marginTop: "-0.2rem",
                   },
-                  width: "16rem",
+                  width: "100%",
                   "& .MuiInput-underline:before": {
                     borderBottomColor: "2px solid rgba(140, 166, 158, 0.73)",
                   },
@@ -238,6 +251,7 @@ export default function Footer() {
           sx={{
             maxWidth: "16.75rem",
             color: "secondary.light",
+            mt: { xs: "5rem", lg: "5rem" },
           }}
         >
           <Box

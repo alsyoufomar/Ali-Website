@@ -1,16 +1,19 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
 import logo from "../../assets/ali.svg";
+import { makeStyles } from "@mui/styles";
+import {
+  Container,
+  Menu,
+  MenuItem,
+  Button,
+  IconButton,
+  Typography,
+  Toolbar,
+  Box,
+  AppBar,
+} from "@mui/material";
 
 const pages = ["Home", "Blog", "About", "Contact"];
 const menu = [
@@ -20,7 +23,27 @@ const menu = [
   { name: "Contact", route: "contact" },
 ];
 
+const useStyles = makeStyles((theme) => ({
+  menu: {
+    backgroundColor: "#2b2b2b",
+    borderRadius: "4px",
+    marginTop: "8px",
+    width: "200px",
+  },
+  menuItem: {
+    color: "#333",
+    fontSize: "14px",
+    fontWeight: 700,
+    lineHeight: "1.5",
+    padding: "8px 16px",
+    "&:hover": {
+      backgroundColor: "red",
+    },
+  },
+}));
+
 function ResponsiveAppBar() {
+  const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -43,28 +66,14 @@ function ResponsiveAppBar() {
     <AppBar sx={{ bgcolor: "#00000000" }} elevation={0} position="static">
       <Container maxWidth="container">
         <Toolbar disableGutters>
-          {/* this is the bug icon with LOGO in full width screen*/}
           <Link to="/">
-            <Box component="img" sx={{ height: 20 }} alt="Logo" src={logo} />
+            <Box
+              component="img"
+              sx={{ height: 20, mt: "0.6rem" }}
+              alt="Logo"
+              src={logo}
+            />
           </Link>
-          {/* <Typography
-              variant="h6"
-              color="green"
-              noWrap
-              component="a"
-              href="/about"
-              sx={{
-                mr: 2,
-                display: { xs: "none", md: "flex" },
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                // color: "#000000",
-                textDecoration: "none",
-              }}
-            >
-              LOGO
-            </Typography> */}
 
           {/* this is the hamburger menu inside the box element */}
           <Box
@@ -74,16 +83,17 @@ function ResponsiveAppBar() {
             }}
           >
             <IconButton
-              size="large"
+              size="small"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              sx={{ color: "secondary.main", p: 0 }}
             >
               <MenuIcon />
             </IconButton>
             <Menu
+              classes={{ paper: classes.menu }}
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -102,33 +112,17 @@ function ResponsiveAppBar() {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  className={classes.menuItem}
+                  classes={{ root: classes.menuItem }}
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-
-          {/* this is the responsive bug icon with LOGO */}
-          {/* <AdbIcon sx={{ display: { xs: "flex", md: "none" }, mr: 1 }} />
-            <Typography
-              variant="p"
-              noWrap
-              component="a"
-              href=""
-              sx={{
-                mr: 2,
-                display: { xs: "flex", md: "none" },
-                flexGrow: 1,
-                fontFamily: "monospace",
-                fontWeight: 700,
-                letterSpacing: ".3rem",
-                color: "inherit",
-                textDecoration: "none",
-              }}
-            >
-              LOGO
-            </Typography> */}
 
           {/* these are the pages of the nav bar */}
           <Box
@@ -161,37 +155,6 @@ function ResponsiveAppBar() {
               </Link>
             ))}
           </Box>
-
-          {/* this is the profile icon */}
-          {/* <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: "45px" }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
-              >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box> */}
         </Toolbar>
       </Container>
     </AppBar>

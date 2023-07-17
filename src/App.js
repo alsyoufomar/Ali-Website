@@ -72,7 +72,7 @@ let theme = createTheme({
       fontSize: "1.3125rem",
       fontWeight: "500",
       lineHeight: "151%",
-      textTransform: "capitalize",
+      // textTransform: "capitalize",
     },
     caption: {
       fontSize: "14px",
@@ -94,12 +94,34 @@ theme = createTheme(theme, {
         fontSize: "2.5rem",
       },
     },
+
+    h3: {
+      [theme.breakpoints.down("lg")]: {
+        fontSize: "2.1rem",
+      },
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "1.9rem",
+      },
+    },
+
+    h5: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "1rem",
+      },
+    },
+
+    subtitle2: {
+      [theme.breakpoints.down("sm")]: {
+        fontSize: "0.8rem",
+      },
+    },
+
     subtitle1: {
       [theme.breakpoints.down("lg")]: {
         fontSize: "20px",
       },
       [theme.breakpoints.down("sm")]: {
-        fontSize: "18px",
+        fontSize: "17px",
       },
     },
   },

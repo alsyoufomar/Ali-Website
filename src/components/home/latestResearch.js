@@ -28,7 +28,7 @@ const serviceList = [
 export default function LatestResearch() {
   return (
     <div className="latest-research">
-      <Container maxWidth="container">
+      <Container disableGutters maxWidth="container">
         <Typography
           sx={{
             color: "primary.dark",

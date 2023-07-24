@@ -1,14 +1,24 @@
 .about {
   min-height: 100vh;
   background-color: #e4edea;
+  padding: 0 60px;
+  padding-bottom: 160px;
+  overflow: hidden;
+  position: relative;
 }
 
-.ali-pic {
-  height: 100%;
-  width: 100%;
+@media only screen and (max-width: 767px) {
+  .about {
+    padding: 0 30px;
+    padding-bottom: 90px;
+    padding-top: 15px;
+  }
+}
 
-  object-fit: cover;
-  object-position: center 50%;
-
-  margin-left: 6.12rem;
+@media only screen and (max-width: 479px) {
+  .about {
+    padding: 0 15px;
+    padding-bottom: 90px;
+    padding-top: 15px;
+  }
 }

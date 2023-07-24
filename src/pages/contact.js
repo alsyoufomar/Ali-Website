@@ -7,6 +7,7 @@ import mail from "../assets/mail.svg";
 import phone from "../assets/phone.svg";
 import clock from "../assets/clock.svg";
 import location from "../assets/location.svg";
+import celle from "../assets/celle.svg";
 import {
   Typography,
   Box,
@@ -18,221 +19,223 @@ import {
 
 export default function Contact() {
   return (
-    <div className="contact">
-      <Appbar />
-      <Container maxWidth="lg">
-        <Typography
-          sx={{
-            color: "primary.dark",
-            marginBottom: "35px",
-            marginTop: "9.5rem",
-          }}
-          variant="h2"
-          component="h1"
-        >
-          Contact Me
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          sx={{
-            color: "gray",
-            marginBottom: "8rem",
-          }}
-        >
-          Feel free to contact me any time. I will get back to you as soon as I
-          can!
-        </Typography>
-        <Container
-          disableGutters
-          maxWidth="lg"
-          sx={{
-            marginBottom: "9.75rem",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Box
+    <>
+      <div className="contact">
+        <Appbar />
+        <Container disableGutters maxWidth="container">
+          <Typography
             sx={{
-              flexGrow: "1",
-              maxWidth: "100%",
-              height: "37.625rem",
-              backgroundColor: "#A3B8B2",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-evenly",
+              color: "primary.dark",
+              marginBottom: "25px",
+              marginTop: { xs: "60px", md: "135px" },
+            }}
+            variant="h2"
+            component="h1"
+          >
+            Contact Me
+          </Typography>
+          <Typography
+            variant="subtitle1"
+            sx={{
+              color: "gray",
+              marginBottom: { xs: "60px", md: "135px" },
             }}
           >
-            <form
-              noValidate
-              autoComplete="false"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                width: "31rem",
-                height: "30rem",
-                gap: "2rem",
-                justifyContent: "space-between",
-                marginRight: "2rem",
-                marginLeft: "2rem",
-              }}
-            >
-              <Typography
-                variant="h4"
-                sx={{
-                  marginBottom: "1rem",
-                  fontWeight: "400",
-                  fontFamily: "poppins",
-                  color: "primary.dark",
-                }}
-              >
-                Get in touch
-              </Typography>
-              <TextField
-                autoComplete="no"
-                fullWidth
-                label="Name"
-                variant="standard"
-                inputProps={{
-                  sx: {
-                    color: "primary.Dark",
-                    paddingBottom: "0.5rem",
-                  },
-                }}
-              />
-              <TextField
-                autoComplete="no"
-                fullWidth
-                label="Email"
-                variant="standard"
-                inputProps={{
-                  sx: {
-                    color: "primary.Dark",
-                    paddingBottom: "0.5rem",
-                  },
-                }}
-              />
-              <TextField
-                multiline
-                rows={4}
-                fullWidth
-                label="Message"
-                variant="standard"
-                inputProps={{
-                  sx: {
-                    color: "primary.Dark",
-                    paddingBottom: "0.5rem",
-                  },
-                }}
-              />
-              <Button
-                type="submit"
-                variant="contained"
-                disableElevation
-                sx={{
-                  lineHeight: "1.5rem",
-                  fontWeight: "500",
-                  fontSize: "1.125rem",
-                  py: "1rem",
-                }}
-              >
-                Send
-              </Button>
-            </form>
+            Feel free to contact me any time. I will get back to you as soon as
+            I can!
+          </Typography>
+          <Container disableGutters maxWidth="container">
             <Box
-              className="cover_image"
               sx={{
-                p: "4.19rem",
+                maxWidth: "100%",
+                minHeight: "37.625rem",
+                py: { xs: "2rem", sm: "3rem", md: "4rem" },
+                px: { xs: "1.5rem", sm: "3rem", md: "0" },
+                backgroundColor: "#A3B8B2",
                 display: "flex",
-                flexShrink: "1",
-                flexDirection: "column",
+                alignItems: { xs: "start", md: "center" },
                 justifyContent: "space-evenly",
+                flexGrow: "1",
+                flexDirection: { xs: "column", md: "row" },
+                position: "relative",
+                zIndex: "100000",
               }}
             >
-              <Typography
-                variant="h4"
+              <form className="contact-form" noValidate autoComplete="false">
+                <Typography
+                  variant="h4"
+                  sx={{
+                    marginBottom: "1rem",
+                    fontWeight: "400",
+                    fontFamily: "poppins",
+                    color: "primary.dark",
+                  }}
+                >
+                  Get in touch
+                </Typography>
+                <TextField
+                  autoComplete="no"
+                  fullWidth
+                  label="Name"
+                  variant="standard"
+                  inputProps={{
+                    sx: {
+                      color: "primary.Dark",
+                      paddingBottom: "0.5rem",
+                    },
+                  }}
+                />
+                <TextField
+                  autoComplete="no"
+                  fullWidth
+                  label="Email"
+                  variant="standard"
+                  inputProps={{
+                    sx: {
+                      color: "primary.Dark",
+                      paddingBottom: "0.5rem",
+                    },
+                  }}
+                />
+                <TextField
+                  multiline
+                  rows={4}
+                  fullWidth
+                  label="Message"
+                  variant="standard"
+                  inputProps={{
+                    sx: {
+                      color: "primary.Dark",
+                      paddingBottom: "0.5rem",
+                    },
+                  }}
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  disableElevation
+                  sx={{
+                    lineHeight: "1.5rem",
+                    fontWeight: "500",
+                    fontSize: "1.125rem",
+                    py: "1rem",
+                  }}
+                >
+                  Send
+                </Button>
+              </form>
+              <Box
+                className="cover_image"
                 sx={{
-                  marginBottom: "1rem",
-                  fontWeight: "400",
-                  fontFamily: "poppins",
-                  color: "secondary.main",
+                  py: { xs: "1.5rem", sm: "2rem", md: "4rem" },
+                  px: { xs: "1.5rem", sm: "3rem", md: "5%" },
+                  display: "flex",
+                  flexShrink: "1",
+                  flexDirection: "column",
+                  justifyContent: "space-evenly",
+                  zIndex: "1000",
                 }}
               >
-                Info.
-              </Typography>
-              <Box display="flex">
-                <Box
-                  component="img"
-                  alt="mail"
-                  src={mail}
-                  marginRight="0.5rem"
-                />
-                <Link
-                  sx={{
-                    color: grey[400],
-                    textDecoration: "none",
-                    display: "block",
-                  }}
-                  href="mailto:alosh.alsyouf1999@gmail.com?subject=Mail from My Site"
-                >
-                  alosh.alsyouf1999@gmail.com
-                </Link>
-              </Box>
-
-              <Box display="flex">
-                <Box
-                  component="img"
-                  alt="phone"
-                  src={phone}
-                  marginRight="0.4rem"
-                />
-                <Link
-                  sx={{
-                    color: grey[400],
-                    textDecoration: "none",
-                    display: "block",
-                  }}
-                  href="tel:+962785458750"
-                >
-                  +962 7 8545 8750
-                </Link>
-              </Box>
-
-              <Box display="flex">
-                <Box
-                  component="img"
-                  alt="time"
-                  src={clock}
-                  marginRight="0.5rem"
-                />
                 <Typography
+                  variant="h4"
                   sx={{
-                    color: grey[400],
+                    marginBottom: "1rem",
+                    fontWeight: "400",
+                    fontFamily: "poppins",
+                    color: "secondary.main",
                   }}
                 >
-                  9:00 - 18:00
+                  Info.
                 </Typography>
-              </Box>
+                <Box display="flex">
+                  <Box
+                    component="img"
+                    alt="mail"
+                    src={mail}
+                    marginRight="0.5rem"
+                  />
+                  <Link
+                    sx={{
+                      color: grey[400],
+                      textDecoration: "none",
+                      display: "block",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                    href="mailto:alosh.alsyouf1999@gmail.com?subject=Mail from My Site"
+                  >
+                    alosh.alsyouf1999@gmail.com
+                  </Link>
+                </Box>
 
-              <Box display="flex">
-                <Box
-                  component="img"
-                  alt="location"
-                  src={location}
-                  marginRight="0.5rem"
-                />
-                <Typography
-                  sx={{
-                    color: grey[400],
-                  }}
-                >
-                  Amman, Jordan
-                </Typography>
+                <Box display="flex">
+                  <Box
+                    component="img"
+                    alt="phone"
+                    src={phone}
+                    marginRight="0.4rem"
+                  />
+                  <Link
+                    sx={{
+                      color: grey[400],
+                      textDecoration: "none",
+                      display: "block",
+                    }}
+                    href="tel:+962785458750"
+                  >
+                    +962 7 8545 8750
+                  </Link>
+                </Box>
+
+                <Box display="flex">
+                  <Box
+                    component="img"
+                    alt="time"
+                    src={clock}
+                    marginRight="0.5rem"
+                  />
+                  <Typography
+                    sx={{
+                      color: grey[400],
+                    }}
+                  >
+                    9:00 - 18:00
+                  </Typography>
+                </Box>
+
+                <Box display="flex">
+                  <Box
+                    component="img"
+                    alt="location"
+                    src={location}
+                    marginRight="0.5rem"
+                  />
+                  <Typography
+                    sx={{
+                      color: grey[400],
+                    }}
+                  >
+                    Amman, Jordan
+                  </Typography>
+                </Box>
               </Box>
             </Box>
-          </Box>
+          </Container>
         </Container>
-      </Container>
+        <Box
+          component="img"
+          sx={{
+            height: { xs: "12rem", sm: "15rem", md: "20rem", lg: "25rem" },
+            position: "absolute",
+            bottom: "-3rem",
+            right: "-5rem",
+          }}
+          alt="cell e"
+          src={celle}
+        />
+      </div>
       <Footer />
-    </div>
+    </>
   );
 }

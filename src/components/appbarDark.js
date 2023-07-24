@@ -13,7 +13,6 @@ import { Link } from "react-router-dom";
 import logo from "../assets/darkLogo.svg";
 import { makeStyles } from "@mui/styles";
 
-const pages = ["Home", "Blog", "About", "Contact"];
 const menu = [
   { name: "Home", route: "" },
   { name: "Blog", route: "blog" },
@@ -62,7 +61,7 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar sx={{ bgcolor: "#00000000" }} elevation={0} position="static">
-      <Container maxWidth="container">
+      <Container disableGutters maxWidth="container">
         <Toolbar disableGutters>
           <Link to="/">
             <Box
@@ -109,14 +108,16 @@ function ResponsiveAppBar() {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
+              {menu.map((item, i) => (
                 <MenuItem
+                  key={i}
+                  component={Link}
+                  to={"/" + item.route}
                   className={classes.menuItem}
                   classes={{ root: classes.menuItem }}
-                  key={page}
                   onClick={handleCloseNavMenu}
                 >
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center">{item.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -124,6 +125,7 @@ function ResponsiveAppBar() {
 
           {/* these are the pages of the nav bar */}
           <Box
+            className="nav-bar"
             sx={{
               flexGrow: 1,
               display: { xs: "none", justifyContent: "end", md: "flex" },

@@ -91,7 +91,7 @@ theme = createTheme(theme, {
         fontSize: "2.8rem",
       },
       [theme.breakpoints.down("sm")]: {
-        fontSize: "2.5rem",
+        fontSize: "2rem",
       },
     },
 

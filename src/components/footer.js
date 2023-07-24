@@ -52,6 +52,7 @@ export default function Footer() {
   return (
     <div className="footer">
       <Container
+        disableGutters
         maxWidth="container"
         sx={{
           display: "flex",

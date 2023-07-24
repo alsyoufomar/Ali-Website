@@ -1,12 +1,15 @@
-.blog,
-.post {
+.blog {
   min-height: 100vh;
   background-color: #e4edea;
   padding: 0 60px;
   padding-bottom: 6rem;
+  overflow: hidden;
+  position: relative;
 }
-
 .post {
+  min-height: 100vh;
+  background-color: #e4edea;
+  padding-bottom: 6rem;
   background-color: #fff;
 }
 
@@ -52,19 +55,31 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .blog,
-  .post {
+  .blog {
     padding: 0 30px;
+    padding-bottom: 6rem;
+    padding-top: 15px;
+  }
+  .post {
     padding-bottom: 6rem;
     padding-top: 15px;
   }
 }
 
 @media only screen and (max-width: 479px) {
-  .blog,
-  .post {
+  .blog {
     padding: 0 15px;
     padding-bottom: 6rem;
     padding-top: 15px;
+  }
+  .post {
+    padding-bottom: 6rem;
+    padding-top: 15px;
+  }
+
+  .bottom_author_image {
+    height: 2.75rem;
+    width: 2.75rem;
+    margin-right: 1rem;
   }
 }

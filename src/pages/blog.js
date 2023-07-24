@@ -6,13 +6,14 @@ import { Typography, Container, Button, Box } from "@mui/material";
 import Blogcard from "../components/Blog/blogCard";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { grey } from "@mui/material/colors";
+import celle from "../assets/celle.svg";
 
 export default function Blog() {
   return (
     <>
       <div className="blog">
         <Appbar />
-        <Container maxWidth="container">
+        <Container sx={{ zIndex: "1000" }} disableGutters maxWidth="container">
           <Typography
             sx={{
               color: "primary.dark",
@@ -46,6 +47,7 @@ export default function Blog() {
               disableElevation
               variant="contained"
               sx={{
+                zIndex: "1000",
                 backgroundColor: grey[400],
                 color: "primary.dark",
                 "&:hover": {
@@ -65,6 +67,17 @@ export default function Blog() {
             </Button>
           </Box>
         </Container>
+        <Box
+          component="img"
+          sx={{
+            height: { xs: "12rem", sm: "15rem", md: "20rem", lg: "25rem" },
+            position: "absolute",
+            bottom: "-3rem",
+            right: "-5rem",
+          }}
+          alt="cell e"
+          src={celle}
+        />
       </div>
       <Footer />
     </>

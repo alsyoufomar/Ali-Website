@@ -1,6 +1,10 @@
 .contact {
-  min-height: 100vh;
+  /* min-height: 100vh; */
   background-color: #e4edea;
+  padding: 0 60px;
+  padding-bottom: 160px;
+  overflow: hidden;
+  position: relative;
 }
 
 .cover_image {
@@ -8,5 +12,60 @@
   background-size: cover;
   height: 30rem;
   width: 30rem;
-  margin-right: -9.8125rem;
+  margin-right: -15%;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  width: 31rem;
+  height: 30rem;
+  gap: 2rem;
+  justify-content: space-between;
+  margin-right: 3rem;
+  margin-left: 3rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .contact {
+    padding: 0 30px;
+    padding-bottom: 120px;
+    padding-top: 15px;
+  }
+
+  .contact-form {
+    width: 100%;
+    height: auto;
+    gap: 1rem;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 5rem;
+  }
+
+  .cover_image {
+    height: 20rem;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: -7rem;
+  }
+}
+
+@media only screen and (max-width: 479px) {
+  .contact {
+    padding: 0 15px;
+    padding-bottom: 90px;
+    padding-top: 15px;
+  }
+
+  .contact-form {
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .cover_image {
+    height: 20rem;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: -5rem;
+  }
 }

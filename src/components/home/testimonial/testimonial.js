@@ -10,11 +10,7 @@ export default function Testimonial() {
 
   return (
     <div className="testemonials">
-      <Container
-        disableGutters={shouldDisableGutters}
-        maxWidth="container"
-        sx={{ zIndex: "10" }}
-      >
+      <Container disableGutters maxWidth="container" sx={{ zIndex: "10" }}>
         <Typography
           sx={{
             color: "primary.dark",

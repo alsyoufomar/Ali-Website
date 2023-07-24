@@ -9,6 +9,7 @@ export default function Hero() {
     <div className="hero">
       <Appbar />
       <Container
+        disableGutters
         maxWidth="container"
         sx={{
           mx: "auto",

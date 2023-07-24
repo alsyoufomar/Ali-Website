@@ -88,7 +88,13 @@ export default function BlogCard() {
 
   return (
     <div className="blog-card">
-      <Box sx={{ mb: "4.12rem", mt: { xs: "70px", md: "6rem" }, flexGrow: 1 }}>
+      <Box
+        sx={{
+          mb: "4.12rem",
+          mt: { xs: "70px", md: "6rem" },
+          flexGrow: 1,
+        }}
+      >
         <Grid
           container
           rowSpacing={6}
@@ -98,7 +104,16 @@ export default function BlogCard() {
           className="MuiGrid-root"
         >
           {list.map((item, i) => (
-            <Grid item key={i} xs={12} sm={10} md={6} lg={4} component="div">
+            <Grid
+              sx={{ zIndex: "1000" }}
+              item
+              key={i}
+              xs={12}
+              sm={10}
+              md={6}
+              lg={4}
+              component="div"
+            >
               <Link to="/blog/:id" style={{ textDecoration: "none" }}>
                 <Paper
                   sx={{
@@ -142,6 +157,7 @@ export default function BlogCard() {
                         display: "flex",
                         gap: "0.6rem",
                         alignItems: "center",
+                        justifyContent: "start",
                       }}
                     >
                       <Box
@@ -149,6 +165,7 @@ export default function BlogCard() {
                         alt="author image"
                         src={person}
                         className="author_image"
+                        sx={{ flexShrink: "0" }}
                       />
                       <Typography variant="caption">{item.name}</Typography>
                       <Typography variant="caption">.</Typography>

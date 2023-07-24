@@ -5,7 +5,7 @@ import { Typography, TextField, Box, Container, Button } from "@mui/material";
 export default function SubscribeCTA() {
   return (
     <div className="subscribe-cta">
-      <Container maxWidth="container">
+      <Container disableGutters maxWidth="container">
         <Typography
           sx={{
             color: "primary.dark",

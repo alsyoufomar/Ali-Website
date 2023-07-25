@@ -4,7 +4,7 @@ import { Typography, Box, Button, Container } from "@mui/material";
 import { Link } from "react-router-dom";
 import cellc from "../../assets/cellc.svg";
 
-export default function Hero() {
+export default function Hero({ data }) {
   return (
     <div className="hero">
       <Appbar />
@@ -29,7 +29,7 @@ export default function Hero() {
             variant="h2"
             component="h1"
           >
-            Hello, My Name Is Ali
+            {data.title}
           </Typography>
           <Typography
             variant="subtitle1"
@@ -39,8 +39,7 @@ export default function Hero() {
               mb: { xs: "3rem", sm: "4rem" },
             }}
           >
-            Exploring the Fascinating World of Chemistry Welcome to My Journey
-            Through Molecules and Reactions
+            {data.subtitle}
           </Typography>
           <Link
             style={{

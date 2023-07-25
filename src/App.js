@@ -127,7 +127,6 @@ theme = createTheme(theme, {
   },
 });
 function App() {
-  console.log("app rendered");
   return (
     <ThemeProvider theme={theme}>
       <Routes>

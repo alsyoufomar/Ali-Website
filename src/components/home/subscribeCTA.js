@@ -2,7 +2,7 @@ import React from "react";
 import cellc from "../../assets/cellc.svg";
 import { Typography, TextField, Box, Container, Button } from "@mui/material";
 
-export default function SubscribeCTA() {
+export default function SubscribeCTA({ data }) {
   return (
     <div className="subscribe-cta">
       <Container disableGutters maxWidth="container">
@@ -16,7 +16,7 @@ export default function SubscribeCTA() {
           variant="h3"
           component="h2"
         >
-          Subscribe to My Blog
+          {data.home_cta_title}
         </Typography>
         <Typography
           sx={{
@@ -29,8 +29,7 @@ export default function SubscribeCTA() {
           variant="subtitle1"
           color="gray"
         >
-          Stay Informed and Inspired: Receive Exclusive Updates, Expert
-          Insights, and Engaging Content by Subscribing to My Blog.
+          {data.home_cta_subtitle}
         </Typography>
         <Box align="center">
           <form
@@ -38,14 +37,12 @@ export default function SubscribeCTA() {
             style={{
               display: "flex",
               justifyContent: "center",
-              // flexDirection: { xs: "column", sm: "row" },
-              // alignItems: "end",
             }}
             noValidate
             autoComplete="no"
           >
             <TextField
-              required="true"
+              required={true}
               size="normal"
               variant="standard"
               label="Email"
@@ -62,9 +59,6 @@ export default function SubscribeCTA() {
                 py: "0.6rem",
                 fontSize: "1.125rem",
                 fontWeight: 700,
-                // "&:hover": {
-                //   backgroundColor: "#146b7880",
-                // },
               }}
               disableElevation
               type="submit"

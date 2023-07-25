@@ -8,6 +8,9 @@ import phone from "../assets/phone.svg";
 import clock from "../assets/clock.svg";
 import location from "../assets/location.svg";
 import celle from "../assets/celle.svg";
+import useFetch from "../hooks/useFetch";
+import { useContext } from "react";
+import { StateContext } from "../store/index";
 import {
   Typography,
   Box,
@@ -18,6 +21,11 @@ import {
 } from "@mui/material";
 
 export default function Contact() {
+  const host = process.env.REACT_APP_API_URL;
+  useFetch(`${host}/api/contact`, "SET_CONTACT");
+  const [state] = useContext(StateContext);
+
+  if (!state.contact.data) return <></>;
   return (
     <>
       <div className="contact">
@@ -32,7 +40,7 @@ export default function Contact() {
             variant="h2"
             component="h1"
           >
-            Contact Me
+            {state.contact.data.attributes.title}
           </Typography>
           <Typography
             variant="subtitle1"
@@ -41,8 +49,7 @@ export default function Contact() {
               marginBottom: { xs: "60px", md: "135px" },
             }}
           >
-            Feel free to contact me any time. I will get back to you as soon as
-            I can!
+            {state.contact.data.attributes.subtitle}
           </Typography>
           <Container disableGutters maxWidth="container">
             <Box
@@ -163,9 +170,9 @@ export default function Contact() {
                       textOverflow: "ellipsis",
                       whiteSpace: "nowrap",
                     }}
-                    href="mailto:alosh.alsyouf1999@gmail.com?subject=Mail from My Site"
+                    href={`mailto:${state.contact.data.attributes.email}?subject=${state.contact.data.attributes.email_subject}`}
                   >
-                    alosh.alsyouf1999@gmail.com
+                    {state.contact.data.attributes.email}
                   </Link>
                 </Box>
 
@@ -182,9 +189,9 @@ export default function Contact() {
                       textDecoration: "none",
                       display: "block",
                     }}
-                    href="tel:+962785458750"
+                    href={`tel:${state.contact.data.attributes.phone}`}
                   >
-                    +962 7 8545 8750
+                    {state.contact.data.attributes.phone}
                   </Link>
                 </Box>
 
@@ -200,7 +207,7 @@ export default function Contact() {
                       color: grey[400],
                     }}
                   >
-                    9:00 - 18:00
+                    {state.contact.data.attributes.time}
                   </Typography>
                 </Box>
 
@@ -216,7 +223,7 @@ export default function Contact() {
                       color: grey[400],
                     }}
                   >
-                    Amman, Jordan
+                    {state.contact.data.attributes.location}
                   </Typography>
                 </Box>
               </Box>

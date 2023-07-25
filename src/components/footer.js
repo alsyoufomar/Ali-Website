@@ -9,7 +9,9 @@ import twitter from "../assets/twitter.svg";
 import { makeStyles } from "@mui/styles";
 import EastIcon from "@mui/icons-material/East";
 import cellc from "../assets/cellc.svg";
-
+import useFetch from "../hooks/useFetch";
+import { useContext } from "react";
+import { StateContext } from "../store/index";
 import {
   Typography,
   Box,
@@ -40,14 +42,32 @@ const menu = [
   { name: "Contact", route: "contact" },
 ];
 
-const social = [
-  { name: "Facebook", link: "#", image: facebook },
-  { name: "Instagram", link: "#", image: instagram },
-  { name: "Twitter", link: "#", image: twitter },
-];
-
 export default function Footer() {
   const classes = useStyles();
+
+  const host = process.env.REACT_APP_API_URL;
+  useFetch(`${host}/api/footer`, "SET_FOOTER");
+  const [state] = useContext(StateContext);
+
+  if (!state.footer.data) return <></>;
+
+  const social = [
+    {
+      name: "Facebook",
+      link: state.footer.data.attributes.facebook_link,
+      image: facebook,
+    },
+    {
+      name: "Instagram",
+      link: state.footer.data.attributes.instagram_link,
+      image: instagram,
+    },
+    {
+      name: "Twitter",
+      link: state.footer.data.attributes.twitter_link,
+      image: twitter,
+    },
+  ];
 
   return (
     <div className="footer">
@@ -93,13 +113,13 @@ export default function Footer() {
                 color: "secondary.light",
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing
+              {state.footer.data.attributes.title}
             </Typography>
             <Link
               sx={{ color: "secondary.light", textDecoration: "none" }}
-              href="mailto:alosh.alsyouf1999@gmail.com?subject=Mail from My Site"
+              href={`mailto:${state.footer.data.attributes.email}?subject=Mail from My Site`}
             >
-              alosh.alsyouf1999@gmail.com
+              {state.footer.data.attributes.email}
             </Link>
             <Link
               sx={{
@@ -107,9 +127,9 @@ export default function Footer() {
                 textDecoration: "none",
                 marginTop: "0.3rem",
               }}
-              href="tel:+962785458750"
+              href={`tel:${state.footer.data.attributes.phone}`}
             >
-              +962 7 8545 8750
+              {state.footer.data.attributes.phone}
             </Link>
           </Box>
           <Box sx={{ mr: { xs: "4rem", lg: "0" } }}>
@@ -145,6 +165,7 @@ export default function Footer() {
             </Typography>
             {social.map((item, i) => (
               <Link
+                key={i}
                 href={item.link}
                 target="_blank"
                 rel="noopener"
@@ -200,7 +221,7 @@ export default function Footer() {
             >
               <TextField
                 className={classes.input}
-                required="true"
+                required={true}
                 size="normal"
                 variant="standard"
                 label="Email"
@@ -232,6 +253,7 @@ export default function Footer() {
               <IconButton
                 disableFocusRipple={true}
                 sx={{
+                  boxShadow: "none",
                   position: "absolute",
                   right: "-0.7rem",
                   top: "0.7rem",
@@ -239,7 +261,6 @@ export default function Footer() {
                     backgroundColor: "#146b7880",
                   },
                 }}
-                disableElevation
                 type="submit"
                 variant="text"
               >
@@ -265,7 +286,7 @@ export default function Footer() {
             alt="Logo"
             src={copyright}
           />
-          2023 Ali alsyouf. all rights reserved.
+          {state.footer.data.attributes.copyright}
         </Typography>
       </Container>
     </div>

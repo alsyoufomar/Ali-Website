@@ -1,91 +1,21 @@
 import React from "react";
 import { Grid, Box, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import person from "../../assets/person.jpg";
 import "../../styles/blog.css";
-import { makeStyles } from "@mui/styles";
-import { ClassNames } from "@emotion/react";
-
-const list = [
-  {
-    image: person,
-    title: "What Ever Happened to Steampunk?",
-    body: "How the iPhone popularized steampunk… and how the iPhone killed it off",
-    name: "John Wallas",
-    date: "Feb 10, 2020",
-    author: person,
-  },
-  {
-    image: person,
-    title:
-      "This Is Hardcore—The Huge Impact of a Niche Movement on Graphic Designers Today",
-    body: "You might not know the music, but designers have certainly taken notice of this small but visceral movement from the late ’80s",
-    name: "Darrell Steward",
-    date: "Dec 10, 2020",
-    author: person,
-  },
-  {
-    image: person,
-    title: "Data-Driven Design is Killing Our Instincts",
-    body: "Valuing data over design instinct puts metrics over users",
-    name: "Wade Warren",
-    date: "Dec 11, 2022",
-    author: person,
-  },
-  {
-    image: person,
-    title:
-      "Dear Designer: How to Explain to Your Kids That You Work at Facebook",
-    body: "If your work helps spread lies and re-elect racists, your kids might want some answers",
-    name: "JSavannah Nguyen",
-    date: "Jun 2, 2020",
-    author: person,
-  },
-  {
-    image: person,
-    title: "Why Are Women Still Behind in the Design World?",
-    body: "It’s 2020, but women designers still face lower pay and less opportunity. What gives?",
-    name: "Leslie Alexander",
-    date: "Aug 12, 2020",
-    author: person,
-  },
-  {
-    image: person,
-    title: "Finding the Blank Spots in Big Data",
-    body: "Artists and designers are working to address a major problem for marginalized communities in the data economy: ‘If the data does not exist…",
-    name: "Devon Lane",
-    date: "Nov 1, 2020",
-    author: person,
-  },
-  {
-    image: person,
-    title: "The Emotional Toll of Being in UX",
-    body: "There are times when our work impacts us deeply — sometimes in ways we neither acknowledge nor understand.",
-    name: "Floyd Miles",
-    date: "Dec 7, 2018",
-    author: person,
-  },
-  {
-    image: person,
-    title: "The Emotional Toll of Being in UX",
-    body: "There are times when our work impacts us deeply — sometimes in ways we neither acknowledge nor understand.",
-    name: "Floyd Miles",
-    date: "Dec 7, 2018",
-    author: person,
-  },
-];
-
-const useStyles = makeStyles({
-  gridContainer: {
-    "& .MuiGrid-root": {
-      maxWidth: "auto",
-    },
-  },
-});
+import useFetch from "../../hooks/useFetch";
+import { useContext } from "react";
+import { StateContext } from "../../store/index";
+import formattedDate from "../../hooks/useFormattedDate";
 
 export default function BlogCard() {
-  const classes = useStyles();
+  const host = process.env.REACT_APP_API_URL;
+  useFetch(
+    `${host}/api/blogs?fields[0]=headline&fields[1]=post_summary&fields[2]=publishedAt&populate[main_image][fields][0]=url&populate[users_permissions_user][populate][1]=profile_pic`,
+    "SET_BLOGS"
+  );
+  const [state] = useContext(StateContext);
 
+  if (!state.blogs.data) return <></>;
   return (
     <div className="blog-card">
       <Box
@@ -103,18 +33,18 @@ export default function BlogCard() {
           maxWidth="auto"
           className="MuiGrid-root"
         >
-          {list.map((item, i) => (
+          {state.blogs.data.map((item) => (
             <Grid
               sx={{ zIndex: "1000" }}
               item
-              key={i}
+              key={item.id}
               xs={12}
               sm={10}
               md={6}
               lg={4}
               component="div"
             >
-              <Link to="/blog/:id" style={{ textDecoration: "none" }}>
+              <Link to={`/blog/${item.id}`} style={{ textDecoration: "none" }}>
                 <Paper
                   sx={{
                     padding: "0",
@@ -127,7 +57,7 @@ export default function BlogCard() {
                   <Box
                     component="img"
                     alt="thumbnail image"
-                    src={person}
+                    src={host + item.attributes.main_image.data.attributes.url}
                     className="card-image"
                   />
                   <Box
@@ -141,7 +71,7 @@ export default function BlogCard() {
                   >
                     <Box>
                       <Typography sx={{ my: 0 }} variant="h5" component="h4">
-                        {item.title}
+                        {item.attributes.headline}
                       </Typography>
                       <Typography
                         sx={{ my: "0.88rem", marginBottom: "3rem" }}
@@ -149,7 +79,7 @@ export default function BlogCard() {
                         variant="body2"
                         className="summary"
                       >
-                        {item.body}
+                        {item.attributes.post_summary}
                       </Typography>
                     </Box>
                     <Box
@@ -163,13 +93,24 @@ export default function BlogCard() {
                       <Box
                         component="img"
                         alt="author image"
-                        src={person}
+                        src={
+                          host +
+                          item.attributes.users_permissions_user.data.attributes
+                            .profile_pic.data.attributes.url
+                        }
                         className="author_image"
                         sx={{ flexShrink: "0" }}
                       />
-                      <Typography variant="caption">{item.name}</Typography>
+                      <Typography variant="caption">
+                        {
+                          item.attributes.users_permissions_user.data.attributes
+                            .name
+                        }
+                      </Typography>
                       <Typography variant="caption">.</Typography>
-                      <Typography variant="caption">{item.date}</Typography>
+                      <Typography variant="caption">
+                        {formattedDate(item.attributes.publishedAt)}
+                      </Typography>
                     </Box>
                   </Box>
                 </Paper>

@@ -25,7 +25,7 @@ const serviceList = [
   },
 ];
 
-export default function LatestResearch() {
+export default function LatestResearch({ data }) {
   return (
     <div className="latest-research">
       <Container disableGutters maxWidth="container">
@@ -39,7 +39,7 @@ export default function LatestResearch() {
           variant="h3"
           component="h2"
         >
-          my latest research
+          {data.research_title}
         </Typography>
         <Typography
           sx={{
@@ -51,8 +51,7 @@ export default function LatestResearch() {
           variant="subtitle1"
           color="gray"
         >
-          Unveiling New Horizons: Discover the Latest Breakthroughs and Valuable
-          Insights from My Recent Research Endeavors in [Research Area].
+          {data.research_subtitle}
         </Typography>
         <Box
           sx={{

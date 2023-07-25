@@ -7,8 +7,17 @@ import Blogcard from "../components/Blog/blogCard";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { grey } from "@mui/material/colors";
 import celle from "../assets/celle.svg";
+import useFetch from "../hooks/useFetch";
+import { useContext } from "react";
+import { StateContext } from "../store/index";
 
 export default function Blog() {
+  const host = process.env.REACT_APP_API_URL;
+  useFetch(`${host}/api/blog-static`, "SET_BLOG_STATIC");
+  const [state] = useContext(StateContext);
+
+  if (!state.blog_static.data) return <></>;
+
   return (
     <>
       <div className="blog">
@@ -23,7 +32,7 @@ export default function Blog() {
             variant="h2"
             component="h1"
           >
-            Blog
+            {state.blog_static.data.attributes.blog_title}
           </Typography>
           <Typography
             variant="subtitle1"
@@ -32,8 +41,7 @@ export default function Blog() {
               marginBottom: "3rem",
             }}
           >
-            My latest researches, tips, tricks, insights and resources. hot off
-            the presses.
+            {state.blog_static.data.attributes.blog_subtitle}
           </Typography>
           <Blogcard />
           <Box

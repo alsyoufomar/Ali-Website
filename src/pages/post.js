@@ -1,12 +1,27 @@
 import React from "react";
 import "../styles/blog.css";
-import cover from "../assets/post-cover.jpeg";
 import Appbar from "../components/appbarDark";
 import Footer from "../components/footer";
 import { Typography, Box } from "@mui/material";
-import person from "../assets/person.jpg";
+import { useParams } from "react-router-dom";
+import useFetch from "../hooks/useFetch";
+import { useContext } from "react";
+import { StateContext } from "../store/index";
+import formattedDate from "../hooks/useFormattedDate";
+import ReactMarkdown from "react-markdown";
 
-export default function post() {
+export default function Post() {
+  const { id } = useParams();
+  const host = process.env.REACT_APP_API_URL;
+  useFetch(
+    `${host}/api/blogs/${id}?populate[main_image][fields][0]=url&populate[users_permissions_user][populate][1]=profile_pic`,
+    "SET_BLOG"
+  );
+  const [state] = useContext(StateContext);
+
+  if (!state.blog.data) return <></>;
+  if (!state.blog.data.attributes) return <></>;
+  const date = formattedDate(state.blog.data.attributes.publishedAt);
   return (
     <>
       <div className="post">
@@ -24,7 +39,7 @@ export default function post() {
               variant="h2"
               component="h1"
             >
-              What Ever Happened to Steampunk?
+              {state.blog.data.attributes.headline}
             </Typography>
             <Box
               sx={{
@@ -37,17 +52,24 @@ export default function post() {
               <Box
                 component="img"
                 alt="author image"
-                src={person}
+                src={
+                  host +
+                  state.blog.data.attributes.users_permissions_user.data
+                    .attributes.profile_pic.data.attributes.url
+                }
                 className="post_author_image"
               />
               <Typography variant="caption" sx={{ fontSize: "0.9375rem" }}>
-                John Wallas
+                {
+                  state.blog.data.attributes.users_permissions_user.data
+                    .attributes.name
+                }
               </Typography>
               <Typography variant="caption" sx={{ fontSize: "0.9375rem" }}>
                 .
               </Typography>
               <Typography variant="caption" sx={{ fontSize: "0.9375rem" }}>
-                Feb 10, 2020
+                {date}
               </Typography>
             </Box>
           </Box>
@@ -63,7 +85,9 @@ export default function post() {
             <Box
               component="img"
               alt="cover image"
-              src={cover}
+              src={
+                host + state.blog.data.attributes.main_image.data.attributes.url
+              }
               className="post_cover_image"
             />
           </Box>
@@ -77,7 +101,7 @@ export default function post() {
               mb: { xs: "40px", md: "60px" },
             }}
           >
-            <Typography
+            {/* <Typography
               variant="body1"
               sx={{
                 textAlign: "justify",
@@ -85,41 +109,11 @@ export default function post() {
                 lineHeight: "160%",
                 fontWeight: "500",
               }}
-            >
-              React Server Components provides the developers the ability to tap
-              into the server infrastructure. Before the introduction of Server
-              Components, React was capable of only client-side rendering. With
-              the introduction of the new Server Components, large dependencies
-              can remain entirely on the server, resulting in a performance
-              boost. The client-side JavaScript bundle size is reduced when
-              large dependencies are kept on the server. You can still leverage
-              Client Components, whenever there is new user interactivity. But
-              other than that the client-side run time JavaScript bundle size is
-              minimal. This is a huge win for the React ecosystem, and has been
-              adopted already by Next.js 13. You only need to mark components as
-              ‘use client’ when they use client hooks such as useState or
-              useEffect. It’s best to leave components that do not depend on
-              client hooks without the directive so that they can automatically
-              be rendered as a Server Component when they aren’t imported by
-              another Client Component. This helps ensure the smallest amount of
-              client-side JavaScript. React Server Components provides the
-              developers the ability to tap into the server infrastructure.
-              Before the introduction of Server Components, React was capable of
-              only client-side rendering. With the introduction of the new
-              Server Components, large dependencies can remain entirely on the
-              server, resulting in a performance boost. The client-side
-              JavaScript bundle size is reduced when large dependencies are kept
-              on the server. You can still leverage Client Components, whenever
-              there is new user interactivity. But other than that the
-              client-side run time JavaScript bundle size is minimal. This is a
-              huge win for the React ecosystem, and has been adopted already by
-              Next.js 13. You only need to mark components as ‘use client’ when
-              they use client hooks such as useState or useEffect. It’s best to
-              leave components that do not depend on client hooks without the
-              directive so that they can automatically be rendered as a Server
-              Component when they aren’t imported by another Client Component.
-              This helps ensure the smallest amount of client-side JavaScript.
-            </Typography>
+            > */}
+            <ReactMarkdown className="rich_text">
+              {state.blog.data.attributes.blog_body}
+            </ReactMarkdown>
+            {/* </Typography> */}
             <Box
               sx={{
                 display: "flex",
@@ -131,7 +125,11 @@ export default function post() {
                 component="img"
                 alt="author image"
                 flexShrink="0"
-                src={person}
+                src={
+                  host +
+                  state.blog.data.attributes.users_permissions_user.data
+                    .attributes.profile_pic.data.attributes.url
+                }
                 className="bottom_author_image"
               />
               <Box>
@@ -153,12 +151,17 @@ export default function post() {
                     color: "primary.dark",
                   }}
                 >
-                  John Wallas
+                  {
+                    state.blog.data.attributes.users_permissions_user.data
+                      .attributes.name
+                  }
                 </Typography>
                 <Box sx={{ maxWidth: "25rem" }}>
                   <Typography variant="caption" lineHeight="133%">
-                    CEO at teams. Author of upcoming book on team management and
-                    Leadership
+                    {
+                      state.blog.data.attributes.users_permissions_user.data
+                        .attributes.user_summary
+                    }
                   </Typography>
                 </Box>
               </Box>

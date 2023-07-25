@@ -3,7 +3,7 @@ import Carousel from "./carousel";
 import { Container, Typography, useMediaQuery, Box } from "@mui/material";
 import celle from "../../../assets/celle.svg";
 
-export default function Testimonial() {
+export default function Testimonial({ data }) {
   const isMediumScreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const shouldDisableGutters = isMediumScreen && isLargeScreen;
@@ -20,7 +20,7 @@ export default function Testimonial() {
           variant="h3"
           component="h2"
         >
-          What people say about me
+          {data.testimonial_title}
         </Typography>
         <Carousel />
       </Container>

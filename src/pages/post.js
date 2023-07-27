@@ -22,6 +22,10 @@ export default function Post() {
   if (!state.blog.data) return <></>;
   if (!state.blog.data.attributes) return <></>;
   const date = formattedDate(state.blog.data.attributes.publishedAt);
+  const updatedContent = state.blog.data.attributes.blog_text.replace(
+    /src="\/uploads\//g,
+    `src="${host}/uploads/`
+  );
   return (
     <>
       <div className="post">
@@ -101,7 +105,10 @@ export default function Post() {
               mb: { xs: "40px", md: "60px" },
             }}
           >
-            {/* <Typography
+            <Typography
+              dangerouslySetInnerHTML={{
+                __html: updatedContent,
+              }}
               variant="body1"
               sx={{
                 textAlign: "justify",
@@ -109,11 +116,12 @@ export default function Post() {
                 lineHeight: "160%",
                 fontWeight: "500",
               }}
-            > */}
-            <ReactMarkdown className="rich_text">
+            >
+              {/* <del>this is a strick through</del> */}
+              {/* <ReactMarkdown className="rich_text">
               {state.blog.data.attributes.blog_body}
-            </ReactMarkdown>
-            {/* </Typography> */}
+            </ReactMarkdown> */}
+            </Typography>
             <Box
               sx={{
                 display: "flex",

@@ -5,6 +5,7 @@ import person from "../../../assets/person.jpg";
 import "../../../styles/home.css";
 
 export default function Testimonial(props) {
+  const host = process.env.REACT_APP_API_URL;
   return (
     <Box sx={{ pr: { xs: "2px", md: "3.5rem" }, pl: "2px" }}>
       <Paper
@@ -56,7 +57,7 @@ export default function Testimonial(props) {
               maxWidth="31rem"
               variant="body1"
             >
-              "{props.item.description}"
+              "{props.item.attributes.testimonial_body}"
             </Typography>
             <Box
               sx={{
@@ -72,7 +73,11 @@ export default function Testimonial(props) {
               <Box
                 component="img"
                 alt="author image"
-                src={person}
+                src={
+                  host +
+                  props.item.attributes.users_permissions_user.data.attributes
+                    .profile_pic.data.attributes.url
+                }
                 className="image"
               />
               <Box>
@@ -84,7 +89,10 @@ export default function Testimonial(props) {
                   }}
                   variant="h5"
                 >
-                  {props.item.name}
+                  {
+                    props.item.attributes.users_permissions_user.data.attributes
+                      .name
+                  }
                 </Typography>
                 <Typography
                   sx={{
@@ -94,7 +102,10 @@ export default function Testimonial(props) {
                   color="gray"
                   variant="subtitle2"
                 >
-                  {props.item.title}
+                  {
+                    props.item.attributes.users_permissions_user.data.attributes
+                      .short_summary
+                  }
                 </Typography>
               </Box>
             </Box>

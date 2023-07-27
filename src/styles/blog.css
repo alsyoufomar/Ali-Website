@@ -13,12 +13,40 @@
   background-color: #fff;
 }
 
-.rich_text {
+.rich_text,
+del {
   font-family: lato;
   text-align: justify;
   font-size: 1.1875rem;
   line-height: 160%;
   font-weight: 500;
+  color: #031c21;
+}
+
+.rich_text img {
+  width: 100%;
+}
+
+del {
+  /*  */
+}
+
+iframe {
+  width: 100%;
+}
+
+blockquote {
+  background-color: transparent;
+  padding: 10px 20px;
+  margin: 30px 0;
+  border-left: #d3d8dc solid 3px;
+  font-style: italic;
+  color: #6d7d8b;
+  line-height: 24px;
+}
+
+blockquote p {
+  margin: 0;
 }
 
 .card-image {

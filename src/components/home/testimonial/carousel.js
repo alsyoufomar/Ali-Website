@@ -4,32 +4,23 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useMediaQuery } from "@mui/material";
 import React from "react";
+import useFetch from "../../../hooks/useFetch";
+import { useContext } from "react";
+import { StateContext } from "../../../store/index";
 
-var items = [
-  {
-    name: "Floyd Miles",
-    title: "CEO at Google",
-    description:
-      "Ali is a dedicated chemist from Amman, with a strong passion for molecules and chemical reactions that has led him to establish a notable presence in the scientific community.",
-  },
-  {
-    name: "Robert Fox",
-    title: "CEO at Coca-Cola",
-    description:
-      "Ali is a dedicated chemist from Amman, with a strong passion for molecules and chemical reactions that has led him to establish a notable presence in the scientific community.",
-  },
-  {
-    name: "Guy Hawkins",
-    title: "CEO at Pepsi",
-    description:
-      "Ali is a dedicated chemist from Amman, with a strong passion for molecules and chemical reactions that has led him to establish a notable presence in the scientific community.",
-  },
-];
-
-export default function CarouselCard(props) {
+export default function CarouselCard() {
   const isMediumScreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
   const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const navBtnsAlwaysVisible = isMediumScreen && isLargeScreen;
+
+  const host = process.env.REACT_APP_API_URL;
+  useFetch(
+    `${host}/api/testimonials?populate[users_permissions_user][populate][1]=profile_pic`,
+    "SET_TESTIMONIALS"
+  );
+  const [state] = useContext(StateContext);
+
+  if (!state.testimonials.data) return <></>;
 
   return (
     <Carousel
@@ -40,7 +31,6 @@ export default function CarouselCard(props) {
         style: {
           backgroundColor: "#00000000",
           borderRadius: 4,
-          // marginTop: "10rem",
         },
       }}
       indicatorContainerProps={{
@@ -54,7 +44,6 @@ export default function CarouselCard(props) {
       navButtonsAlwaysVisible={navBtnsAlwaysVisible}
       navButtonsWrapperProps={{
         style: {
-          // position: "absolute",
           next: {
             right: "15rem",
           },
@@ -66,8 +55,8 @@ export default function CarouselCard(props) {
         maxWidth: "1075px",
       }}
     >
-      {items.map((item, i) => (
-        <Testimonial key={i} item={item} />
+      {state.testimonials.data.map((item) => (
+        <Testimonial key={item.id} item={item} />
       ))}
     </Carousel>
   );

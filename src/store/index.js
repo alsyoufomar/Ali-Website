@@ -12,6 +12,7 @@ const initialState = {
   blogs: {},
   blog: {},
   testimonials: {},
+  email: "",
 };
 
 // Create context
@@ -34,6 +35,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         blog: action.payload,
+      };
+    case "SET_EMAIL":
+      return {
+        ...state,
+        email: action.payload,
       };
     case "SET_TESTIMONIALS":
       return {

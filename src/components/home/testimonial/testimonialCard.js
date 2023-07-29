@@ -1,7 +1,6 @@
 import React from "react";
 import { Paper, Typography, Box } from "@mui/material";
 import quote from "../../../assets/quote.svg";
-import person from "../../../assets/person.jpg";
 import "../../../styles/home.css";
 
 export default function Testimonial(props) {
@@ -78,7 +77,7 @@ export default function Testimonial(props) {
                   props.item.attributes.users_permissions_user.data.attributes
                     .profile_pic.data.attributes.url
                 }
-                className="image"
+                className="test-image"
               />
               <Box>
                 <Typography

@@ -43,6 +43,7 @@ export default function About() {
             <Box>
               <Typography
                 variant="body1"
+                className="rich_text"
                 sx={{
                   textAlign: "justify",
                   fontSize: "1.1875rem",
@@ -83,8 +84,7 @@ export default function About() {
                   alt="author image"
                   src={
                     host +
-                    state.about.data.attributes.personal_pic.data[0].attributes
-                      .url
+                    state.about.data.attributes.personal_pic.data.attributes.url
                   }
                 />
               </Box>

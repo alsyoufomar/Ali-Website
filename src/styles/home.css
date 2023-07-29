@@ -45,7 +45,7 @@
 }
 
 /* testimonial card's image */
-.image {
+.test-image {
   object-fit: cover;
   border-radius: 4px;
   height: 11.25rem;
@@ -103,6 +103,9 @@
   .testemonials {
     padding: 3.5rem 30px;
   }
+  .subscribe-cta {
+    padding-bottom: 4rem;
+  }
 
   .footer {
     padding: 60px 30px;
@@ -116,7 +119,7 @@
     padding-bottom: 6rem;
   }
 
-  .image {
+  .test-image {
     border-radius: 50%;
     height: 3.75rem;
     width: 3.75rem;
@@ -137,6 +140,10 @@
   .subscribe-cta,
   .testemonials {
     padding: 3rem 15px;
+  }
+
+  .subscribe-cta {
+    padding-bottom: 4.5rem;
   }
 
   .latest-research {
@@ -161,13 +168,21 @@
 
 @media only screen and (max-width: 309px) {
   .hero {
-    padding: 0 0px;
+    padding: 0 10px;
     padding-bottom: 10rem;
+  }
+
+  .footer {
+    padding: 60px 10px;
   }
 
   .latest-research,
   .subscribe-cta,
   .testemonials {
-    padding: 2rem 0;
+    padding: 2rem 10px;
+  }
+
+  .subscribe-cta {
+    padding-bottom: 5rem;
   }
 }

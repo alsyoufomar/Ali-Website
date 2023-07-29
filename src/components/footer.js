@@ -8,7 +8,6 @@ import instagram from "../assets/instagram.svg";
 import twitter from "../assets/twitter.svg";
 import { makeStyles } from "@mui/styles";
 import EastIcon from "@mui/icons-material/East";
-import cellc from "../assets/cellc.svg";
 import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
 import { StateContext } from "../store/index";

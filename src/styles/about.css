@@ -7,11 +7,19 @@
   position: relative;
 }
 
+.about p {
+  font-size: 19px;
+}
+
 @media only screen and (max-width: 767px) {
   .about {
     padding: 0 30px;
     padding-bottom: 90px;
     padding-top: 15px;
+  }
+
+  .about p {
+    font-size: 18px;
   }
 }
 
@@ -20,5 +28,9 @@
     padding: 0 15px;
     padding-bottom: 90px;
     padding-top: 15px;
+  }
+
+  .about p {
+    font-size: 17px;
   }
 }

@@ -6,48 +6,6 @@
   overflow: hidden;
   position: relative;
 }
-.post {
-  min-height: 100vh;
-  background-color: #e4edea;
-  padding-bottom: 6rem;
-  background-color: #fff;
-}
-
-.rich_text,
-del {
-  font-family: lato;
-  text-align: justify;
-  font-size: 1.1875rem;
-  line-height: 160%;
-  font-weight: 500;
-  color: #031c21;
-}
-
-.rich_text img {
-  width: 100%;
-}
-
-del {
-  /*  */
-}
-
-iframe {
-  width: 100%;
-}
-
-blockquote {
-  background-color: transparent;
-  padding: 10px 20px;
-  margin: 30px 0;
-  border-left: #d3d8dc solid 3px;
-  font-style: italic;
-  color: #6d7d8b;
-  line-height: 24px;
-}
-
-blockquote p {
-  margin: 0;
-}
 
 .card-image {
   object-fit: cover;
@@ -90,15 +48,115 @@ blockquote p {
   margin-right: 1.75rem;
 }
 
+/* Blog post styling */
+
+.post {
+  min-height: 100vh;
+  background-color: #e4edea;
+  padding-bottom: 6rem;
+  background-color: #fff;
+}
+
+/* Rich text styling */
+
+/* .rich_text,
+del {
+  font-family: lato;
+  text-align: justify;
+  font-size: 1.1875rem;
+  line-height: 160%;
+  font-weight: 500;
+  color: #031c21;
+} */
+
+.image {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-style-side,
+.image-style-align-right {
+  float: right;
+  margin-left: 1rem;
+}
+
+.image-style-align-left {
+  float: left;
+  margin-right: 1rem;
+}
+
+.image-style-block-align-right {
+  display: flex;
+  align-items: end;
+}
+.image-style-block-align-left {
+  display: flex;
+  align-items: start;
+}
+
+.image_resized {
+  width: 100%;
+}
+
+iframe {
+  width: 100%;
+}
+
+.needs-clarification {
+  background-color: #8de05d;
+}
+
+blockquote {
+  background-color: transparent;
+  padding: 10px 20px;
+  margin: 30px 0;
+  border-left: #d3d8dc solid 3px;
+  font-style: italic;
+  color: #6d7d8b;
+  line-height: 24px;
+}
+
+blockquote p {
+  margin: 0;
+}
+
+figcaption {
+  font-size: medium;
+}
+
+.rich_text p,
+.rich_text li {
+  font-size: 19px;
+}
+
+.rich_text h2 {
+  font-size: 28px;
+}
+.rich_text h3 {
+  font-size: 22px;
+}
+
+.rich_text h4 {
+  font-size: 19px;
+}
+
 @media only screen and (max-width: 767px) {
   .blog {
     padding: 0 30px;
     padding-bottom: 6rem;
     padding-top: 15px;
   }
+
   .post {
     padding-bottom: 6rem;
     padding-top: 15px;
+  }
+
+  .rich_text p,
+  .rich_text li {
+    font-size: 18px;
   }
 }
 
@@ -108,6 +166,7 @@ blockquote p {
     padding-bottom: 6rem;
     padding-top: 15px;
   }
+
   .post {
     padding-bottom: 6rem;
     padding-top: 15px;
@@ -117,5 +176,22 @@ blockquote p {
     height: 2.75rem;
     width: 2.75rem;
     margin-right: 1rem;
+  }
+
+  .rich_text p,
+  .rich_text li {
+    font-size: 17px;
+  }
+
+  .rich_text h2 {
+    font-size: 25px;
+  }
+
+  .rich_text h3 {
+    font-size: 20px;
+  }
+
+  .rich_text h4 {
+    font-size: 18px;
   }
 }

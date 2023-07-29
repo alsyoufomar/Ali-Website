@@ -8,7 +8,6 @@ import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
 import { StateContext } from "../store/index";
 import formattedDate from "../hooks/useFormattedDate";
-import ReactMarkdown from "react-markdown";
 
 export default function Post() {
   const { id } = useParams();
@@ -21,11 +20,9 @@ export default function Post() {
 
   if (!state.blog.data) return <></>;
   if (!state.blog.data.attributes) return <></>;
+  if (!state.blog.data.attributes.blog_body) return <></>;
   const date = formattedDate(state.blog.data.attributes.publishedAt);
-  const updatedContent = state.blog.data.attributes.blog_text.replace(
-    /src="\/uploads\//g,
-    `src="${host}/uploads/`
-  );
+
   return (
     <>
       <div className="post">
@@ -105,10 +102,19 @@ export default function Post() {
               mb: { xs: "40px", md: "60px" },
             }}
           >
+            {/* safe default */}
+            {/* <ReactMarkdown
+              className="rich_text"
+              children={state.blog.data.attributes.blog_body}
+              rehypePlugins={[rehypeRaw]}
+            /> */}
+
+            {/* ckeditor */}
             <Typography
               dangerouslySetInnerHTML={{
-                __html: updatedContent,
+                __html: state.blog.data.attributes.blog_body,
               }}
+              className="rich_text"
               variant="body1"
               sx={{
                 textAlign: "justify",
@@ -118,9 +124,6 @@ export default function Post() {
               }}
             >
               {/* <del>this is a strick through</del> */}
-              {/* <ReactMarkdown className="rich_text">
-              {state.blog.data.attributes.blog_body}
-            </ReactMarkdown> */}
             </Typography>
             <Box
               sx={{

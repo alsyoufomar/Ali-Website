@@ -1,8 +1,8 @@
 import React from "react";
 import "../styles/blog.css";
 import Appbar from "../components/appbarDark";
-import Footer from "../components/footer";
-import { Typography, Container, Button, Box } from "@mui/material";
+import Footer from "../components/footer/footer";
+import { Typography, Container, Button, Box, Pagination } from "@mui/material";
 import Blogcard from "../components/Blog/blogCard";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { grey } from "@mui/material/colors";
@@ -10,14 +10,27 @@ import celle from "../assets/celle.svg";
 import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
 import { StateContext } from "../store/index";
+import Loading from "./loading";
+import ReqError from "./error";
 
 export default function Blog() {
   const host = process.env.REACT_APP_API_URL;
-  useFetch(`${host}/api/blog-static`, "SET_BLOG_STATIC");
-  const [state] = useContext(StateContext);
+  const { loading, error } = useFetch(
+    `${host}/api/blog-static`,
+    "SET_BLOG_STATIC"
+  );
+  useFetch(
+    `${host}/api/blogs?fields[0]=headline&fields[1]=post_summary&fields[2]=publishedAt&populate[main_image][fields][0]=url&populate[users_permissions_user][populate][1]=profile_pic&pagination[page]=1&pagination[pageSize]=9`,
+    "SET_BLOGS"
+  );
 
+  const [state] = useContext(StateContext);
+  if (loading) return <Loading />;
+  if (error) return <ReqError props={error} />;
+  if (!state.blogs.data) return <></>;
   if (!state.blog_static.data) return <></>;
 
+  console.log(state.blogs.meta.pagination);
   return (
     <>
       <div className="blog">
@@ -43,14 +56,14 @@ export default function Blog() {
           >
             {state.blog_static.data.attributes.blog_subtitle}
           </Typography>
-          <Blogcard />
+          <Blogcard props={state} />
           <Box
             sx={{
               display: "flex",
               justifyContent: "center",
             }}
           >
-            <Button
+            {/* <Button
               endIcon={<ExpandMoreIcon />}
               disableElevation
               variant="contained"
@@ -72,7 +85,12 @@ export default function Blog() {
               }}
             >
               Expand
-            </Button>
+            </Button> */}
+            <Pagination
+              sx={{ zIndex: "10000" }}
+              count={state.blogs.meta.pagination.pageCount}
+              color="primary"
+            />
           </Box>
         </Container>
         <Box

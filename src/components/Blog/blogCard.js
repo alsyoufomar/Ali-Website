@@ -7,15 +7,9 @@ import { useContext } from "react";
 import { StateContext } from "../../store/index";
 import formattedDate from "../../hooks/useFormattedDate";
 
-export default function BlogCard() {
+export default function BlogCard({ props }) {
   const host = process.env.REACT_APP_API_URL;
-  useFetch(
-    `${host}/api/blogs?fields[0]=headline&fields[1]=post_summary&fields[2]=publishedAt&populate[main_image][fields][0]=url&populate[users_permissions_user][populate][1]=profile_pic`,
-    "SET_BLOGS"
-  );
-  const [state] = useContext(StateContext);
 
-  if (!state.blogs.data) return <></>;
   return (
     <div className="blog-card">
       <Box
@@ -33,7 +27,7 @@ export default function BlogCard() {
           maxWidth="auto"
           className="MuiGrid-root"
         >
-          {state.blogs.data.map((item) => (
+          {props.blogs.data.map((item) => (
             <Grid
               sx={{ zIndex: "1000" }}
               item
@@ -44,7 +38,7 @@ export default function BlogCard() {
               lg={4}
               component="div"
             >
-              <Link to={`/blog/${item.id}`} style={{ textDecoration: "none" }}>
+              <Link className="card" to={`/blog/${item.id}`}>
                 <Paper
                   sx={{
                     padding: "0",

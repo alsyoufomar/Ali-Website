@@ -1,31 +1,11 @@
 import React from "react";
 import { Paper, Typography, Box, Container } from "@mui/material";
 import { Link } from "react-router-dom";
-import img1 from "../../assets/research1.jpg";
-import img2 from "../../assets/research2.jpg";
-import img3 from "../../assets/research3.jpg";
 import arrow from "../../assets/arrow.svg";
 import cella from "../../assets/cella.svg";
 
-const serviceList = [
-  {
-    title: "Latest Virus research",
-    body: "Core reagents for virus vaccines, diagnostic ",
-    img: img1,
-  },
-  {
-    title: "Vaccine research",
-    body: "Core reagents for virus vaccines, diagnostic and drug R&D, Antigens/ Antibodies/ ELISA kits.",
-    img: img2,
-  },
-  {
-    title: "Development of medicine",
-    body: "Core reagents for virus vaccines, diagnostic and drug R&D, Antigens/ Antibodies/ ELISA kits. gjkhk hjg fewf wqef iuuujhjj",
-    img: img3,
-  },
-];
-
 export default function LatestResearch({ data }) {
+  const host = process.env.REACT_APP_API_URL;
   return (
     <div className="latest-research">
       <Container disableGutters maxWidth="container">
@@ -64,7 +44,7 @@ export default function LatestResearch({ data }) {
             zIndex: "10",
           }}
         >
-          {serviceList.map((card, i) => (
+          {data.blogs.data.map((card) => (
             <Paper
               sx={{
                 p: "0",
@@ -74,7 +54,7 @@ export default function LatestResearch({ data }) {
                 flex: "1 1 20rem",
                 mt: "3rem",
               }}
-              key={i}
+              key={card.id}
               elevation={8}
             >
               <Box
@@ -90,7 +70,7 @@ export default function LatestResearch({ data }) {
                 <Box>
                   <Box
                     component="img"
-                    src={card.img}
+                    src={host + card.attributes.main_image.data.attributes.url}
                     alt="thumbnail image"
                     className="research-card-image"
                   />
@@ -99,7 +79,7 @@ export default function LatestResearch({ data }) {
                     align="center"
                     variant="h5"
                   >
-                    {card.title}
+                    {card.attributes.headline}
                   </Typography>
                   <Typography
                     sx={{ my: "0.5rem" }}
@@ -107,10 +87,12 @@ export default function LatestResearch({ data }) {
                     align="center"
                     variant="body2"
                   >
-                    {card.body}
+                    {card.attributes.post_summary}
                   </Typography>
                 </Box>
                 <Link
+                  to={`/blog/${card.id}`}
+                  className="link"
                   align="center"
                   style={{
                     display: "block",
@@ -121,7 +103,7 @@ export default function LatestResearch({ data }) {
                     fontWeight: "500",
                   }}
                 >
-                  Read More <img src={arrow} alt="arrow" />
+                  Read More <img className="icon" src={arrow} alt="arrow" />
                 </Link>
               </Box>
             </Paper>

@@ -16,6 +16,16 @@
   margin-bottom: 0;
 }
 
+.card {
+  transition: transform 0.3s ease-in-out;
+  text-decoration: none;
+  display: block;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
 .author_image,
 .post_author_image,
 .bottom_author_image {

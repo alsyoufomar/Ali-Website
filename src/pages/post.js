@@ -1,23 +1,27 @@
 import React from "react";
 import "../styles/blog.css";
 import Appbar from "../components/appbarDark";
-import Footer from "../components/footer";
+import Footer from "../components/footer/footer";
 import { Typography, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
 import { StateContext } from "../store/index";
 import formattedDate from "../hooks/useFormattedDate";
+import Loading from "./loading";
+import ReqError from "./error";
 
 export default function Post() {
   const { id } = useParams();
   const host = process.env.REACT_APP_API_URL;
-  useFetch(
+  const { loading, error } = useFetch(
     `${host}/api/blogs/${id}?populate[main_image][fields][0]=url&populate[users_permissions_user][populate][1]=profile_pic`,
     "SET_BLOG"
   );
   const [state] = useContext(StateContext);
 
+  if (loading) return <Loading />;
+  if (error) return <ReqError props={error} />;
   if (!state.blog.data) return <></>;
   if (!state.blog.data.attributes) return <></>;
   if (!state.blog.data.attributes.blog_body) return <></>;

@@ -1,18 +1,24 @@
 import React from "react";
 import "../styles/about.css";
 import Appbar from "../components/appbarDark";
-import Footer from "../components/footer";
+import Footer from "../components/footer/footer";
 import { Typography, Box, Container } from "@mui/material";
 import celle from "../assets/celle.svg";
 import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
 import { StateContext } from "../store/index";
+import Loading from "./loading";
+import ReqError from "./error";
 
 export default function About() {
   const host = process.env.REACT_APP_API_URL;
-  useFetch(`${host}/api/about?populate=*`, "SET_ABOUT");
+  const { loading, error } = useFetch(
+    `${host}/api/about?populate=*`,
+    "SET_ABOUT"
+  );
   const [state] = useContext(StateContext);
-
+  if (loading) return <Loading />;
+  if (error) return <ReqError props={error} />;
   if (!state.about.data) return <></>;
 
   return (

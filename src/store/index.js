@@ -4,8 +4,6 @@ import React, { createContext, useReducer } from "react";
 const initialState = {
   home: {},
   footer: {},
-  error: "",
-  loading: true,
   blog_static: {},
   about: {},
   contact: {},
@@ -65,16 +63,6 @@ const reducer = (state, action) => {
       return {
         ...state,
         contact: action.payload,
-      };
-    case "SET_ERROR":
-      return {
-        ...state,
-        error: action.payload,
-      };
-    case "SET_LOADING":
-      return {
-        ...state,
-        loading: action.payload,
       };
     default:
       throw new Error("Invalid action type");

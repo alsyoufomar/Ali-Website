@@ -3,15 +3,22 @@ import Hero from "../components/home/hero";
 import LatestResearch from "../components/home/latestResearch";
 import SubscribeCTA from "../components/home/subscribeCTA";
 import Testimonial from "../components/home/testimonial/testimonial";
-import Footer from "../components/footer";
+import Footer from "../components/footer/footer";
 import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
 import { StateContext } from "../store/index";
+import Loading from "./loading";
+import ReqError from "./error";
 
 export default function Home() {
   const host = process.env.REACT_APP_API_URL;
-  useFetch(`${host}/api/home`, "SET_HOME");
+  const { loading, error } = useFetch(
+    `${host}/api/home?populate[blogs][populate][1]=main_image`,
+    "SET_HOME"
+  );
   const [state] = useContext(StateContext);
+  if (loading) return <Loading />;
+  if (error) return <ReqError props={error} />;
 
   if (!state.home.data) return <></>;
   return (

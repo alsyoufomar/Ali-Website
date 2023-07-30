@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/contact.css";
 import Appbar from "../components/appbarDark";
-import Footer from "../components/footer";
+import Footer from "../components/footer/footer";
 import { grey } from "@mui/material/colors";
 import mail from "../assets/mail.svg";
 import phone from "../assets/phone.svg";
@@ -11,6 +11,8 @@ import celle from "../assets/celle.svg";
 import useFetch from "../hooks/useFetch";
 import { useContext } from "react";
 import { StateContext } from "../store/index";
+import Loading from "./loading";
+import ReqError from "./error";
 import {
   Typography,
   Box,
@@ -22,10 +24,13 @@ import {
 
 export default function Contact() {
   const host = process.env.REACT_APP_API_URL;
-  useFetch(`${host}/api/contact`, "SET_CONTACT");
+  const { loading, error } = useFetch(`${host}/api/contact`, "SET_CONTACT");
   const [state] = useContext(StateContext);
 
+  if (loading) return <Loading />;
+  if (error) return <ReqError props={error} />;
   if (!state.contact.data) return <></>;
+
   return (
     <>
       <div className="contact">

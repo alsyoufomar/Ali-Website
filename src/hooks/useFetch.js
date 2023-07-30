@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { StateContext } from "../store/index";
 
 const getOptions = {
@@ -9,25 +9,30 @@ const getOptions = {
 };
 const useFetch = (url, action, options = getOptions) => {
   const [state, dispatch] = useContext(StateContext);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch({ type: "SET_LOADING", payload: true });
+      setLoading(true);
       try {
         const res = await fetch(url, options);
         const json = await res.json();
+        if (!res.ok) {
+          throw new Error(json.error.status + " " + json.error.message);
+        }
         dispatch({ type: action, payload: json });
-        dispatch({ type: "SET_LOADING", payload: false });
+        setLoading(false);
       } catch (err) {
-        dispatch({ type: "SET_ERROR", payload: err });
-        dispatch({ type: "SET_LOADING", payload: false });
+        setLoading(false);
+        setError(err.message);
       }
     };
 
     fetchData();
-  }, [url, dispatch]);
+  }, [url]);
 
-  //   return { loading, error, data };
+  return { loading, error };
 };
 
 export default useFetch;

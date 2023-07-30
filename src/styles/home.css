@@ -35,6 +35,18 @@
   margin-top: -3rem;
 }
 
+.icon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.icon:hover {
+  transform: translateX(10px);
+}
+
+.link:hover .icon {
+  transform: translateX(10px);
+}
+
 .cta-form {
   align-items: end;
 }

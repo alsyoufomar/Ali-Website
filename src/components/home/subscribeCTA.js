@@ -13,23 +13,30 @@ export default function SubscribeCTA({ data }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(
+    "An error occurred. Please try again."
+  );
+  const [email, setEmail] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoading(true);
-    setError(false);
-    setSuccess(false);
     const options = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ data: { email: state.email } }),
+      body: JSON.stringify({ data: { email } }),
     };
     try {
       const res = await fetch("http://localhost:1337/api/subscribers", options);
       const json = await res.json();
       if (!res.ok) {
+        if (json.error.message === "This attribute must be unique") {
+          setErrorMessage("You are already subscribed.");
+        } else if (json.error.message === "email must be a valid email") {
+          setErrorMessage("email must be a valid");
+        }
         throw new Error(json.error.message);
       } else {
         setSuccess(true);
@@ -38,7 +45,7 @@ export default function SubscribeCTA({ data }) {
       setError(true);
     } finally {
       setLoading(false);
-      dispatch({ type: "SET_EMAIL", payload: "" });
+      setEmail("");
     }
   };
   return (
@@ -91,10 +98,8 @@ export default function SubscribeCTA({ data }) {
               sx={{
                 width: { xs: "100%", sm: "20rem" },
               }}
-              value={state.email}
-              onChange={(event) =>
-                dispatch({ type: "SET_EMAIL", payload: event.target.value })
-              }
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
             />
             <Button
               sx={{
@@ -149,7 +154,7 @@ export default function SubscribeCTA({ data }) {
                 }}
                 severity="error"
               >
-                An error occurred. Please try again.
+                {errorMessage}
               </Alert>
             )}
           </form>

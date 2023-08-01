@@ -20,6 +20,7 @@
   transition: transform 0.3s ease-in-out;
   text-decoration: none;
   display: block;
+  height: 100%;
 }
 
 .card:hover {

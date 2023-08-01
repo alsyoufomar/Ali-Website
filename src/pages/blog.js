@@ -2,25 +2,37 @@ import React from "react";
 import "../styles/blog.css";
 import Appbar from "../components/appbarDark";
 import Footer from "../components/footer/footer";
-import { Typography, Container, Button, Box, Pagination } from "@mui/material";
+import { Typography, Container, Box, Pagination } from "@mui/material";
 import Blogcard from "../components/Blog/blogCard";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { grey } from "@mui/material/colors";
 import celle from "../assets/celle.svg";
 import useFetch from "../hooks/useFetch";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function Blog() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const host = process.env.REACT_APP_API_URL;
+  const [page, setPage] = useState(() => {
+    const query = new URLSearchParams(location.search);
+    return parseInt(query.get("page")) || 1;
+  });
+
+  useEffect(() => {
+    const query = new URLSearchParams();
+    query.set("page", page);
+    navigate({ search: query.toString() }, { replace: true });
+  }, [page, navigate]);
+
   const { loading, error } = useFetch(
     `${host}/api/blog-static`,
     "SET_BLOG_STATIC"
   );
   useFetch(
-    `${host}/api/blogs?fields[0]=headline&fields[1]=post_summary&fields[2]=publishedAt&populate[main_image][fields][0]=url&populate[users_permissions_user][populate][1]=profile_pic&pagination[page]=1&pagination[pageSize]=9`,
+    `${host}/api/blogs?fields[0]=headline&fields[1]=post_summary&fields[2]=publishedAt&populate[main_image][fields][0]=url&populate[users_permissions_user][populate][1]=profile_pic&pagination[page]=${page}&pagination[pageSize]=9&sort=publishedAt:desc`,
     "SET_BLOGS"
   );
 
@@ -30,7 +42,10 @@ export default function Blog() {
   if (!state.blogs.data) return <></>;
   if (!state.blog_static.data) return <></>;
 
-  console.log(state.blogs.meta.pagination);
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
   return (
     <>
       <div className="blog">
@@ -63,33 +78,12 @@ export default function Blog() {
               justifyContent: "center",
             }}
           >
-            {/* <Button
-              endIcon={<ExpandMoreIcon />}
-              disableElevation
-              variant="contained"
-              sx={{
-                zIndex: "1000",
-                backgroundColor: grey[400],
-                color: "primary.dark",
-                "&:hover": {
-                  backgroundColor: "primary.main",
-                  color: "white",
-                },
-                px: "22px",
-                py: "10px",
-                lineHeight: "20px",
-                fontWeight: "600",
-                fontFamily: "poppins",
-                // backgroundColor: "grey",
-                // color: "primary.dark",
-              }}
-            >
-              Expand
-            </Button> */}
             <Pagination
               sx={{ zIndex: "10000" }}
               count={state.blogs.meta.pagination.pageCount}
               color="primary"
+              page={page}
+              onChange={handlePageChange}
             />
           </Box>
         </Container>

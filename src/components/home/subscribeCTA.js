@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import { Typography, TextField, Box } from "@mui/material";
 import { Container, Button, Alert, LinearProgress } from "@mui/material";
-import useFetch from "../../hooks/useFetch";
-import { useContext } from "react";
-import { StateContext } from "../../store/index";
 
 export default function SubscribeCTA({ data }) {
-  const host = process.env.REACT_APP_API_URL;
-  // useFetch(`${host}/api/subscribers`, "SET_ABOUT");
-  const [state, dispatch] = useContext(StateContext);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -35,7 +28,9 @@ export default function SubscribeCTA({ data }) {
         if (json.error.message === "This attribute must be unique") {
           setErrorMessage("You are already subscribed.");
         } else if (json.error.message === "email must be a valid email") {
-          setErrorMessage("email must be a valid");
+          setErrorMessage("Email must be a valid");
+        } else {
+          setErrorMessage(json.error.message);
         }
         throw new Error(json.error.message);
       } else {
@@ -95,6 +90,9 @@ export default function SubscribeCTA({ data }) {
               variant="standard"
               label="Email"
               autoComplete="off"
+              inputProps={{
+                maxLength: 50,
+              }}
               sx={{
                 width: { xs: "100%", sm: "20rem" },
               }}

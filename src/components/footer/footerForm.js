@@ -22,6 +22,9 @@ const useStyles = makeStyles({
     "& .MuiInput-underline:before": {
       borderBottom: "2px solid rgba(140, 166, 158, 0.73)",
     },
+    "& .MuiInput-underline:before:hover": {
+      borderBottom: "2px solid rgba(140, 166, 158, 0.73)",
+    },
   },
 });
 
@@ -56,6 +59,8 @@ export default function FooterForm() {
           setErrorMessage("You are already subscribed.");
         } else if (json.error.message === "email must be a valid email") {
           setErrorMessage("Email must be a valid");
+        } else {
+          setErrorMessage(json.error.message);
         }
         throw new Error(json.error.message);
       } else {
@@ -102,7 +107,7 @@ export default function FooterForm() {
           className={classes.input}
           onChange={(event) => setEmail(event.target.value)}
           value={email}
-          autoComplete="off"
+          autoComplete="no"
           required={true}
           size="normal"
           variant="standard"
@@ -126,6 +131,7 @@ export default function FooterForm() {
             },
           }}
           inputProps={{
+            maxLength: 50,
             sx: {
               color: "gray",
               paddingBottom: "0.5rem",

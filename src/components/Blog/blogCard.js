@@ -2,9 +2,6 @@ import React from "react";
 import { Grid, Box, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "../../styles/blog.css";
-import useFetch from "../../hooks/useFetch";
-import { useContext } from "react";
-import { StateContext } from "../../store/index";
 import formattedDate from "../../hooks/useFormattedDate";
 
 export default function BlogCard({ props }) {
@@ -42,9 +39,11 @@ export default function BlogCard({ props }) {
                 <Paper
                   sx={{
                     padding: "0",
+                    // display: "flex",
                     height: "100%",
                     display: "flex",
                     flexDirection: "column",
+                    flexGrow: "1",
                   }}
                   elevation={12}
                 >
@@ -72,6 +71,13 @@ export default function BlogCard({ props }) {
                         color="gray"
                         variant="body2"
                         className="summary"
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3, // Number of lines to display
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
                       >
                         {item.attributes.post_summary}
                       </Typography>

@@ -9,7 +9,7 @@ import clock from "../assets/clock.svg";
 import location from "../assets/location.svg";
 import celle from "../assets/celle.svg";
 import useFetch from "../hooks/useFetch";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
@@ -20,16 +20,89 @@ import {
   TextField,
   Button,
   Link,
+  Alert,
+  LinearProgress,
 } from "@mui/material";
 
 export default function Contact() {
   const host = process.env.REACT_APP_API_URL;
   const { loading, error } = useFetch(`${host}/api/contact`, "SET_CONTACT");
   const [state] = useContext(StateContext);
+  const [formLoading, setFormLoading] = useState(false);
+  const [formError, setFormError] = useState(false);
+  const [formSuccess, setFormSuccess] = useState(false);
+  const [fieldsError, setFieldsError] = useState({
+    name: false,
+    email: false,
+    message: false,
+  });
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [errorMessage, setErrorMessage] = useState(
+    "An error occurred. Please try again."
+  );
 
   if (loading) return <Loading />;
   if (error) return <ReqError props={error} />;
   if (!state.contact.data) return <></>;
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setFieldsError({
+      name: !formData.name,
+      email: !formData.email,
+      message: !formData.message,
+    });
+
+    if (formData.name && formData.email && formData.message) {
+      setFormLoading(true);
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data: formData }),
+      };
+
+      try {
+        const res = await fetch(`${host}/api/user-messages`, options);
+        const json = await res.json();
+        if (!res.ok) {
+          if (json.error.message === "email must be a valid email") {
+            setErrorMessage("Email must be a valid");
+          } else {
+            setErrorMessage(json.error.message);
+          }
+          throw new Error(json.error.message);
+        } else {
+          setFormSuccess(true);
+        }
+      } catch (err) {
+        setFormError(true);
+      } finally {
+        setFormLoading(false);
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      }
+    }
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: value,
+      };
+    });
+  };
 
   return (
     <>
@@ -61,7 +134,7 @@ export default function Contact() {
               sx={{
                 maxWidth: "100%",
                 minHeight: "37.625rem",
-                py: { xs: "2rem", sm: "3rem", md: "4rem" },
+                py: { xs: "2.5rem", sm: "3.5rem", md: "5rem" },
                 px: { xs: "1.5rem", sm: "3rem", md: "0" },
                 backgroundColor: "#A3B8B2",
                 display: "flex",
@@ -73,7 +146,12 @@ export default function Contact() {
                 zIndex: "100000",
               }}
             >
-              <form className="contact-form" noValidate autoComplete="false">
+              <form
+                onSubmit={handleSubmit}
+                className="contact-form"
+                noValidate
+                autoComplete="false"
+              >
                 <Typography
                   variant="h4"
                   sx={{
@@ -86,11 +164,21 @@ export default function Contact() {
                   Get in touch
                 </Typography>
                 <TextField
-                  autoComplete="no"
+                  onChange={handleChange}
+                  name="name"
+                  value={formData.name}
+                  autoComplete="off"
+                  required={true}
                   fullWidth
                   label="Name"
                   variant="standard"
+                  error={fieldsError.name}
+                  helperText={fieldsError.name ? "Name is required" : ""}
+                  FormHelperTextProps={{
+                    style: { fontSize: "0.7rem" },
+                  }}
                   inputProps={{
+                    maxLength: 25,
                     sx: {
                       color: "primary.Dark",
                       paddingBottom: "0.5rem",
@@ -98,11 +186,21 @@ export default function Contact() {
                   }}
                 />
                 <TextField
-                  autoComplete="no"
+                  onChange={handleChange}
+                  name="email"
+                  value={formData.email}
+                  autoComplete="off"
+                  required={true}
                   fullWidth
                   label="Email"
                   variant="standard"
+                  error={fieldsError.email}
+                  helperText={fieldsError.email ? "Email is required" : ""}
+                  FormHelperTextProps={{
+                    style: { fontSize: "0.7rem" },
+                  }}
                   inputProps={{
+                    maxLength: 50,
                     sx: {
                       color: "primary.Dark",
                       paddingBottom: "0.5rem",
@@ -110,12 +208,23 @@ export default function Contact() {
                   }}
                 />
                 <TextField
+                  onChange={handleChange}
+                  name="message"
+                  value={formData.message}
+                  autoComplete="off"
+                  required={true}
                   multiline
                   rows={4}
                   fullWidth
                   label="Message"
                   variant="standard"
+                  error={fieldsError.message}
+                  helperText={fieldsError.message ? "Message is required" : ""}
+                  FormHelperTextProps={{
+                    style: { fontSize: "0.7rem" },
+                  }}
                   inputProps={{
+                    maxLength: 900,
                     sx: {
                       color: "primary.Dark",
                       paddingBottom: "0.5rem",
@@ -135,6 +244,49 @@ export default function Contact() {
                 >
                   Send
                 </Button>
+                {formLoading && (
+                  <Box
+                    sx={{
+                      width: "100%",
+                      position: "absolute",
+                      bottom: "0",
+                    }}
+                  >
+                    <LinearProgress />
+                  </Box>
+                )}
+                {formSuccess && (
+                  <Alert
+                    onClose={() => {
+                      setFormSuccess(false);
+                    }}
+                    variant="filled"
+                    sx={{
+                      position: "absolute",
+                      bottom: "-3.5rem",
+                      left: "0",
+                    }}
+                    severity="success"
+                  >
+                    Message sent!
+                  </Alert>
+                )}
+                {formError && (
+                  <Alert
+                    onClose={() => {
+                      setFormError(false);
+                    }}
+                    variant="filled"
+                    sx={{
+                      position: "absolute",
+                      bottom: { xs: "-4.7rem", sm: "-3.5rem" },
+                      left: "0",
+                    }}
+                    severity="error"
+                  >
+                    {errorMessage}
+                  </Alert>
+                )}
               </form>
               <Box
                 className="cover_image"

@@ -63,7 +63,8 @@ export default function LatestResearch({ data }) {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
-                  height: "87%",
+                  alignItems: "center",
+                  height: "89%",
                   flexGrow: "1",
                 }}
               >
@@ -93,11 +94,9 @@ export default function LatestResearch({ data }) {
                 <Link
                   to={`/blog/${card.id}`}
                   className="link"
-                  align="center"
                   style={{
                     display: "block",
                     marginTop: "1rem",
-                    // marginBottom: "2rem",
                     textDecoration: "none",
                     color: "#146B78",
                     fontWeight: "500",

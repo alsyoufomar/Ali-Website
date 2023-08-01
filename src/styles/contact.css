@@ -1,5 +1,4 @@
 .contact {
-  /* min-height: 100vh; */
   background-color: #e4edea;
   padding: 0 60px;
   padding-bottom: 160px;
@@ -24,6 +23,7 @@
   justify-content: space-between;
   margin-right: 3rem;
   margin-left: 3rem;
+  position: relative;
 }
 
 @media only screen and (max-width: 767px) {
@@ -59,7 +59,7 @@
 
   .contact-form {
     gap: 1rem;
-    margin-bottom: 3rem;
+    margin-bottom: 5rem;
   }
 
   .cover_image {

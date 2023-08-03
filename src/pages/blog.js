@@ -3,7 +3,7 @@ import "../styles/blog.css";
 import Appbar from "../components/appbarDark";
 import Footer from "../components/footer/footer";
 import { Typography, Container, Box, Pagination } from "@mui/material";
-import Blogcard from "../components/Blog/blogCard";
+import BlogCards from "../components/Blog/blogCard";
 import celle from "../assets/celle.svg";
 import useFetch from "../hooks/useFetch";
 import { useContext, useState, useEffect } from "react";
@@ -20,12 +20,14 @@ export default function Blog() {
     const query = new URLSearchParams(location.search);
     return parseInt(query.get("page")) || 1;
   });
+  const [state] = useContext(StateContext);
 
   useEffect(() => {
     const query = new URLSearchParams();
     query.set("page", page);
     navigate({ search: query.toString() }, { replace: true });
-  }, [page, navigate]);
+    window.scrollTo(0, 0);
+  }, [state.blogs, navigate]);
 
   const { loading, error } = useFetch(
     `${host}/api/blog-static`,
@@ -36,7 +38,6 @@ export default function Blog() {
     "SET_BLOGS"
   );
 
-  const [state] = useContext(StateContext);
   if (loading) return <Loading />;
   if (error) return <ReqError props={error} />;
   if (!state.blogs.data) return <></>;
@@ -71,7 +72,7 @@ export default function Blog() {
           >
             {state.blog_static.data.attributes.blog_subtitle}
           </Typography>
-          <Blogcard props={state} />
+          <BlogCards props={state} />
           <Box
             sx={{
               display: "flex",

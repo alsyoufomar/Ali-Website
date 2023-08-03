@@ -29,6 +29,8 @@ export default function SubscribeCTA({ data }) {
           setErrorMessage("You are already subscribed.");
         } else if (json.error.message === "email must be a valid email") {
           setErrorMessage("Email must be a valid");
+        } else if (json.error.message === "email cannot be empty") {
+          setErrorMessage("Email cannot be empty");
         } else {
           setErrorMessage(json.error.message);
         }

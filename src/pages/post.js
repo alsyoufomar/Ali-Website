@@ -10,6 +10,7 @@ import { StateContext } from "../store/index";
 import formattedDate from "../hooks/useFormattedDate";
 import Loading from "./loading";
 import ReqError from "./error";
+import { DiscussionEmbed } from "disqus-react";
 
 export default function Post() {
   const { id } = useParams();
@@ -26,6 +27,12 @@ export default function Post() {
   if (!state.blog.data.attributes) return <></>;
   if (!state.blog.data.attributes.blog_body) return <></>;
   const date = formattedDate(state.blog.data.attributes.publishedAt);
+
+  const disqusConfig = {
+    url: `${host}/blogs/${id}`,
+    identifier: id,
+    title: state.blog.data.attributes.headline,
+  };
 
   return (
     <>
@@ -190,6 +197,7 @@ export default function Post() {
                 mb: "60px",
               }}
             ></Box>
+            <DiscussionEmbed shortname="ali-alsyouf" config={disqusConfig} />
           </Box>
         </Box>
       </div>

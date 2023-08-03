@@ -1,5 +1,5 @@
 import Carousel from "react-material-ui-carousel";
-import Testimonial from "./testimonialCard";
+import TestimonialCard from "./testimonialCard";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useMediaQuery } from "@mui/material";
@@ -38,6 +38,7 @@ export default function CarouselCard() {
           marginTop: "50px",
         },
       }}
+      interval={10000}
       stopAutoPlayOnHover={true}
       swipe={true}
       navButtonsAlwaysInvisible={!navBtnsAlwaysVisible}
@@ -56,7 +57,7 @@ export default function CarouselCard() {
       }}
     >
       {state.testimonials.data.map((item) => (
-        <Testimonial key={item.id} item={item} />
+        <TestimonialCard key={item.id} item={item} />
       ))}
     </Carousel>
   );

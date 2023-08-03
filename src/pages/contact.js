@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import "../styles/contact.css";
 import Appbar from "../components/appbarDark";
 import Footer from "../components/footer/footer";
@@ -13,6 +13,7 @@ import { useContext, useState } from "react";
 import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   Typography,
   Box,
@@ -25,6 +26,7 @@ import {
 } from "@mui/material";
 
 export default function Contact() {
+  const captchaRef = useRef(null);
   const host = process.env.REACT_APP_API_URL;
   const { loading, error } = useFetch(`${host}/api/contact`, "SET_CONTACT");
   const [state] = useContext(StateContext);
@@ -42,9 +44,7 @@ export default function Contact() {
     email: "",
     message: "",
   });
-  const [errorMessage, setErrorMessage] = useState(
-    "An error occurred. Please try again."
-  );
+  const [errorMessage, setErrorMessage] = useState("Error, Please try again.");
 
   if (loading) return <Loading />;
   if (error) return <ReqError props={error} />;
@@ -52,6 +52,8 @@ export default function Contact() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const token = captchaRef.current.getValue();
+    captchaRef.current.reset();
     setFieldsError({
       name: !formData.name,
       email: !formData.email,
@@ -65,7 +67,7 @@ export default function Contact() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ data: formData }),
+        body: JSON.stringify({ data: { ...formData, token } }),
       };
 
       try {
@@ -132,18 +134,21 @@ export default function Contact() {
           <Container disableGutters maxWidth="container">
             <Box
               sx={{
+                display: "flex",
                 maxWidth: "100%",
                 minHeight: "37.625rem",
-                py: { xs: "2.5rem", sm: "3.5rem", md: "5rem" },
-                px: { xs: "1.5rem", sm: "3rem", md: "0" },
-                backgroundColor: "#A3B8B2",
-                display: "flex",
+                py: { xs: "2.5rem", sm: "3.5rem", md: "6rem" },
+                px: { xs: "1rem", sm: "3rem", md: "0" },
+                backgroundColor: "#DAE8E4",
                 alignItems: { xs: "start", md: "center" },
                 justifyContent: "space-evenly",
                 flexGrow: "1",
                 flexDirection: { xs: "column", md: "row" },
                 position: "relative",
                 zIndex: "100000",
+                borderRadius: { xs: "0.5rem", sm: "0.7rem", md: "1rem" },
+                boxShadow:
+                  "0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)",
               }}
             >
               <form
@@ -231,6 +236,11 @@ export default function Contact() {
                     },
                   }}
                 />
+                <ReCAPTCHA
+                  className="captcha"
+                  sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY}
+                  ref={captchaRef}
+                />
                 <Button
                   type="submit"
                   variant="contained"
@@ -279,7 +289,7 @@ export default function Contact() {
                     variant="filled"
                     sx={{
                       position: "absolute",
-                      bottom: { xs: "-4.7rem", sm: "-3.5rem" },
+                      bottom: { xs: "-4.7rem", sm: "-4rem" },
                       left: "0",
                     }}
                     severity="error"
@@ -293,11 +303,13 @@ export default function Contact() {
                 sx={{
                   py: { xs: "1.5rem", sm: "2rem", md: "4rem" },
                   px: { xs: "1.5rem", sm: "3rem", md: "5%" },
+                  mt: { xs: "1rem", md: "0" },
                   display: "flex",
                   flexShrink: "1",
                   flexDirection: "column",
                   justifyContent: "space-evenly",
                   zIndex: "1000",
+                  borderRadius: { xs: "0.5rem", sm: "0.7rem", md: "1rem" },
                 }}
               >
                 <Typography

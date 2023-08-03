@@ -3,11 +3,12 @@ import { Paper, Typography, Box } from "@mui/material";
 import quote from "../../../assets/quote.svg";
 import "../../../styles/home.css";
 
-export default function Testimonial(props) {
+export default function TestimonialCard(props) {
   const host = process.env.REACT_APP_API_URL;
   return (
     <Box sx={{ pr: { xs: "2px", md: "3.5rem" }, pl: "2px" }}>
       <Paper
+        elevation={8}
         sx={{
           minHeight: "20rem",
           maxWidth: "40.3rem",
@@ -17,7 +18,6 @@ export default function Testimonial(props) {
           alignItems: "center",
           mx: "auto",
           my: "2rem",
-
           p: { xs: "1.5rem", sm: "3rem", lg: "4rem" },
         }}
       >

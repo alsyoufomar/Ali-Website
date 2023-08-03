@@ -1,5 +1,5 @@
 .contact {
-  background-color: #e4edea;
+  background-color: #f0faf7;
   padding: 0 60px;
   padding-bottom: 160px;
   overflow: hidden;
@@ -7,7 +7,8 @@
 }
 
 .cover_image {
-  background: url(../assets/contact.jpg) no-repeat center center;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(../assets/contact.jpg) no-repeat center center;
   background-size: cover;
   height: 30rem;
   width: 30rem;
@@ -24,6 +25,7 @@
   margin-right: 3rem;
   margin-left: 3rem;
   position: relative;
+  height: 100%;
 }
 
 @media only screen and (max-width: 767px) {
@@ -67,5 +69,12 @@
     width: 100%;
     margin-right: 0;
     margin-bottom: -5rem;
+  }
+}
+
+@media only screen and (max-width: 365px) {
+  .captcha {
+    transform: scale(0.75);
+    transform-origin: 0 0;
   }
 }

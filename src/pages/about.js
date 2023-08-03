@@ -57,7 +57,6 @@ export default function About() {
                   fontWeight: "500",
                   maxWidth: { xs: "100%", md: "30.9375rem" },
                   minWidth: { xs: "35vw", lg: "25rem" },
-                  // marginBottom: "10rem",
                 }}
                 dangerouslySetInnerHTML={{
                   __html: state.about.data.attributes.body,
@@ -76,6 +75,7 @@ export default function About() {
                 sx={{
                   backgroundColor: "primary.dark",
                   py: "2rem",
+                  borderRadius: "1em",
                 }}
               >
                 <Box
@@ -85,6 +85,7 @@ export default function About() {
                     objectFit: "cover",
                     objectPosition: "center 50%",
                     ml: "10%",
+                    borderRadius: "1em",
                   }}
                   component="img"
                   alt="author image"

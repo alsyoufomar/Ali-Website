@@ -3,8 +3,11 @@ import { Paper, Typography, Box, Container } from "@mui/material";
 import { Link } from "react-router-dom";
 import arrow from "../../assets/arrow.svg";
 import cella from "../../assets/cella.svg";
+import { useContext } from "react";
+import { StateContext } from "../../store/index";
 
 export default function LatestResearch({ data }) {
+  const [state] = useContext(StateContext);
   const host = process.env.REACT_APP_API_URL;
   return (
     <div className="latest-research">
@@ -29,7 +32,7 @@ export default function LatestResearch({ data }) {
             textAlign: "center",
           }}
           variant="subtitle1"
-          color="gray"
+          color="secondary.dark"
         >
           {data.research_subtitle}
         </Typography>
@@ -53,9 +56,10 @@ export default function LatestResearch({ data }) {
                 mx: "auto",
                 flex: "1 1 20rem",
                 mt: "3rem",
+                backgroundColor: "customColor.main",
               }}
               key={card.id}
-              elevation={8}
+              elevation={state.isDark ? 0 : 8}
             >
               <Box
                 sx={{
@@ -76,7 +80,7 @@ export default function LatestResearch({ data }) {
                     className="research-card-image"
                   />
                   <Typography
-                    sx={{ marginTop: "1rem" }}
+                    sx={{ marginTop: "1rem", color: "primary.dark" }}
                     align="center"
                     variant="h5"
                   >
@@ -84,7 +88,7 @@ export default function LatestResearch({ data }) {
                   </Typography>
                   <Typography
                     sx={{ my: "0.5rem" }}
-                    color="grey"
+                    color="secondary.dark"
                     align="center"
                     variant="body2"
                   >
@@ -99,7 +103,7 @@ export default function LatestResearch({ data }) {
                     marginTop: "1rem",
                     textDecoration: "none",
                     color: "#146B78",
-                    fontWeight: "500",
+                    fontWeight: "600",
                   }}
                 >
                   Read More <img className="icon" src={arrow} alt="arrow" />

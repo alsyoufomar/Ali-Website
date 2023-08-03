@@ -71,16 +71,28 @@ export default function Post() {
                 }
                 className="post_author_image"
               />
-              <Typography variant="caption" sx={{ fontSize: "0.9375rem" }}>
+              <Typography
+                color="secondary.dark"
+                variant="caption"
+                sx={{ fontSize: "0.9375rem" }}
+              >
                 {
                   state.blog.data.attributes.users_permissions_user.data
                     .attributes.name
                 }
               </Typography>
-              <Typography variant="caption" sx={{ fontSize: "0.9375rem" }}>
+              <Typography
+                color="secondary.dark"
+                variant="caption"
+                sx={{ fontSize: "0.9375rem" }}
+              >
                 .
               </Typography>
-              <Typography variant="caption" sx={{ fontSize: "0.9375rem" }}>
+              <Typography
+                color="secondary.dark"
+                variant="caption"
+                sx={{ fontSize: "0.9375rem" }}
+              >
                 {date}
               </Typography>
             </Box>
@@ -113,13 +125,6 @@ export default function Post() {
               mb: { xs: "40px", md: "60px" },
             }}
           >
-            {/* safe default */}
-            {/* <ReactMarkdown
-              className="rich_text"
-              children={state.blog.data.attributes.blog_body}
-              rehypePlugins={[rehypeRaw]}
-            /> */}
-
             {/* ckeditor */}
             <Typography
               dangerouslySetInnerHTML={{
@@ -132,6 +137,7 @@ export default function Post() {
                 fontSize: "1.1875rem",
                 lineHeight: "160%",
                 fontWeight: "500",
+                color: "customColor.bodyText",
               }}
             >
               {/* <del>this is a strick through</del> */}
@@ -161,7 +167,7 @@ export default function Post() {
                     fontSize: "1rem",
                     fontWeight: "500",
                     letterSpacing: "0.1rem",
-                    color: "#BBC8D4",
+                    color: "#999999",
                   }}
                 >
                   Written by
@@ -179,7 +185,7 @@ export default function Post() {
                   }
                 </Typography>
                 <Box sx={{ maxWidth: "25rem" }}>
-                  <Typography variant="caption" lineHeight="133%">
+                  <Typography color="secondary.dark">
                     {
                       state.blog.data.attributes.users_permissions_user.data
                         .attributes.user_summary

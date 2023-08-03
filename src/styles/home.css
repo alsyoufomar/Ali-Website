@@ -13,7 +13,7 @@
 .latest-research,
 .subscribe-cta,
 .testemonials {
-  background-color: #f0faf7;
+  background-color: var(--background);
   padding: 6.5rem 60px;
   overflow: hidden;
   border: 0;
@@ -52,7 +52,7 @@
 }
 
 .testemonials {
-  padding-bottom: 10rem;
+  padding-bottom: 11rem;
   position: relative;
 }
 
@@ -72,7 +72,7 @@
 /* footer */
 .footer {
   width: 100%;
-  background-color: #031c21;
+  background-color: var(--footerBackground);
   padding: 60px;
   overflow: hidden;
   z-index: 10;

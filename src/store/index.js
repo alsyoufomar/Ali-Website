@@ -1,5 +1,7 @@
 import React, { createContext, useReducer } from "react";
 
+let darkMode = localStorage.getItem("darkMode") == "true";
+
 // Initial state
 const initialState = {
   home: {},
@@ -11,6 +13,7 @@ const initialState = {
   blog: {},
   testimonials: {},
   email: "",
+  isDark: darkMode,
 };
 
 // Create context
@@ -38,6 +41,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         email: action.payload,
+      };
+    case "SET_MODE":
+      localStorage.setItem("darkMode", action.payload);
+      return {
+        ...state,
+        isDark: action.payload,
       };
     case "SET_TESTIMONIALS":
       return {

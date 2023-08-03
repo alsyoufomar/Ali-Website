@@ -3,8 +3,11 @@ import { Grid, Box, Paper, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import "../../styles/blog.css";
 import formattedDate from "../../hooks/useFormattedDate";
+import { useContext } from "react";
+import { StateContext } from "../../store/index";
 
 export default function BlogCards({ props }) {
+  const [state] = useContext(StateContext);
   const host = process.env.REACT_APP_API_URL;
 
   return (
@@ -43,8 +46,9 @@ export default function BlogCards({ props }) {
                     display: "flex",
                     flexDirection: "column",
                     flexGrow: "1",
+                    backgroundColor: "customColor.main",
                   }}
-                  elevation={8}
+                  elevation={state.isDark ? 0 : 8}
                 >
                   <Box
                     component="img"
@@ -62,12 +66,19 @@ export default function BlogCards({ props }) {
                     }}
                   >
                     <Box>
-                      <Typography sx={{ my: 0 }} variant="h5" component="h4">
+                      <Typography
+                        sx={{ my: 0, color: "primary.dark" }}
+                        variant="h5"
+                        component="h4"
+                      >
                         {item.attributes.headline}
                       </Typography>
                       <Typography
-                        sx={{ my: "0.88rem", marginBottom: "3rem" }}
-                        color="gray"
+                        sx={{
+                          my: "0.88rem",
+                          marginBottom: "3rem",
+                          color: "secondary.dark",
+                        }}
                         variant="body2"
                         className="summary"
                         style={{
@@ -100,14 +111,16 @@ export default function BlogCards({ props }) {
                         className="author_image"
                         sx={{ flexShrink: "0" }}
                       />
-                      <Typography variant="caption">
+                      <Typography color="secondary.dark" variant="caption">
                         {
                           item.attributes.users_permissions_user.data.attributes
                             .name
                         }
                       </Typography>
-                      <Typography variant="caption">.</Typography>
-                      <Typography variant="caption">
+                      <Typography color="secondary.dark" variant="caption">
+                        .
+                      </Typography>
+                      <Typography color="secondary.dark" variant="caption">
                         {formattedDate(item.attributes.publishedAt)}
                       </Typography>
                     </Box>

@@ -1,12 +1,14 @@
 import { Route, Routes } from "react-router-dom";
-import { ThemeProvider, createTheme, styled } from "@mui/material/styles";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { useContext } from "react";
+import { StateContext } from "./store/index";
 import Home from "./pages/home";
 import Blog from "./pages/blog";
 import Post from "./pages/post";
 import About from "./pages/about";
 import Contact from "./pages/contact";
 
-let theme = createTheme({
+const stylingObj = {
   palette: {
     primary: {
       main: "#146B78",
@@ -16,6 +18,15 @@ let theme = createTheme({
     secondary: {
       main: "#9AC9BC",
       light: "rgba(140, 166, 158, 0.73)",
+      dark: "#808080",
+    },
+    customColor: {
+      main: "#ffffff",
+      inputLabel: "#031C21",
+      input: "#031C21",
+      personalImgBg: "#031c21",
+      bodyText: "#031C21",
+      contactForm: "#DAE8E4",
     },
   },
 
@@ -29,10 +40,6 @@ let theme = createTheme({
       xl: 1920,
       customBreakpoint: 2000,
     },
-  },
-
-  myCustomColor: {
-    main: "rgba(140, 166, 158, 0.73)",
   },
 
   typography: {
@@ -72,7 +79,6 @@ let theme = createTheme({
       fontSize: "1.3125rem",
       fontWeight: "500",
       lineHeight: "151%",
-      // textTransform: "capitalize",
     },
     caption: {
       fontSize: "14px",
@@ -82,7 +88,9 @@ let theme = createTheme({
       textTransform: "none",
     },
   },
-});
+};
+
+let theme = createTheme(stylingObj);
 
 theme = createTheme(theme, {
   typography: {
@@ -126,17 +134,45 @@ theme = createTheme(theme, {
     },
   },
 });
+
+let darkTheme = createTheme({
+  ...stylingObj,
+  palette: {
+    primary: {
+      main: "#146B78",
+      dark: "#9AC9BC",
+      light: "#031C21",
+    },
+    secondary: {
+      main: "#031C21",
+      light: "rgba(140, 166, 158, 0.73)",
+      dark: "rgba(140, 166, 158, 0.73)",
+    },
+    customColor: {
+      main: "rgba(25, 49, 53, 1)",
+      inputLabel: "rgba(140, 166, 158, 0.73)",
+      input: "grey",
+      personalImgBg: "rgba(25, 49, 53, 1)",
+      bodyText: "#b6d7cd",
+      contactForm: "rgba(25, 49, 53, 1)",
+    },
+  },
+});
 function App() {
+  const [state] = useContext(StateContext);
+
   return (
-    <ThemeProvider theme={theme}>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/blog/:id" element={<Post />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-      </Routes>
-    </ThemeProvider>
+    <div className={state.isDark ? "darkmode" : "app"}>
+      <ThemeProvider theme={state.isDark ? darkTheme : theme}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:id" element={<Post />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
+      </ThemeProvider>
+    </div>
   );
 }
 

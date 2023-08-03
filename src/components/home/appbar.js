@@ -3,6 +3,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import logo from "../../assets/ali.svg";
 import { makeStyles } from "@mui/styles";
+import { useContext } from "react";
+import { StateContext } from "../../store/index";
+import Brightness4Icon from "@mui/icons-material/Brightness4";
+import Brightness7Icon from "@mui/icons-material/Brightness7";
 import {
   Container,
   Menu,
@@ -44,21 +48,14 @@ const useStyles = makeStyles((theme) => ({
 function ResponsiveAppBar() {
   const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [state, dispatch] = useContext(StateContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
   };
 
   return (
@@ -143,11 +140,11 @@ function ResponsiveAppBar() {
                   sx={{
                     my: 4,
                     px: 2,
-                    color: "secondary.main",
+                    color: "#9AC9BC",
                     display: "block",
                     fontWeight: 700,
                     "&:hover": {
-                      color: "primary.main",
+                      color: "#146B78",
                     },
                   }}
                 >
@@ -155,6 +152,14 @@ function ResponsiveAppBar() {
                 </Button>
               </Link>
             ))}
+            <IconButton
+              sx={{ my: 4, ml: 2, color: "#9AC9BC" }}
+              onClick={() =>
+                dispatch({ type: "SET_MODE", payload: !state.isDark })
+              }
+            >
+              {state.isDark ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>

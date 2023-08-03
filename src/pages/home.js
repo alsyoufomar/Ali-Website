@@ -17,10 +17,11 @@ export default function Home() {
     "SET_HOME"
   );
   const [state] = useContext(StateContext);
-  if (loading) return <Loading />;
   if (error) return <ReqError props={error} />;
+  if (loading) return <Loading />;
+  if (!state.home.data) return <Loading />;
+  if (!state.home.data.attributes) return <Loading />;
 
-  if (!state.home.data) return <></>;
   return (
     <div className="home">
       <Hero data={state.home.data.attributes} />

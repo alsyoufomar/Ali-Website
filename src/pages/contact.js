@@ -14,6 +14,8 @@ import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
 import ReCAPTCHA from "react-google-recaptcha";
+import { makeStyles } from "@mui/styles";
+
 import {
   Typography,
   Box,
@@ -23,13 +25,23 @@ import {
   Link,
   Alert,
   LinearProgress,
+  Paper,
 } from "@mui/material";
+
+const useStyles = makeStyles({
+  inputDark: {
+    "& .MuiInput-underline:before": {
+      borderBottom: "2px solid rgba(140, 166, 158, 0.73)",
+    },
+  },
+});
 
 export default function Contact() {
   const captchaRef = useRef(null);
+  const classes = useStyles();
   const host = process.env.REACT_APP_API_URL;
   const { loading, error } = useFetch(`${host}/api/contact`, "SET_CONTACT");
-  const [state] = useContext(StateContext);
+  const [state, dispatch] = useContext(StateContext);
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);
@@ -125,21 +137,21 @@ export default function Contact() {
           <Typography
             variant="subtitle1"
             sx={{
-              color: "gray",
+              color: "secondary.dark",
               marginBottom: { xs: "60px", md: "135px" },
             }}
           >
             {state.contact.data.attributes.subtitle}
           </Typography>
           <Container disableGutters maxWidth="container">
-            <Box
+            <Paper
               sx={{
                 display: "flex",
                 maxWidth: "100%",
                 minHeight: "37.625rem",
                 py: { xs: "2.5rem", sm: "3.5rem", md: "6rem" },
                 px: { xs: "1rem", sm: "3rem", md: "0" },
-                backgroundColor: "#DAE8E4",
+                backgroundColor: "customColor.contactForm",
                 alignItems: { xs: "start", md: "center" },
                 justifyContent: "space-evenly",
                 flexGrow: "1",
@@ -147,9 +159,8 @@ export default function Contact() {
                 position: "relative",
                 zIndex: "100000",
                 borderRadius: { xs: "0.5rem", sm: "0.7rem", md: "1rem" },
-                boxShadow:
-                  "0px 5px 5px -3px rgba(0,0,0,0.2), 0px 8px 10px 1px rgba(0,0,0,0.14), 0px 3px 14px 2px rgba(0,0,0,0.12)",
               }}
+              elevation={state.isDark ? 0 : 8}
             >
               <form
                 onSubmit={handleSubmit}
@@ -169,6 +180,7 @@ export default function Contact() {
                   Get in touch
                 </Typography>
                 <TextField
+                  className={state.isDark ? classes.inputDark : ""}
                   onChange={handleChange}
                   name="name"
                   value={formData.name}
@@ -185,12 +197,18 @@ export default function Contact() {
                   inputProps={{
                     maxLength: 25,
                     sx: {
-                      color: "primary.Dark",
+                      color: "customColor.input",
                       paddingBottom: "0.5rem",
+                    },
+                  }}
+                  InputLabelProps={{
+                    sx: {
+                      color: "customColor.inputLabel",
                     },
                   }}
                 />
                 <TextField
+                  className={state.isDark ? classes.inputDark : ""}
                   onChange={handleChange}
                   name="email"
                   value={formData.email}
@@ -204,15 +222,21 @@ export default function Contact() {
                   FormHelperTextProps={{
                     style: { fontSize: "0.7rem" },
                   }}
+                  InputLabelProps={{
+                    sx: {
+                      color: "customColor.inputLabel",
+                    },
+                  }}
                   inputProps={{
                     maxLength: 50,
                     sx: {
-                      color: "primary.Dark",
+                      color: "customColor.input",
                       paddingBottom: "0.5rem",
                     },
                   }}
                 />
                 <TextField
+                  className={state.isDark ? classes.inputDark : ""}
                   onChange={handleChange}
                   name="message"
                   value={formData.message}
@@ -228,10 +252,15 @@ export default function Contact() {
                   FormHelperTextProps={{
                     style: { fontSize: "0.7rem" },
                   }}
+                  InputLabelProps={{
+                    sx: {
+                      color: "customColor.inputLabel",
+                    },
+                  }}
                   inputProps={{
                     maxLength: 900,
                     sx: {
-                      color: "primary.Dark",
+                      color: "customColor.input",
                       paddingBottom: "0.5rem",
                     },
                   }}
@@ -250,6 +279,9 @@ export default function Contact() {
                     fontWeight: "500",
                     fontSize: "1.125rem",
                     py: "1rem",
+                    "&:hover": {
+                      backgroundColor: "#146b7880",
+                    },
                   }}
                 >
                   Send
@@ -318,7 +350,7 @@ export default function Contact() {
                     marginBottom: "1rem",
                     fontWeight: "400",
                     fontFamily: "poppins",
-                    color: "secondary.main",
+                    color: "#9AC9BC",
                   }}
                 >
                   Info.
@@ -396,7 +428,7 @@ export default function Contact() {
                   </Typography>
                 </Box>
               </Box>
-            </Box>
+            </Paper>
           </Container>
         </Container>
         <Box

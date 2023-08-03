@@ -66,7 +66,7 @@ export default function Blog() {
           <Typography
             variant="subtitle1"
             sx={{
-              color: "gray",
+              color: "secondary.dark",
               marginBottom: "3rem",
             }}
           >
@@ -80,7 +80,15 @@ export default function Blog() {
             }}
           >
             <Pagination
-              sx={{ zIndex: "10000" }}
+              sx={{
+                zIndex: "10000",
+                "& .MuiPaginationItem-root": {
+                  color: "primary.dark",
+                },
+                "& .MuiPaginationItem-root.Mui-selected": {
+                  color: "#fff",
+                },
+              }}
               count={state.blogs.meta.pagination.pageCount}
               color="primary"
               page={page}

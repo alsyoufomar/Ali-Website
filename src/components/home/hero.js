@@ -23,7 +23,7 @@ export default function Hero({ data }) {
         <Box sx={{ minWidth: { sm: "20rem", lg: "30rem" } }}>
           <Typography
             sx={{
-              color: "secondary.main",
+              color: "#9AC9BC",
               mb: { xs: "15px", sm: "35px" },
             }}
             variant="h2"
@@ -34,7 +34,7 @@ export default function Hero({ data }) {
           <Typography
             variant="subtitle1"
             sx={{
-              color: "secondary.light",
+              color: "rgba(140, 166, 158, 0.73)",
               maxWidth: "30rem",
               mb: { xs: "3rem", sm: "4rem" },
             }}
@@ -49,14 +49,13 @@ export default function Hero({ data }) {
             to="/contact"
           >
             <Button
-              // onClick={handleCloseNavMenu}
               variant="contained"
               disableElevation
               style={{ borderRadius: 50 }}
               sx={{
                 px: { xs: "60px", sm: "30px", lg: "2.3rem" },
                 py: { xs: "12px", lg: "1rem" },
-                color: "primary.light",
+                color: "#E4EDEA",
                 display: "block",
                 fontSize: "1.125rem",
                 fontWeight: 700,

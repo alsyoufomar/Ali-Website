@@ -2,13 +2,16 @@ import React from "react";
 import { Paper, Typography, Box } from "@mui/material";
 import quote from "../../../assets/quote.svg";
 import "../../../styles/home.css";
+import { useContext } from "react";
+import { StateContext } from "../../../store/index";
 
 export default function TestimonialCard(props) {
+  const [state] = useContext(StateContext);
   const host = process.env.REACT_APP_API_URL;
   return (
     <Box sx={{ pr: { xs: "2px", md: "3.5rem" }, pl: "2px" }}>
       <Paper
-        elevation={8}
+        elevation={state.isDark ? 0 : 8}
         sx={{
           minHeight: "20rem",
           maxWidth: "40.3rem",
@@ -19,6 +22,7 @@ export default function TestimonialCard(props) {
           mx: "auto",
           my: "2rem",
           p: { xs: "1.5rem", sm: "3rem", lg: "4rem" },
+          backgroundColor: "customColor.main",
         }}
       >
         <Box>
@@ -46,7 +50,7 @@ export default function TestimonialCard(props) {
             <Typography
               sx={{
                 lineHeight: "150%",
-                color: "gray",
+                color: "secondary.dark",
                 fontWeight: "500",
                 fontSize: { xs: "17px", sm: "1.18rem" },
                 display: "flex",
@@ -97,8 +101,8 @@ export default function TestimonialCard(props) {
                   sx={{
                     fontWeight: "500",
                     textAlign: { xs: "start", md: "center" },
+                    color: "secondary.dark",
                   }}
-                  color="gray"
                   variant="subtitle2"
                 >
                   {

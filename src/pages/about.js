@@ -51,6 +51,7 @@ export default function About() {
                 variant="body1"
                 className="rich_text"
                 sx={{
+                  color: "customColor.bodyText",
                   textAlign: "justify",
                   fontSize: "1.1875rem",
                   lineHeight: "160%",
@@ -73,9 +74,9 @@ export default function About() {
             >
               <Box
                 sx={{
-                  backgroundColor: "primary.dark",
+                  backgroundColor: "customColor.personalImgBg",
                   py: "2rem",
-                  borderRadius: "1em",
+                  borderRadius: { xs: "0.5rem", sm: "0.7rem", md: "1rem" },
                 }}
               >
                 <Box
@@ -85,7 +86,7 @@ export default function About() {
                     objectFit: "cover",
                     objectPosition: "center 50%",
                     ml: "10%",
-                    borderRadius: "1em",
+                    borderRadius: { xs: "0.5rem", sm: "0.7rem", md: "1rem" },
                   }}
                   component="img"
                   alt="author image"

@@ -1,6 +1,6 @@
 import React, { createContext, useReducer } from "react";
 
-let darkMode = localStorage.getItem("darkMode") == "true";
+let darkMode = localStorage.getItem("darkMode") === "true";
 
 // Initial state
 const initialState = {

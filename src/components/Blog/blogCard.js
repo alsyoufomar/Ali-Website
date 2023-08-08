@@ -8,7 +8,6 @@ import { StateContext } from "../../store/index";
 
 export default function BlogCards({ props }) {
   const [state] = useContext(StateContext);
-  const host = process.env.REACT_APP_API_URL;
 
   return (
     <div className="blog-card">

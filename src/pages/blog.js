@@ -26,7 +26,7 @@ export default function Blog() {
     const query = new URLSearchParams();
     query.set("page", page);
     navigate({ search: query.toString() }, { replace: true });
-  }, [state.blogs, navigate]);
+  }, [state.blogs, navigate, page]);
 
   const { loading, error } = useFetch(
     `${host}/api/blog-static`,

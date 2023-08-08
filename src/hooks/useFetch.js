@@ -8,6 +8,7 @@ const getOptions = {
   },
 };
 const useFetch = (url, action, options = getOptions) => {
+  /* eslint-disable-next-line */
   const [state, dispatch] = useContext(StateContext);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -30,6 +31,7 @@ const useFetch = (url, action, options = getOptions) => {
     };
 
     fetchData();
+    /* eslint-disable-next-line */
   }, [url]);
 
   return { loading, error };

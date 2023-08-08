@@ -8,7 +8,6 @@ import { StateContext } from "../../store/index";
 
 export default function LatestResearch({ data }) {
   const [state] = useContext(StateContext);
-  const host = process.env.REACT_APP_API_URL;
   return (
     <div className="latest-research">
       <Container disableGutters maxWidth="container">

@@ -31,7 +31,7 @@ export default function Contact() {
   const captchaRef = useRef(null);
   const host = process.env.REACT_APP_API_URL;
   const { loading, error } = useFetch(`${host}/api/contact`, "SET_CONTACT");
-  const [state, dispatch] = useContext(StateContext);
+  const [state] = useContext(StateContext);
   const [formLoading, setFormLoading] = useState(false);
   const [formError, setFormError] = useState(false);
   const [formSuccess, setFormSuccess] = useState(false);

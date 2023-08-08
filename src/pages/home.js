@@ -13,9 +13,6 @@ import ReqError from "./error";
 import { Helmet } from "react-helmet";
 
 export default function Home() {
-  React.useEffect(() => {
-    // document.title = "Ali Alsyouf";
-  }, []);
   const host = process.env.REACT_APP_API_URL;
   const { loading, error } = useFetch(
     `${host}/api/home?populate[blogs][populate][1]=main_image`,

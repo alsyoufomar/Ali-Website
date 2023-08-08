@@ -65,7 +65,6 @@ export default function Post() {
                 component="img"
                 alt="author image"
                 src={
-                  host +
                   state.blog.data.attributes.users_permissions_user.data
                     .attributes.profile_pic.data.attributes.url
                 }
@@ -109,9 +108,7 @@ export default function Post() {
             <Box
               component="img"
               alt="cover image"
-              src={
-                host + state.blog.data.attributes.main_image.data.attributes.url
-              }
+              src={state.blog.data.attributes.main_image.data.attributes.url}
               className="post_cover_image"
             />
           </Box>
@@ -154,7 +151,6 @@ export default function Post() {
                 alt="author image"
                 flexShrink="0"
                 src={
-                  host +
                   state.blog.data.attributes.users_permissions_user.data
                     .attributes.profile_pic.data.attributes.url
                 }

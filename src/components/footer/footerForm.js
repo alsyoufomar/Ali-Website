@@ -103,13 +103,13 @@ export default function FooterForm() {
           marginBottom: "3rem",
         }}
         noValidate
-        autoComplete="false"
+        autoComplete="no"
       >
         <TextField
           className={classes.input}
           onChange={(event) => setEmail(event.target.value)}
           value={email}
-          autoComplete="no"
+          autoComplete="off"
           required={true}
           size="normal"
           variant="standard"

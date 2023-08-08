@@ -91,7 +91,6 @@ export default function About() {
                   component="img"
                   alt="author image"
                   src={
-                    host +
                     state.about.data.attributes.personal_pic.data.attributes.url
                   }
                 />

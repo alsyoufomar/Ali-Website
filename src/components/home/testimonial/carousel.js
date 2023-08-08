@@ -20,6 +20,8 @@ export default function CarouselCard() {
   );
   const [state] = useContext(StateContext);
 
+  if (!state) return <></>;
+  if (!state.testimonials) return <></>;
   if (!state.testimonials.data) return <></>;
 
   return (

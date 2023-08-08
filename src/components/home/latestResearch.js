@@ -75,7 +75,7 @@ export default function LatestResearch({ data }) {
                 <Box>
                   <Box
                     component="img"
-                    src={host + card.attributes.main_image.data.attributes.url}
+                    src={card.attributes.main_image.data.attributes.url}
                     alt="thumbnail image"
                     className="research-card-image"
                   />

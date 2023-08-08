@@ -53,7 +53,7 @@ export default function BlogCards({ props }) {
                   <Box
                     component="img"
                     alt="thumbnail image"
-                    src={host + item.attributes.main_image.data.attributes.url}
+                    src={item.attributes.main_image.data.attributes.url}
                     className="card-image"
                   />
                   <Box
@@ -104,7 +104,6 @@ export default function BlogCards({ props }) {
                         component="img"
                         alt="author image"
                         src={
-                          host +
                           item.attributes.users_permissions_user.data.attributes
                             .profile_pic.data.attributes.url
                         }

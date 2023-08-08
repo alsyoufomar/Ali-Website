@@ -7,7 +7,7 @@ import { StateContext } from "../../../store/index";
 
 export default function TestimonialCard(props) {
   const [state] = useContext(StateContext);
-  const host = process.env.REACT_APP_API_URL;
+
   return (
     <Box sx={{ pr: { xs: "2px", md: "3.5rem" }, pl: "2px" }}>
       <Paper
@@ -77,7 +77,6 @@ export default function TestimonialCard(props) {
                 component="img"
                 alt="author image"
                 src={
-                  host +
                   props.item.attributes.users_permissions_user.data.attributes
                     .profile_pic.data.attributes.url
                 }

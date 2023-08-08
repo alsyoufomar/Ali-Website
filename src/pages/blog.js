@@ -26,7 +26,6 @@ export default function Blog() {
     const query = new URLSearchParams();
     query.set("page", page);
     navigate({ search: query.toString() }, { replace: true });
-    window.scrollTo(0, 0);
   }, [state.blogs, navigate]);
 
   const { loading, error } = useFetch(
@@ -73,28 +72,30 @@ export default function Blog() {
             {state.blog_static.data.attributes.blog_subtitle}
           </Typography>
           <BlogCards props={state} />
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            <Pagination
+          {state.blogs.meta.pagination.pageCount > 1 && (
+            <Box
               sx={{
-                zIndex: "10000",
-                "& .MuiPaginationItem-root": {
-                  color: "primary.dark",
-                },
-                "& .MuiPaginationItem-root.Mui-selected": {
-                  color: "#fff",
-                },
+                display: "flex",
+                justifyContent: "center",
               }}
-              count={state.blogs.meta.pagination.pageCount}
-              color="primary"
-              page={page}
-              onChange={handlePageChange}
-            />
-          </Box>
+            >
+              <Pagination
+                sx={{
+                  zIndex: "10000",
+                  "& .MuiPaginationItem-root": {
+                    color: "primary.dark",
+                  },
+                  "& .MuiPaginationItem-root.Mui-selected": {
+                    color: "#fff",
+                  },
+                }}
+                count={state.blogs.meta.pagination.pageCount}
+                color="primary"
+                page={page}
+                onChange={handlePageChange}
+              />
+            </Box>
+          )}
         </Container>
         <Box
           component="img"

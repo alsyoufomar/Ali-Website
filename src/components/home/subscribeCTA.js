@@ -14,6 +14,7 @@ const useStyles = makeStyles({
 });
 
 export default function SubscribeCTA({ data }) {
+  const host = process.env.REACT_APP_API_URL;
   const [state] = useContext(StateContext);
   const classes = useStyles();
   const [loading, setLoading] = useState(false);
@@ -35,8 +36,9 @@ export default function SubscribeCTA({ data }) {
       body: JSON.stringify({ data: { email } }),
     };
     try {
-      const res = await fetch("http://localhost:1337/api/subscribers", options);
+      const res = await fetch(`${host}/api/subscribers`, options);
       const json = await res.json();
+      console.log(json);
       if (!res.ok) {
         if (json.error.message === "This attribute must be unique") {
           setErrorMessage("You are already subscribed.");

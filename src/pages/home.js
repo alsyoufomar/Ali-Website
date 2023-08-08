@@ -31,6 +31,10 @@ export default function Home() {
     <div className="home">
       <Helmet>
         <title>Ali Alsyouf</title>
+        <meta
+          name="Ali Personal Website & Blog"
+          content="Exploring the Fascinating World of Chemistry Welcome to My Journey Through Molecules and Reactions."
+        />
       </Helmet>
       <Hero data={state.home.data.attributes} />
       <LatestResearch data={state.home.data.attributes} />

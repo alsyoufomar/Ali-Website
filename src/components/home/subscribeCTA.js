@@ -1,22 +1,12 @@
 import React, { useState } from "react";
 import { Typography, TextField, Box } from "@mui/material";
 import { Container, Button, Alert, LinearProgress } from "@mui/material";
-import { makeStyles } from "@mui/styles";
 import { useContext } from "react";
 import { StateContext } from "../../store/index";
-
-const useStyles = makeStyles({
-  inputDark: {
-    "& .MuiInput-underline:before": {
-      borderBottom: "2px solid rgba(140, 166, 158, 0.73)",
-    },
-  },
-});
 
 export default function SubscribeCTA({ data }) {
   const host = process.env.REACT_APP_API_URL;
   const [state] = useContext(StateContext);
-  const classes = useStyles();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -102,13 +92,19 @@ export default function SubscribeCTA({ data }) {
             autoComplete="no"
           >
             <TextField
-              className={state.isDark ? classes.inputDark : ""}
               required={true}
               size="normal"
               variant="standard"
               label="Email"
               autoComplete="off"
-              sx={{ width: { xs: "100%", sm: "20rem" } }}
+              sx={{
+                width: { xs: "100%", sm: "20rem" },
+                "& .MuiInput-underline:before": {
+                  borderBottom: state.isDark
+                    ? "2px solid rgba(140, 166, 158, 0.73)"
+                    : "",
+                },
+              }}
               InputLabelProps={{
                 sx: {
                   color: "customColor.inputLabel",

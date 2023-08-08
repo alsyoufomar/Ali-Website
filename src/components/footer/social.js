@@ -2,27 +2,8 @@ import { Typography, Box, Link } from "@mui/material";
 import facebook from "../../assets/facebook.svg";
 import instagram from "../../assets/instagram.svg";
 import twitter from "../../assets/twitter.svg";
-import { makeStyles } from "@mui/styles";
-
-const useStyles = makeStyles((theme) => ({
-  footerSectionTitle: {
-    color: "#9AC9BC",
-  },
-  footerSectionItem: {
-    color: "rgba(140, 166, 158, 0.73)",
-    transition: theme.transitions.create("color", {
-      duration: theme.transitions.duration.enteringScreen,
-      easing: theme.transitions.easing.easeIn,
-    }),
-    "&:hover": {
-      color: "#146B78",
-    },
-  },
-}));
 
 export default function Social({ props }) {
-  const classes = useStyles();
-
   const social = [
     {
       name: "Facebook",
@@ -44,24 +25,25 @@ export default function Social({ props }) {
   return (
     <Box sx={{ mr: { xs: "auto", lg: "0" } }}>
       <Typography
-        className={classes.footerSectionTitle}
         variant="h6"
-        sx={{ marginBottom: "1.7rem" }}
+        sx={{ marginBottom: "1.7rem", color: "#9AC9BC" }}
       >
         Social
       </Typography>
       {social.map((item, i) => (
         <Link
-          className={classes.footerSectionItem}
           key={i}
           href={item.link}
           target="_blank"
           rel="noopener"
           sx={{
             display: "block",
-            textDecoration: "none",
             marginBottom: "0.9rem",
-            color: "rgba(140, 166, 158, 0.73)",
+            color: "secondary.light",
+            textDecoration: "none",
+            "&:hover": {
+              color: "#146B78",
+            },
           }}
         >
           <Box

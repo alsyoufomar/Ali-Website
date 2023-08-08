@@ -51,12 +51,12 @@
   align-items: end;
 }
 
+/* testimonial card's image */
 .testemonials {
   padding-bottom: 11rem;
   position: relative;
 }
 
-/* testimonial card's image */
 .test-image {
   object-fit: cover;
   border-radius: 4px;
@@ -80,6 +80,14 @@
 
 .footer-cta {
   order: 1;
+}
+
+.footerSectionItem {
+  color: rgba(140, 166, 158, 0.73);
+}
+
+.footerSectionItem:hover {
+  color: #146b78;
 }
 
 @media only screen and (max-width: 990px) {

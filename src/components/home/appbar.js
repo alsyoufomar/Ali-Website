@@ -2,7 +2,6 @@ import * as React from "react";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 import logo from "../../assets/ali.svg";
-import { makeStyles } from "@mui/styles";
 import { useContext } from "react";
 import { StateContext } from "../../store/index";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
@@ -26,27 +25,7 @@ const menu = [
   { name: "Contact", route: "contact" },
 ];
 
-const useStyles = makeStyles((theme) => ({
-  menu: {
-    backgroundColor: "#2b2b2b",
-    borderRadius: "4px",
-    marginTop: "8px",
-    width: "200px",
-  },
-  menuItem: {
-    color: "#333",
-    fontSize: "14px",
-    fontWeight: 700,
-    lineHeight: "1.5",
-    padding: "8px 16px",
-    "&:hover": {
-      backgroundColor: "red",
-    },
-  },
-}));
-
 function ResponsiveAppBar() {
-  const classes = useStyles();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [state, dispatch] = useContext(StateContext);
 
@@ -80,17 +59,17 @@ function ResponsiveAppBar() {
           >
             <IconButton
               size="small"
-              aria-label="account of current user"
+              aria-label="nav bar"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              sx={{ color: "secondary.main", p: 0 }}
+              sx={{ p: 0 }}
             >
-              <MenuIcon />
+              <MenuIcon style={{ fill: "#9AC9BC" }} />
             </IconButton>
             <Menu
-              classes={{ paper: classes.menu }}
               id="menu-appbar"
+              elevation={0}
               anchorEl={anchorElNav}
               anchorOrigin={{
                 vertical: "bottom",
@@ -105,6 +84,12 @@ function ResponsiveAppBar() {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
+                "& .MuiPaper-root": {
+                  bgcolor: "grey.800",
+                  color: "white",
+                  p: 1,
+                  width: "100%",
+                },
               }}
             >
               {menu.map((item, i) => (
@@ -112,13 +97,29 @@ function ResponsiveAppBar() {
                   key={i}
                   component={Link}
                   to={"/" + item.route}
-                  className={classes.menuItem}
-                  classes={{ root: classes.menuItem }}
                   onClick={handleCloseNavMenu}
+                  sx={{
+                    color: "#f5f5f5",
+                    fontSize: "14px",
+                    fontWeight: 700,
+                    lineHeight: "1.5",
+                    p: 2,
+                    "&:hover": {
+                      backgroundColor: "primary.main",
+                    },
+                  }}
                 >
                   <Typography textAlign="center">{item.name}</Typography>
                 </MenuItem>
               ))}
+              <IconButton
+                sx={{ m: 2, color: "#f5f5f5" }}
+                onClick={() =>
+                  dispatch({ type: "SET_MODE", payload: !state.isDark })
+                }
+              >
+                {state.isDark ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
             </Menu>
           </Box>
 

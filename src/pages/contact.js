@@ -14,7 +14,6 @@ import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
 import ReCAPTCHA from "react-google-recaptcha";
-import { makeStyles } from "@mui/styles";
 
 import {
   Typography,
@@ -28,17 +27,8 @@ import {
   Paper,
 } from "@mui/material";
 
-const useStyles = makeStyles({
-  inputDark: {
-    "& .MuiInput-underline:before": {
-      borderBottom: "2px solid rgba(140, 166, 158, 0.73)",
-    },
-  },
-});
-
 export default function Contact() {
   const captchaRef = useRef(null);
-  const classes = useStyles();
   const host = process.env.REACT_APP_API_URL;
   const { loading, error } = useFetch(`${host}/api/contact`, "SET_CONTACT");
   const [state, dispatch] = useContext(StateContext);
@@ -157,7 +147,7 @@ export default function Contact() {
                 flexGrow: "1",
                 flexDirection: { xs: "column", md: "row" },
                 position: "relative",
-                zIndex: "100000",
+                zIndex: "1000",
                 borderRadius: { xs: "0.5rem", sm: "0.7rem", md: "1rem" },
               }}
               elevation={state.isDark ? 0 : 8}
@@ -180,7 +170,13 @@ export default function Contact() {
                   Get in touch
                 </Typography>
                 <TextField
-                  className={state.isDark ? classes.inputDark : ""}
+                  sx={{
+                    "& .MuiInput-underline:before": {
+                      borderBottom: state.isDark
+                        ? "2px solid rgba(140, 166, 158, 0.73)"
+                        : "",
+                    },
+                  }}
                   onChange={handleChange}
                   name="name"
                   value={formData.name}
@@ -208,7 +204,13 @@ export default function Contact() {
                   }}
                 />
                 <TextField
-                  className={state.isDark ? classes.inputDark : ""}
+                  sx={{
+                    "& .MuiInput-underline:before": {
+                      borderBottom: state.isDark
+                        ? "2px solid rgba(140, 166, 158, 0.73)"
+                        : "",
+                    },
+                  }}
                   onChange={handleChange}
                   name="email"
                   value={formData.email}
@@ -236,7 +238,13 @@ export default function Contact() {
                   }}
                 />
                 <TextField
-                  className={state.isDark ? classes.inputDark : ""}
+                  sx={{
+                    "& .MuiInput-underline:before": {
+                      borderBottom: state.isDark
+                        ? "2px solid rgba(140, 166, 158, 0.73)"
+                        : "",
+                    },
+                  }}
                   onChange={handleChange}
                   name="message"
                   value={formData.message}

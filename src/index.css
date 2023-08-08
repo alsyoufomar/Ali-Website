@@ -35,8 +35,6 @@ a {
 .darkmode {
   --clr-dark: #031c21;
   --clr-light: #f0faf7;
-  --clr-accent: #68d000;
-  --clr-shadow: #68d00092;
 
   --foreground: var(--clr-light);
   --background: var(--clr-dark);

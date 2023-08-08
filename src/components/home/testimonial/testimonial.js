@@ -1,13 +1,9 @@
 import React from "react";
 import Carousel from "./carousel";
-import { Container, Typography, useMediaQuery, Box } from "@mui/material";
+import { Container, Typography, Box } from "@mui/material";
 import celle from "../../../assets/celle.svg";
 
 export default function Testimonial({ data }) {
-  const isMediumScreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
-  const isLargeScreen = useMediaQuery((theme) => theme.breakpoints.up("lg"));
-  const shouldDisableGutters = isMediumScreen && isLargeScreen;
-
   return (
     <div className="testemonials">
       <Container disableGutters maxWidth="container" sx={{ zIndex: "10" }}>

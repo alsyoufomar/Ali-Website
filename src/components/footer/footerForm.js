@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../styles/home.css";
-import { makeStyles } from "@mui/styles";
 import EastIcon from "@mui/icons-material/East";
 import {
   Typography,
@@ -11,28 +10,8 @@ import {
   LinearProgress,
 } from "@mui/material";
 
-const useStyles = makeStyles({
-  footerSectionTitle: {
-    color: "#9AC9BC",
-  },
-  footerSectionItem: {
-    color: "rgba(140, 166, 158, 0.73)",
-  },
-  input: {
-    "& .MuiInput-underline:before": {
-      borderBottom: "2px solid rgba(140, 166, 158, 0.73)",
-    },
-    "& .MuiInput-underline:before:hover": {
-      borderBottom: "2px solid rgba(140, 166, 158, 0.73)",
-    },
-  },
-});
-
 export default function FooterForm() {
-  const classes = useStyles();
-
   const host = process.env.REACT_APP_API_URL;
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -81,9 +60,8 @@ export default function FooterForm() {
       sx={{ width: { xs: "100%", sm: "16rem" }, maxWidth: "16rem" }}
     >
       <Typography
-        className={classes.footerSectionTitle}
         variant="h6"
-        sx={{ marginBottom: "1.6rem" }}
+        sx={{ marginBottom: "1.6rem", color: "#9AC9BC" }}
       >
         Stay up to date
       </Typography>
@@ -106,7 +84,7 @@ export default function FooterForm() {
         autoComplete="no"
       >
         <TextField
-          className={classes.input}
+          // className={classes.input}
           onChange={(event) => setEmail(event.target.value)}
           value={email}
           autoComplete="off"
@@ -120,7 +98,7 @@ export default function FooterForm() {
             },
             width: "100%",
             "& .MuiInput-underline:before": {
-              borderBottomColor: "2px solid rgba(140, 166, 158, 0.73)",
+              borderBottom: "2px solid rgba(140, 166, 158, 0.73)",
             },
             "&:hover .MuiInput-underline:before": {
               borderBottom: "2px solid rgba(140, 166, 158, 0.73)",

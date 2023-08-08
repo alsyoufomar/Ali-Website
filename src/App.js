@@ -136,7 +136,7 @@ theme = createTheme(theme, {
 });
 
 let darkTheme = createTheme({
-  ...stylingObj,
+  ...theme,
   palette: {
     primary: {
       main: "#146B78",

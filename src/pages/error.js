@@ -1,7 +1,11 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
+import { Helmet } from "react-helmet";
 
 export default function ReqError({ props }) {
+  React.useEffect(() => {
+    document.title = "Error :( . Ali Alsyouf";
+  }, []);
   return (
     <Box
       sx={{
@@ -12,6 +16,9 @@ export default function ReqError({ props }) {
         backgroundColor: "#2d303b",
       }}
     >
+      <Helmet>
+        <title>Error :( . Ali Alsyouf</title>
+      </Helmet>
       <Typography variant="h2" sx={{ color: "primary.main" }}>
         Error :( <br /> {props.error}
       </Typography>

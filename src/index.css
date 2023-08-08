@@ -4,6 +4,7 @@
   box-sizing: border-box; /* Opera/IE 8+ */
 
   transition: all 0.25s ease-out;
+  user-select: none;
 }
 
 body {

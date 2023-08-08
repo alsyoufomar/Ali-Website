@@ -14,6 +14,7 @@ import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Helmet } from "react-helmet";
 
 import {
   Typography,
@@ -111,6 +112,9 @@ export default function Contact() {
   return (
     <>
       <div className="contact">
+        <Helmet>
+          <title>Contact me . Ali Alsyouf</title>
+        </Helmet>
         <Appbar />
         <Container disableGutters maxWidth="container">
           <Typography

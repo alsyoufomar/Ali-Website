@@ -11,6 +11,7 @@ import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
 import { useNavigate, useLocation } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Blog() {
   const location = useLocation();
@@ -49,6 +50,9 @@ export default function Blog() {
   return (
     <>
       <div className="blog">
+        <Helmet>
+          <title>Blog . Ali Alsyouf</title>
+        </Helmet>
         <Appbar />
         <Container sx={{ zIndex: "1000" }} disableGutters maxWidth="container">
           <Typography

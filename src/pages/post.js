@@ -11,6 +11,7 @@ import formattedDate from "../hooks/useFormattedDate";
 import Loading from "./loading";
 import ReqError from "./error";
 import { DiscussionEmbed } from "disqus-react";
+import { Helmet } from "react-helmet";
 
 export default function Post() {
   const { id } = useParams();
@@ -37,6 +38,9 @@ export default function Post() {
   return (
     <>
       <div className="post">
+        <Helmet>
+          <title>{state.blog.data.attributes.headline} . Ali Alsyouf</title>
+        </Helmet>
         <Box sx={{ px: { xs: "15px", sm: "30px", md: "60px" } }}>
           <Appbar />
         </Box>

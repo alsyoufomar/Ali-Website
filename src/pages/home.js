@@ -1,4 +1,5 @@
 import "../styles/home.css";
+import React from "react";
 import Hero from "../components/home/hero";
 import LatestResearch from "../components/home/latestResearch";
 import SubscribeCTA from "../components/home/subscribeCTA";
@@ -9,8 +10,12 @@ import { useContext } from "react";
 import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
+  React.useEffect(() => {
+    // document.title = "Ali Alsyouf";
+  }, []);
   const host = process.env.REACT_APP_API_URL;
   const { loading, error } = useFetch(
     `${host}/api/home?populate[blogs][populate][1]=main_image`,
@@ -24,6 +29,9 @@ export default function Home() {
 
   return (
     <div className="home">
+      <Helmet>
+        <title>Ali Alsyouf</title>
+      </Helmet>
       <Hero data={state.home.data.attributes} />
       <LatestResearch data={state.home.data.attributes} />
       <SubscribeCTA data={state.home.data.attributes} />

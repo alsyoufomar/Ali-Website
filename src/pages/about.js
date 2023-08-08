@@ -9,9 +9,15 @@ import { useContext } from "react";
 import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
+import { Helmet } from "react-helmet";
 
 export default function About() {
   const host = process.env.REACT_APP_API_URL;
+
+  React.useEffect(() => {
+    document.title = "About me . Ali Alsyouf";
+  }, []);
+
   const { loading, error } = useFetch(
     `${host}/api/about?populate=*`,
     "SET_ABOUT"
@@ -24,6 +30,9 @@ export default function About() {
   return (
     <>
       <div className="about">
+        <Helmet>
+          <title>About me . Ali Alsyouf</title>
+        </Helmet>
         <Appbar />
         <Container disableGutters maxWidth="container" sx={{ height: "100%" }}>
           <Typography

@@ -28,8 +28,9 @@ export default function Home() {
     <div className="home">
       <Helmet>
         <title>Ali Alsyouf</title>
+        <meta property="og:title" content="Ali Alsyouf"></meta>
         <meta
-          name="Ali Personal Website & Blog"
+          name="description"
           content="Exploring the Fascinating World of Chemistry Welcome to My Journey Through Molecules and Reactions."
         />
       </Helmet>

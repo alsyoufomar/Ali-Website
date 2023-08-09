@@ -40,6 +40,14 @@ export default function Post() {
       <div className="post">
         <Helmet>
           <title>{state.blog.data.attributes.headline} . Ali Alsyouf</title>
+          <meta
+            property="og:title"
+            content={`${state.blog.data.attributes.headline} . Ali Alsyouf`}
+          ></meta>
+          <meta
+            name="description"
+            content="Exploring the Fascinating World of Chemistry Welcome to My Journey Through Molecules and Reactions."
+          />
         </Helmet>
         <Box sx={{ px: { xs: "15px", sm: "30px", md: "60px" } }}>
           <Appbar />

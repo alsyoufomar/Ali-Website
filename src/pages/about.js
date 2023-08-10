@@ -64,7 +64,7 @@ export default function About() {
                   color: "customColor.bodyText",
                   textAlign: "justify",
                   fontSize: "1.1875rem",
-                  lineHeight: "160%",
+                  lineHeight: "140%",
                   fontWeight: "500",
                   maxWidth: { xs: "100%", md: "30.9375rem" },
                   minWidth: { xs: "35vw", lg: "25rem" },

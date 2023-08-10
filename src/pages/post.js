@@ -141,7 +141,7 @@ export default function Post() {
               sx={{
                 textAlign: "justify",
                 fontSize: "1.1875rem",
-                lineHeight: "150%",
+                lineHeight: "140%",
                 fontWeight: "500",
                 color: "customColor.bodyText",
               }}

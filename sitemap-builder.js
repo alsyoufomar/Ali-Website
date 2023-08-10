@@ -5,7 +5,7 @@ const axios = require("axios");
 async function generateSitemap() {
   try {
     const data = await axios.get(
-      `https://ali-alsyouf.netlify.app/api/blogs?fields[0]=id`
+      `https://ali-website-server.onrender.com/api/blogs?fields[0]=id`
     );
 
     const links = [
@@ -21,7 +21,7 @@ async function generateSitemap() {
     ];
 
     const sitemapStream = new SitemapStream({
-      hostname: `https://ali-alsyouf.netlify.app/`,
+      hostname: "https://ali-alsyouf.netlify.app/",
     });
 
     sitemapStream.pipe(createWriteStream("./public/sitemap.xml"));

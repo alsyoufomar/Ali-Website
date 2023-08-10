@@ -22,7 +22,7 @@ export default function Loading() {
       }, 4000)
     );
 
-    timers.push(setTimeout(() => cycleMessages(), 10000));
+    timers.push(setTimeout(() => cycleMessages(), 8000));
 
     return () => {
       timers.forEach((timer) => clearTimeout(timer));
@@ -35,7 +35,7 @@ export default function Loading() {
     setTimeout(() => {
       setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
       setShowLoading(true);
-      setTimeout(cycleMessages, 10000);
+      setTimeout(cycleMessages, 8000);
     }, 500);
   };
 

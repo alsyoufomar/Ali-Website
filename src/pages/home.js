@@ -21,7 +21,7 @@ export default function Home() {
   const [state] = useContext(StateContext);
   if (error) return <ReqError props={error} />;
   if (loading) return <Loading />;
-  if (!state.home.data) return <Loading />;
+  if (state.home.data) return <Loading />;
   if (!state.home.data.attributes) return <Loading />;
 
   return (

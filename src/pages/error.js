@@ -3,9 +3,6 @@ import { Box, Typography } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 
 export default function ReqError({ props }) {
-  React.useEffect(() => {
-    document.title = "Error :( . Ali Alsyouf";
-  }, []);
   return (
     <Box
       sx={{
@@ -17,7 +14,7 @@ export default function ReqError({ props }) {
       }}
     >
       <Helmet>
-        <title>Error :( . Ali Alsyouf</title>
+        <title>Error :(</title>
       </Helmet>
       <Typography variant="h2" sx={{ color: "primary.main" }}>
         Error :( <br /> {props.error}

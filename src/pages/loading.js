@@ -8,7 +8,7 @@ export default function Loading() {
   const messages = [
     "Server is waking up, it should take only 15 seconds ...",
     "That dude sleeps every 15 minutes ...",
-    "Oops! it will take a bit longer ...",
+    "Oops! It will take a bit longer ...",
     "I know bro, thanks for being patient ...",
     "Oh god!",
     "Terribly sorry mate ...",
@@ -22,11 +22,12 @@ export default function Loading() {
       }, 4000)
     );
 
-    timers.push(setTimeout(() => cycleMessages(), 15000));
+    timers.push(setTimeout(() => cycleMessages(), 10000));
 
     return () => {
       timers.forEach((timer) => clearTimeout(timer));
     };
+    // eslint-disable-next-line
   }, []);
 
   const cycleMessages = () => {
@@ -34,7 +35,7 @@ export default function Loading() {
     setTimeout(() => {
       setMessageIndex((prevIndex) => (prevIndex + 1) % messages.length);
       setShowLoading(true);
-      setTimeout(cycleMessages, 15000);
+      setTimeout(cycleMessages, 10000);
     }, 500);
   };
 

@@ -9,7 +9,7 @@ export default function TestimonialCard(props) {
   const [state] = useContext(StateContext);
 
   return (
-    <Box sx={{ pr: { xs: "2px", md: "3.5rem" }, pl: "2px" }}>
+    <Box sx={{ pr: { xs: "2px", md: "4rem" }, pl: "2px" }}>
       <Paper
         elevation={state.isDark ? 0 : 8}
         sx={{
@@ -64,6 +64,9 @@ export default function TestimonialCard(props) {
             </Typography>
             <Box
               sx={{
+                p: 2,
+                backgroundColor: { xs: "#00000000", md: "primary.main" },
+                borderRadius: "4px",
                 mr: { xs: "auto", md: "-7rem" },
                 ml: { xs: "0", md: "5rem" },
                 mt: { xs: "2rem", md: "0" },
@@ -86,7 +89,7 @@ export default function TestimonialCard(props) {
                 <Typography
                   sx={{
                     my: "0.1rem",
-                    color: "primary.dark",
+                    color: { xs: "primary.dark", md: "#E4EDEA" },
                     textAlign: { xs: "start", md: "center" },
                   }}
                   variant="h5"
@@ -101,7 +104,7 @@ export default function TestimonialCard(props) {
                   sx={{
                     fontWeight: "500",
                     textAlign: { xs: "start", md: "center" },
-                    color: "secondary.dark",
+                    color: { xs: "secondary.dark", md: "grey.400" },
                   }}
                   variant="subtitle2"
                   component="h4"

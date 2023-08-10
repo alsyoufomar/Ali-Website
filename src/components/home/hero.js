@@ -33,6 +33,7 @@ export default function Hero({ data }) {
           </Typography>
           <Typography
             variant="subtitle1"
+            component="h2"
             sx={{
               color: "rgba(140, 166, 158, 0.73)",
               maxWidth: "30rem",

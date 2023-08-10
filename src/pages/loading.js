@@ -2,9 +2,6 @@ import React from "react";
 import { CircularProgress, Box } from "@mui/material";
 
 export default function Loading() {
-  React.useEffect(() => {
-    document.title = "Ali Alsyouf";
-  }, []);
   return (
     <Box
       sx={{

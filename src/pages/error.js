@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function ReqError({ props }) {
   React.useEffect(() => {

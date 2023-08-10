@@ -11,7 +11,7 @@ import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Blog() {
   const location = useLocation();
@@ -51,7 +51,12 @@ export default function Blog() {
     <>
       <div className="blog">
         <Helmet>
-          <title>Blog . Ali Alsyouf</title>
+          <title>Blog - Ali Alsyouf</title>
+          <meta
+            name="description"
+            content="My latest researches, tips, tricks, insights and resources. hot off the presses."
+          />
+          <link rel="canonical" href={`/blog?page=${page}`} />
         </Helmet>
         <Appbar />
         <Container sx={{ zIndex: "1000" }} disableGutters maxWidth="container">

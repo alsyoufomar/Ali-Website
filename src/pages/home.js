@@ -10,7 +10,7 @@ import { useContext } from "react";
 import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function Home() {
   const host = process.env.REACT_APP_API_URL;
@@ -28,11 +28,11 @@ export default function Home() {
     <div className="home">
       <Helmet>
         <title>Ali Alsyouf</title>
-        <meta property="og:title" content="Ali Alsyouf"></meta>
         <meta
           name="description"
           content="Exploring the Fascinating World of Chemistry Welcome to My Journey Through Molecules and Reactions."
         />
+        <link rel="canonical" href="/" />
       </Helmet>
       <Hero data={state.home.data.attributes} />
       <LatestResearch data={state.home.data.attributes} />

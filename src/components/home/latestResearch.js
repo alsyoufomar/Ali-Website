@@ -32,6 +32,7 @@ export default function LatestResearch({ data }) {
           }}
           variant="subtitle1"
           color="secondary.dark"
+          component="h3"
         >
           {data.research_subtitle}
         </Typography>
@@ -82,6 +83,7 @@ export default function LatestResearch({ data }) {
                     sx={{ marginTop: "1rem", color: "primary.dark" }}
                     align="center"
                     variant="h5"
+                    component="h4"
                   >
                     {card.attributes.headline}
                   </Typography>

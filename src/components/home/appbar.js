@@ -103,6 +103,7 @@ function ResponsiveAppBar() {
                     fontSize: "14px",
                     fontWeight: 700,
                     lineHeight: "1.5",
+
                     p: 2,
                     "&:hover": {
                       backgroundColor: "primary.main",

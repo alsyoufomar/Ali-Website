@@ -9,14 +9,10 @@ import { useContext } from "react";
 import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 export default function About() {
   const host = process.env.REACT_APP_API_URL;
-
-  React.useEffect(() => {
-    document.title = "About me . Ali Alsyouf";
-  }, []);
 
   const { loading, error } = useFetch(
     `${host}/api/about?populate=*`,
@@ -31,7 +27,12 @@ export default function About() {
     <>
       <div className="about">
         <Helmet>
-          <title>About me . Ali Alsyouf</title>
+          <title>About me - Ali Alsyouf</title>
+          <meta
+            name="description"
+            content="At RSS's R&D Lab, I enhanced MOF-801's yield from 80% to 95% and optimized its reuse. Also worked with MIL-101(Cr) & more."
+          />
+          <link rel="canonical" href="/contact" />
         </Helmet>
         <Appbar />
         <Container disableGutters maxWidth="container" sx={{ height: "100%" }}>

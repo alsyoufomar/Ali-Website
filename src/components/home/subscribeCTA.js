@@ -75,6 +75,7 @@ export default function SubscribeCTA({ data }) {
           }}
           variant="subtitle1"
           color="secondary.dark"
+          component="h3"
         >
           {data.home_cta_subtitle}
         </Typography>

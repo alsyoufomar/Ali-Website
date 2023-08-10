@@ -80,7 +80,7 @@ function ResponsiveAppBar() {
               }}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              zIndex="10000"
+              zindex="10000"
               sx={{
                 display: { xs: "block", md: "none" },
                 "& .MuiPaper-root": {

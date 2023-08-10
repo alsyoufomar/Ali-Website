@@ -90,6 +90,7 @@ export default function TestimonialCard(props) {
                     textAlign: { xs: "start", md: "center" },
                   }}
                   variant="h5"
+                  component="h3"
                 >
                   {
                     props.item.attributes.users_permissions_user.data.attributes
@@ -103,6 +104,7 @@ export default function TestimonialCard(props) {
                     color: "secondary.dark",
                   }}
                   variant="subtitle2"
+                  component="h4"
                 >
                   {
                     props.item.attributes.users_permissions_user.data.attributes

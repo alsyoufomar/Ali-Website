@@ -26,6 +26,7 @@ export default function Social({ props }) {
     <Box sx={{ mr: { xs: "auto", lg: "0" } }}>
       <Typography
         variant="h6"
+        component="h5"
         sx={{ marginBottom: "1.7rem", color: "#9AC9BC" }}
       >
         Social

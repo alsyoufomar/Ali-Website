@@ -1,4 +1,4 @@
-import { Typography, Box, Container } from "@mui/material";
+import { Typography, Container } from "@mui/material";
 import copyright from "../../assets/copyright.svg";
 import { StateContext } from "../../store/index";
 import useFetch from "../../hooks/useFetch";

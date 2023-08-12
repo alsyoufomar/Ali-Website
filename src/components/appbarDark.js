@@ -40,10 +40,13 @@ function ResponsiveAppBar() {
       <Container disableGutters maxWidth="container">
         <Toolbar disableGutters>
           <Link to="/">
-            <Box
-              component="img"
-              sx={{ height: 20, mt: "0.6rem" }}
+            <img
+              height="20px"
+              width="auto"
+              style={{ marginTop: "0.6rem" }}
               alt="Logo"
+              title="Logo"
+              loading="eager"
               src={state.isDark ? lightLogo : logo}
             />
           </Link>

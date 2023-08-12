@@ -73,11 +73,14 @@ export default function Hero({ data }) {
           component="img"
           sx={{
             height: { xs: "15rem", sm: "30rem", lg: "40rem" },
+            width: "auto",
             marginLeft: "-10rem",
             marginTop: { xs: "2rem", sm: "8rem", md: "4rem", lg: "0" },
             marginRight: "-15rem",
           }}
           alt="Logo"
+          title="cell c background"
+          loading="eager"
           src={cellc}
         />
       </Container>

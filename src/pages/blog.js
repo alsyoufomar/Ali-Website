@@ -73,6 +73,7 @@ export default function Blog() {
           </Typography>
           <Typography
             variant="subtitle1"
+            component="h2"
             sx={{
               color: "secondary.dark",
               marginBottom: "3rem",
@@ -115,6 +116,8 @@ export default function Blog() {
             right: "-5rem",
           }}
           alt="cell e"
+          title="cell e"
+          loading="eager"
           src={celle}
         />
       </div>

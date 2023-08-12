@@ -70,9 +70,12 @@ export default function Post() {
                 mb: { xs: "40px", md: "60px" },
               }}
             >
-              <Box
-                component="img"
-                alt="author image"
+              <img
+                alt="author"
+                title="author image"
+                loading="eager"
+                height="40px"
+                width="40px"
                 src={
                   state.blog.data.attributes.users_permissions_user.data
                     .attributes.profile_pic.data.attributes.url
@@ -114,9 +117,12 @@ export default function Post() {
               height: { xs: "250px", md: "450px" },
             }}
           >
-            <Box
-              component="img"
-              alt="cover image"
+            <img
+              alt="cover"
+              title="blog cover image"
+              loading="eager"
+              height="100%"
+              width="100%"
               src={state.blog.data.attributes.main_image.data.attributes.url}
               className="post_cover_image"
             />
@@ -141,7 +147,7 @@ export default function Post() {
               sx={{
                 textAlign: "justify",
                 fontSize: "1.1875rem",
-                lineHeight: "140%",
+                lineHeight: "145%",
                 fontWeight: "500",
                 color: "customColor.bodyText",
               }}
@@ -158,6 +164,8 @@ export default function Post() {
               <Box
                 component="img"
                 alt="author image"
+                title="author image"
+                loading="lazy"
                 flexShrink="0"
                 src={
                   state.blog.data.attributes.users_permissions_user.data

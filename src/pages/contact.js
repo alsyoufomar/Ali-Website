@@ -135,6 +135,7 @@ export default function Contact() {
           </Typography>
           <Typography
             variant="subtitle1"
+            component="h2"
             sx={{
               color: "secondary.dark",
               marginBottom: { xs: "60px", md: "135px" },
@@ -169,6 +170,7 @@ export default function Contact() {
               >
                 <Typography
                   variant="h4"
+                  component="h3"
                   sx={{
                     marginBottom: "1rem",
                     fontWeight: "400",
@@ -373,11 +375,14 @@ export default function Contact() {
                   Info.
                 </Typography>
                 <Box display="flex">
-                  <Box
-                    component="img"
-                    alt="mail"
+                  <img
+                    alt="email"
+                    title="email icon"
+                    loading="lazy"
+                    width="auto"
+                    height="auto"
                     src={mail}
-                    marginRight="0.5rem"
+                    style={{ marginRight: "8px" }}
                   />
                   <Link
                     sx={{
@@ -395,11 +400,14 @@ export default function Contact() {
                 </Box>
 
                 <Box display="flex">
-                  <Box
-                    component="img"
-                    alt="phone"
+                  <img
+                    alt="phone number"
+                    title="phone icon"
+                    loading="lazy"
+                    width="auto"
+                    height="auto"
                     src={phone}
-                    marginRight="0.4rem"
+                    style={{ marginRight: "6.4px" }}
                   />
                   <Link
                     sx={{
@@ -414,11 +422,14 @@ export default function Contact() {
                 </Box>
 
                 <Box display="flex">
-                  <Box
-                    component="img"
-                    alt="time"
+                  <img
+                    alt="time available"
+                    title="clock icon"
+                    loading="lazy"
+                    width="auto"
+                    height="auto"
                     src={clock}
-                    marginRight="0.5rem"
+                    style={{ marginRight: "8px" }}
                   />
                   <Typography
                     sx={{
@@ -430,11 +441,14 @@ export default function Contact() {
                 </Box>
 
                 <Box display="flex">
-                  <Box
-                    component="img"
+                  <img
                     alt="location"
+                    title="location icon"
+                    loading="lazy"
+                    width="auto"
+                    height="auto"
                     src={location}
-                    marginRight="0.5rem"
+                    style={{ marginRight: "8px" }}
                   />
                   <Typography
                     sx={{
@@ -457,6 +471,9 @@ export default function Contact() {
             right: "-5rem",
           }}
           alt="cell e"
+          title="cell e background"
+          loading="eager"
+          width="auto"
           src={celle}
         />
       </div>

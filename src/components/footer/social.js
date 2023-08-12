@@ -26,7 +26,7 @@ export default function Social({ props }) {
     <Box sx={{ mr: { xs: "auto", lg: "0" } }}>
       <Typography
         variant="h6"
-        component="h5"
+        component="h3"
         sx={{ marginBottom: "1.7rem", color: "#9AC9BC" }}
       >
         Social
@@ -47,16 +47,18 @@ export default function Social({ props }) {
             },
           }}
         >
-          <Box
-            component="img"
-            sx={{
-              height: 15,
+          <img
+            height="15"
+            width="auto"
+            alt="social icon"
+            title="social icon"
+            loading="lazy"
+            src={item.image}
+            style={{
               marginRight: "0.5rem",
               verticalAlign: "-2px",
               fill: "#146B78",
             }}
-            alt="Logo"
-            src={item.image}
           />
           {item.name}
         </Link>

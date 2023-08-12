@@ -12,9 +12,12 @@ export default function Info({ props }) {
       }}
     >
       <RouterLink to="/">
-        <Box
-          component="img"
-          sx={{ height: 20, marginTop: "0.5rem" }}
+        <img
+          title="logo"
+          height="20px"
+          width="auto"
+          loading="lazy"
+          style={{ marginTop: "0.5rem" }}
           alt="Logo"
           src={logo}
         />

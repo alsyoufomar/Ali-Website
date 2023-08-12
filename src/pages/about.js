@@ -64,7 +64,7 @@ export default function About() {
                   color: "customColor.bodyText",
                   textAlign: "justify",
                   fontSize: "1.1875rem",
-                  lineHeight: "140%",
+                  lineHeight: "145%",
                   fontWeight: "500",
                   maxWidth: { xs: "100%", md: "30.9375rem" },
                   minWidth: { xs: "35vw", lg: "25rem" },
@@ -99,7 +99,9 @@ export default function About() {
                     borderRadius: { xs: "0.5rem", sm: "0.7rem", md: "1rem" },
                   }}
                   component="img"
-                  alt="author image"
+                  alt="Ali's image"
+                  title="personal picture"
+                  loading="eager"
                   src={
                     state.about.data.attributes.personal_pic.data.attributes.url
                   }
@@ -116,7 +118,9 @@ export default function About() {
             bottom: "-3rem",
             right: "-5rem",
           }}
-          alt="cell e"
+          alt="background image"
+          title="cell e"
+          loading="eager"
           src={celle}
         />
       </div>

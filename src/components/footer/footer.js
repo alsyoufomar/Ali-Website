@@ -49,15 +49,17 @@ export default function Footer() {
             mt: { xs: "5rem", lg: "5rem" },
           }}
         >
-          <Box
-            component="img"
-            sx={{
-              height: 18,
+          <img
+            height="18"
+            width="auto"
+            alt="copyright"
+            title="copyright icon"
+            loading="lazy"
+            src={copyright}
+            style={{
               marginRight: "0.1rem",
               verticalAlign: "-3px",
             }}
-            alt="Logo"
-            src={copyright}
           />
           {state.footer.data.attributes.copyright}
         </Typography>

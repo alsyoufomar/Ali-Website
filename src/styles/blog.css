@@ -10,8 +10,7 @@
 .card-image {
   object-fit: cover;
   border-radius: 4px 4px 0 0;
-  height: 11.9375rem;
-  width: 100%;
+
   object-position: center 50%;
   margin-bottom: 0;
 }
@@ -38,15 +37,8 @@
   margin-bottom: 0;
 }
 
-.post_author_image {
-  height: 2.5rem;
-  width: 2.5rem;
-}
-
 .post_cover_image {
   object-fit: cover;
-  height: 100%;
-  width: 100%;
   object-position: center 50%;
   margin-bottom: 0;
   margin-right: auto;

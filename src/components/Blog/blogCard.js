@@ -49,9 +49,12 @@ export default function BlogCards({ props }) {
                   }}
                   elevation={state.isDark ? 0 : 8}
                 >
-                  <Box
-                    component="img"
-                    alt="thumbnail image"
+                  <img
+                    alt="thumbnail"
+                    title="cover image"
+                    loading="eager"
+                    height="191px"
+                    width="100%"
                     src={item.attributes.main_image.data.attributes.url}
                     className="card-image"
                   />
@@ -68,7 +71,7 @@ export default function BlogCards({ props }) {
                       <Typography
                         sx={{ my: 0, color: "primary.dark" }}
                         variant="h5"
-                        component="h4"
+                        component="h3"
                       >
                         {item.attributes.headline}
                       </Typography>
@@ -99,15 +102,18 @@ export default function BlogCards({ props }) {
                         justifyContent: "start",
                       }}
                     >
-                      <Box
-                        component="img"
-                        alt="author image"
+                      <img
+                        alt="author"
+                        title="author image"
+                        loading="eager"
+                        height="30px"
+                        width="30px"
                         src={
                           item.attributes.users_permissions_user.data.attributes
                             .profile_pic.data.attributes.url
                         }
                         className="author_image"
-                        sx={{ flexShrink: "0" }}
+                        style={{ flexShrink: "0" }}
                       />
                       <Typography color="secondary.dark" variant="caption">
                         {

@@ -28,14 +28,17 @@ export default function TestimonialCard(props) {
         <Box>
           <Box
             component="img"
+            height={{ xs: "4rem", sm: "5.5rem", lg: "7rem" }}
+            width="auto"
             sx={{
               position: "absolute",
-              height: { xs: "4rem", sm: "5.5rem", lg: "7rem" },
               top: { xs: "-1.7rem", sm: "-2.3rem", lg: "-3rem" },
               left: "3rem",
               zIndex: "10",
             }}
-            alt="Logo"
+            alt="quote"
+            title="quote icon"
+            loading="lazy"
             src={quote}
           />
           <Box
@@ -64,7 +67,7 @@ export default function TestimonialCard(props) {
             </Typography>
             <Box
               sx={{
-                p: 2,
+                p: { xs: 0, md: 2 },
                 backgroundColor: { xs: "#00000000", md: "primary.main" },
                 borderRadius: "4px",
                 mr: { xs: "auto", md: "-7rem" },
@@ -79,6 +82,8 @@ export default function TestimonialCard(props) {
               <Box
                 component="img"
                 alt="author image"
+                title="author image"
+                loading="lazy"
                 src={
                   props.item.attributes.users_permissions_user.data.attributes
                     .profile_pic.data.attributes.url

@@ -22,8 +22,11 @@ export default function Testimonial({ data }) {
       </Container>
       <Box
         component="img"
+        title="cell c background"
+        loading="eager"
+        width="auto"
+        height={{ xs: "12rem", sm: "15rem", md: "20rem", lg: "25rem" }}
         sx={{
-          height: { xs: "12rem", sm: "15rem", md: "20rem", lg: "25rem" },
           position: "absolute",
           bottom: "-3rem",
           right: "-5rem",

@@ -73,11 +73,14 @@ export default function LatestResearch({ data }) {
                 }}
               >
                 <Box>
-                  <Box
-                    component="img"
+                  <img
                     src={card.attributes.main_image.data.attributes.url}
-                    alt="thumbnail image"
+                    alt="thumbnail"
                     className="research-card-image"
+                    height="199px"
+                    width="100%"
+                    title="blog cover image"
+                    loading="lazy"
                   />
                   <Typography
                     sx={{ marginTop: "1rem", color: "primary.dark" }}
@@ -107,7 +110,16 @@ export default function LatestResearch({ data }) {
                     fontWeight: "600",
                   }}
                 >
-                  Read More <img className="icon" src={arrow} alt="arrow" />
+                  Read More{" "}
+                  <img
+                    className="icon"
+                    title="arrow icon"
+                    loading="lazy"
+                    height="auto"
+                    width="auto"
+                    src={arrow}
+                    alt="arrow"
+                  />
                 </Link>
               </Box>
             </Paper>
@@ -118,11 +130,14 @@ export default function LatestResearch({ data }) {
         component="img"
         sx={{
           height: { xs: "15rem", sm: "20rem", md: "25rem", lg: "30rem" },
+          width: "auto",
           position: "absolute",
           bottom: "-1rem",
           left: "-5rem",
         }}
-        alt="cell c"
+        title="cell a background"
+        loading="eager"
+        alt="cell a"
         src={cella}
       />
     </div>

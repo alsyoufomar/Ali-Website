@@ -61,7 +61,7 @@ export default function FooterForm() {
     >
       <Typography
         variant="h6"
-        component="h5"
+        component="h4"
         sx={{ marginBottom: "1.6rem", color: "#9AC9BC" }}
       >
         Stay up to date

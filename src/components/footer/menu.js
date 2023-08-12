@@ -14,7 +14,7 @@ export default function Menu() {
     <Box sx={{ mr: { xs: "4rem", lg: "0" } }}>
       <Typography
         variant="h6"
-        component="h5"
+        component="h2"
         sx={{ marginBottom: "1.7rem", color: "#9AC9BC" }}
       >
         Menu

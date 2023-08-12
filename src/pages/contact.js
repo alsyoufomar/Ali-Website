@@ -14,6 +14,7 @@ import { StateContext } from "../store/index";
 import Loading from "./loading";
 import ReqError from "./error";
 import ReCAPTCHA from "react-google-recaptcha";
+import { Helmet } from "react-helmet-async";
 
 import {
   Typography,
@@ -111,7 +112,15 @@ export default function Contact() {
   return (
     <>
       <div className="contact">
-        
+        <Helmet>
+          <title>Contact me - Ali Alsyouf</title>
+          <meta
+            name="description"
+            content="Feel free to contact me any time. I will get back to you as soon as I can!"
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <link rel="canonical" href="/contact" />
+        </Helmet>
         <Appbar />
         <Container disableGutters maxWidth="container">
           <Typography

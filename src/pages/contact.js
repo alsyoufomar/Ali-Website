@@ -118,6 +118,7 @@ export default function Contact() {
             name="description"
             content="Feel free to contact me any time. I will get back to you as soon as I can!"
           />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="canonical" href="/contact" />
         </Helmet>
         <Appbar />

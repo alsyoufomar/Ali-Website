@@ -111,6 +111,7 @@ export default function Contact() {
   return (
     <>
       <div className="contact">
+        
         <Appbar />
         <Container disableGutters maxWidth="container">
           <Typography

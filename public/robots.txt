@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://ali-alsyouf.netlify.app/sitemap.txt
+Sitemap: https://alialsyoufchemist.com//sitemap.xml

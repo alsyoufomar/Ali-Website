@@ -1,6 +1,6 @@
 # Ali Alsyouf's Personal Blog
 
-Welcome to the repository of [Ali Alsyouf's personal blog](https://ali-alsyouf.netlify.app/), a platform dedicated to sharing insights, articles, and researches about chemistry.
+Welcome to the repository of [Ali Alsyouf's personal blog](https://alialsyoufchemist.com/), a platform dedicated to sharing insights, articles, and researches about chemistry.
 
 ## 🚀 Features
 

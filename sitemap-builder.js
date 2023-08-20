@@ -21,7 +21,7 @@ async function generateSitemap() {
     ]
 
     const sitemapStream = new SitemapStream({
-      hostname: 'https://alialsyoufchemist.com//',
+      hostname: 'https://alialsyoufchemist.com/',
     })
 
     sitemapStream.pipe(createWriteStream('./public/sitemap.xml'))

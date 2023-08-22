@@ -41,7 +41,7 @@ export default function Post() {
         <Helmet>
           <title>{state.blog.data.attributes.headline} - Ali Alsyouf</title>
           <meta
-            name="description"
+            property="description"
             content={state.blog.data.attributes.post_summary}
           />
           <link rel="canonical" href={`/blogs/${id}`} />

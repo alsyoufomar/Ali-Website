@@ -1,39 +1,39 @@
-import React from "react";
-import "../styles/blog.css";
-import Appbar from "../components/appbarDark";
-import Footer from "../components/footer/footer";
-import { Typography, Box } from "@mui/material";
-import { useParams } from "react-router-dom";
-import useFetch from "../hooks/useFetch";
-import { useContext } from "react";
-import { StateContext } from "../store/index";
-import formattedDate from "../hooks/useFormattedDate";
-import Loading from "./loading";
-import ReqError from "./error";
-import { DiscussionEmbed } from "disqus-react";
-import { Helmet } from "react-helmet-async";
+import React from 'react'
+import '../styles/blog.css'
+import Appbar from '../components/appbarDark'
+import Footer from '../components/footer/footer'
+import { Typography, Box } from '@mui/material'
+import { useParams } from 'react-router-dom'
+import useFetch from '../hooks/useFetch'
+import { useContext } from 'react'
+import { StateContext } from '../store/index'
+import formattedDate from '../hooks/useFormattedDate'
+import Loading from './loading'
+import ReqError from './error'
+import { DiscussionEmbed } from 'disqus-react'
+import { Helmet } from 'react-helmet-async'
 
 export default function Post() {
-  const { id } = useParams();
-  const host = process.env.REACT_APP_API_URL;
+  const { id } = useParams()
+  const host = process.env.REACT_APP_API_URL
   const { loading, error } = useFetch(
     `${host}/api/blogs/${id}?populate[main_image][fields][0]=url&populate[users_permissions_user][populate][1]=profile_pic`,
-    "SET_BLOG"
-  );
-  const [state] = useContext(StateContext);
+    'SET_BLOG'
+  )
+  const [state] = useContext(StateContext)
 
-  if (loading) return <Loading />;
-  if (error) return <ReqError props={error} />;
-  if (!state.blog.data) return <></>;
-  if (!state.blog.data.attributes) return <></>;
-  if (!state.blog.data.attributes.blog_body) return <></>;
-  const date = formattedDate(state.blog.data.attributes.publishedAt);
+  if (loading) return <Loading />
+  if (error) return <ReqError props={error} />
+  if (!state.blog.data) return <></>
+  if (!state.blog.data.attributes) return <></>
+  if (!state.blog.data.attributes.blog_body) return <></>
+  const date = formattedDate(state.blog.data.attributes.publishedAt)
 
   const disqusConfig = {
     url: `${host}/blogs/${id}`,
     identifier: id,
     title: state.blog.data.attributes.headline,
-  };
+  }
 
   return (
     <>
@@ -45,17 +45,44 @@ export default function Post() {
             content={state.blog.data.attributes.post_summary}
           />
           <link rel="canonical" href={`/blogs/${id}`} />
+
+          <meta
+            property="og:title"
+            content={state.blog.data.attributes.headline}
+          />
+          <meta
+            property="og:description"
+            content={state.blog.data.attributes.post_summary}
+          />
+          <meta
+            property="og:image"
+            content={state.blog.data.attributes.main_image.data.attributes.url}
+          />
+
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta
+            name="twitter:title"
+            content={state.blog.data.attributes.headline}
+          />
+          <meta
+            name="twitter:description"
+            content={state.blog.data.attributes.post_summary}
+          />
+          <meta
+            name="twitter:image"
+            content={state.blog.data.attributes.main_image.data.attributes.url}
+          />
         </Helmet>
-        <Box sx={{ px: { xs: "15px", sm: "30px", md: "60px" } }}>
+        <Box sx={{ px: { xs: '15px', sm: '30px', md: '60px' } }}>
           <Appbar />
         </Box>
-        <Box sx={{ px: { xs: "15px", sm: "30px", md: "60px" } }}>
-          <Box sx={{ maxWidth: "700px", mx: "auto" }}>
+        <Box sx={{ px: { xs: '15px', sm: '30px', md: '60px' } }}>
+          <Box sx={{ maxWidth: '700px', mx: 'auto' }}>
             <Typography
               sx={{
-                color: "primary.dark",
-                marginBottom: "30px",
-                marginTop: { xs: "60px", md: "80px" },
+                color: 'primary.dark',
+                marginBottom: '30px',
+                marginTop: { xs: '60px', md: '80px' },
               }}
               variant="h2"
               component="h1"
@@ -64,10 +91,10 @@ export default function Post() {
             </Typography>
             <Box
               sx={{
-                display: "flex",
-                gap: "0.8rem",
-                alignItems: "center",
-                mb: { xs: "40px", md: "60px" },
+                display: 'flex',
+                gap: '0.8rem',
+                alignItems: 'center',
+                mb: { xs: '40px', md: '60px' },
               }}
             >
               <img
@@ -85,7 +112,7 @@ export default function Post() {
               <Typography
                 color="secondary.dark"
                 variant="caption"
-                sx={{ fontSize: "0.9375rem" }}
+                sx={{ fontSize: '0.9375rem' }}
               >
                 {
                   state.blog.data.attributes.users_permissions_user.data
@@ -95,26 +122,26 @@ export default function Post() {
               <Typography
                 color="secondary.dark"
                 variant="caption"
-                sx={{ fontSize: "0.9375rem" }}
+                sx={{ fontSize: '0.9375rem' }}
               >
                 .
               </Typography>
               <Typography
                 color="secondary.dark"
                 variant="caption"
-                sx={{ fontSize: "0.9375rem" }}
+                sx={{ fontSize: '0.9375rem' }}
               >
                 {date}
               </Typography>
             </Box>
           </Box>
         </Box>
-        <Box sx={{ px: { xs: "0", lg: "60px" } }}>
+        <Box sx={{ px: { xs: '0', lg: '60px' } }}>
           <Box
             sx={{
-              mx: "auto",
-              maxWidth: { xs: "100%", lg: "900px" },
-              height: { xs: "250px", md: "450px" },
+              mx: 'auto',
+              maxWidth: { xs: '100%', lg: '900px' },
+              height: { xs: '250px', md: '450px' },
             }}
           >
             <img
@@ -128,13 +155,13 @@ export default function Post() {
             />
           </Box>
         </Box>
-        <Box sx={{ px: { xs: "15px", sm: "30px", md: "60px" } }}>
+        <Box sx={{ px: { xs: '15px', sm: '30px', md: '60px' } }}>
           <Box
             sx={{
-              maxWidth: "700px",
-              mx: "auto",
-              mt: { xs: "40px", md: "60px" },
-              mb: { xs: "40px", md: "60px" },
+              maxWidth: '700px',
+              mx: 'auto',
+              mt: { xs: '40px', md: '60px' },
+              mb: { xs: '40px', md: '60px' },
             }}
           >
             {/* ckeditor */}
@@ -145,20 +172,20 @@ export default function Post() {
               className="rich_text"
               variant="body1"
               sx={{
-                textAlign: "justify",
-                fontSize: "1.1875rem",
-                lineHeight: "145%",
-                fontWeight: "500",
-                color: "customColor.bodyText",
+                textAlign: 'justify',
+                fontSize: '1.1875rem',
+                lineHeight: '145%',
+                fontWeight: '500',
+                color: 'customColor.bodyText',
               }}
             >
               {/* <del>this is a strick through</del> */}
             </Typography>
             <Box
               sx={{
-                display: "flex",
-                alignItems: "start",
-                marginTop: { xs: "60px", md: "120px" },
+                display: 'flex',
+                alignItems: 'start',
+                marginTop: { xs: '60px', md: '120px' },
               }}
             >
               <Box
@@ -176,20 +203,20 @@ export default function Post() {
               <Box>
                 <Typography
                   sx={{
-                    textTransform: "uppercase",
-                    fontSize: "1rem",
-                    fontWeight: "500",
-                    letterSpacing: "0.1rem",
-                    color: "#999999",
+                    textTransform: 'uppercase',
+                    fontSize: '1rem',
+                    fontWeight: '500',
+                    letterSpacing: '0.1rem',
+                    color: '#999999',
                   }}
                 >
                   Written by
                 </Typography>
                 <Typography
                   sx={{
-                    fontSize: "1.5rem",
-                    fontWeight: "400",
-                    color: "primary.dark",
+                    fontSize: '1.5rem',
+                    fontWeight: '400',
+                    color: 'primary.dark',
                   }}
                 >
                   {
@@ -197,7 +224,7 @@ export default function Post() {
                       .attributes.name
                   }
                 </Typography>
-                <Box sx={{ maxWidth: "25rem" }}>
+                <Box sx={{ maxWidth: '25rem' }}>
                   <Typography color="secondary.dark">
                     {
                       state.blog.data.attributes.users_permissions_user.data
@@ -209,11 +236,11 @@ export default function Post() {
             </Box>
             <Box
               sx={{
-                width: "100%",
-                height: "1px",
-                backgroundColor: "rgba(109, 125, 139, 0.4)",
-                mt: "60px",
-                mb: "60px",
+                width: '100%',
+                height: '1px',
+                backgroundColor: 'rgba(109, 125, 139, 0.4)',
+                mt: '60px',
+                mb: '60px',
               }}
             ></Box>
             <DiscussionEmbed shortname="ali-alsyouf" config={disqusConfig} />
@@ -222,5 +249,5 @@ export default function Post() {
       </div>
       <Footer />
     </>
-  );
+  )
 }

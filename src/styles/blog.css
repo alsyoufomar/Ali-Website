@@ -119,15 +119,25 @@ figcaption {
   font-size: 19px;
 }
 
+.rich_text li {
+  text-align: start;
+}
+
 .rich_text h2 {
   font-size: 28px;
+  line-height: 140%;
+  text-align: start;
 }
 .rich_text h3 {
   font-size: 22px;
+  line-height: 140%;
+  text-align: start;
 }
 
 .rich_text h4 {
   font-size: 19px;
+  line-height: 140%;
+  text-align: start;
 }
 
 @media only screen and (max-width: 767px) {
